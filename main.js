@@ -170,26 +170,62 @@ const firstWork = document.querySelector(".first-item")
 const firstModal = document.querySelector(".first-modal")
 const secondWork = document.querySelector(".second-item")
 const secondModal = document.querySelector(".second-modal")
+const thirdWork = document.querySelector(".third-item")
+const thirdModal = document.querySelector(".third-modal")
+const fourthWork = document.querySelector(".fourth-item")
+const fourthModal = document.querySelector(".fourth-modal")
+const fifthWork = document.querySelector(".fifth-item")
+const fifthModal = document.querySelector(".fifth-modal")
 const closeModalBtn = document.querySelector(".close-modal")
 
 //TEST ANIM
-const slideFirst = document.querySelector(".work-slide-item-fred-first")
-const slideSecond = document.querySelector(".work-slide-item-fred-second")
-const slideThird = document.querySelector(".work-slide-item-fred-third")
+const fredSlideFirst = document.querySelector(".work-slide-item-fred-first")
+const fredSlideSecond = document.querySelector(".work-slide-item-fred-second")
+const fredSlideThird = document.querySelector(".work-slide-item-fred-third")
+const fredVideoFirst = document.querySelector(".work-slide-item-fred-first .video")
+const fredVideoSecond = document.querySelector(".work-slide-item-fred-second .video")
+const fredVideoThird = document.querySelector(".work-slide-item-fred-third .video")
 
-const videoFirst = document.querySelector(".work-slide-item-fred-first .video")
-const videoSecond = document.querySelector(".work-slide-item-fred-second .video")
-const videoThird = document.querySelector(".work-slide-item-fred-third .video")
+const meiSlideFirst = document.querySelector(".work-slide-item-mei-first")
+const meiSlideSecond = document.querySelector(".work-slide-item-mei-second")
+const meiSlideThird = document.querySelector(".work-slide-item-mei-third")
+const meiVideoFirst = document.querySelector(".work-slide-item-mei-first .video")
+const meiVideoSecond = document.querySelector(".work-slide-item-mei-second .video")
+const meiVideoThird = document.querySelector(".work-slide-item-mei-third .video")
 
-slideFirst.addEventListener("click", () => {
-  videoFirst.classList.remove("hidden")
-})
-slideSecond.addEventListener("click", () => {
-  videoSecond.classList.remove("hidden")
-})
-slideThird.addEventListener("click", () => {
-  videoThird.classList.remove("hidden")
-})
+const thymeSlideFirst = document.querySelector(".work-slide-item-thyme-first")
+const thymeSlideSecond = document.querySelector(".work-slide-item-thyme-second")
+const thymeSlideThird = document.querySelector(".work-slide-item-thyme-third")
+const thymeVideoFirst = document.querySelector(".work-slide-item-thyme-first .video")
+const thymeVideoSecond = document.querySelector(".work-slide-item-thyme-second .video")
+const thymeVideoThird = document.querySelector(".work-slide-item-thyme-third .video")
+
+const brandSlideFirst = document.querySelector(".work-slide-item-brand-first")
+const brandSlideSecond = document.querySelector(".work-slide-item-brand-second")
+const brandSlideThird = document.querySelector(".work-slide-item-brand-third")
+
+const wigSlideFirst = document.querySelector(".work-slide-item-wig-first")
+const wigSlideSecond = document.querySelector(".work-slide-item-wig-second")
+const wigSlideThird = document.querySelector(".work-slide-item-wig-third")
+const wigVideoFirst = document.querySelector(".work-slide-item-wig-first .video")
+const wigVideoSecond = document.querySelector(".work-slide-item-wig-second .video")
+const wigVideoThird = document.querySelector(".work-slide-item-wig-third .video")
+
+fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("hidden")})
+fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("hidden")})
+fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("hidden")})
+
+meiSlideFirst.addEventListener("click", () => {meiVideoFirst.classList.remove("hidden")})
+meiSlideSecond.addEventListener("click", () => {meiVideoSecond.classList.remove("hidden")})
+meiSlideThird.addEventListener("click", () => {meiVideoThird.classList.remove("hidden")})
+
+thymeSlideFirst.addEventListener("click", () => {thymeVideoFirst.classList.remove("hidden")})
+thymeSlideSecond.addEventListener("click", () => {thymeVideoSecond.classList.remove("hidden")})
+thymeSlideThird.addEventListener("click", () => {thymeVideoThird.classList.remove("hidden")})
+
+wigSlideFirst.addEventListener("click", () => {wigVideoFirst.classList.remove("hidden")})
+wigSlideSecond.addEventListener("click", () => {wigVideoSecond.classList.remove("hidden")})
+wigSlideThird.addEventListener("click", () => {wigVideoThird.classList.remove("hidden")})
 
 firstWork.addEventListener("click", () => {
   firstModal.classList.remove("hidden")
@@ -201,18 +237,35 @@ secondWork.addEventListener("click", () => {
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+thirdWork.addEventListener("click", () => {
+  thirdModal.classList.remove("hidden")
+  closeModalBtn.classList.remove("hidden")
+  lenis.stop()
+})
+fourthWork.addEventListener("click", () => {
+  fourthModal.classList.remove("hidden")
+  closeModalBtn.classList.remove("hidden")
+  lenis.stop()
+})
+fifthWork.addEventListener("click", () => {
+  fifthModal.classList.remove("hidden")
+  closeModalBtn.classList.remove("hidden")
+  lenis.stop()
+})
 
 closeModalBtn.addEventListener("click", () => {
   firstModal.classList.add("hidden")
   secondModal.classList.add("hidden")
+  thirdModal.classList.add("hidden")
+  fourthModal.classList.add("hidden")
+  fifthModal.classList.add("hidden")
   closeModalBtn.classList.add("hidden")
   lenis.start()
 })
 
 // SWIPER SETTER
-
 var swiper = new Swiper('.swiper-container', {
-  loop: true,
+  //loop: true,
   mousewheel: true,
   slidesPerView: 3,
   spaceBetween: 100,

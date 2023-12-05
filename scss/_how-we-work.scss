@@ -261,7 +261,7 @@
           height: 70vh;
           width: 60vw;
   
-          background: url("/thyme/salmon.jpg");
+          background: url("/thyme/ftm-long-form.jpg");
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
@@ -331,11 +331,8 @@
 
         .modal {
           position: absolute;
-          height: fit-content;
-          width: fit-content;
-          // background-color: yellow;
           background-color: $color-darkBlue;
-          transform: translateX(-20vw);
+          //transform: translateX(-20vw);
 
           .swiper-wrapper {
             display: flex;
@@ -365,14 +362,6 @@
               &:hover {
                 cursor: pointer;
               }
-
-              .video {
-                z-index: 100;
-                opacity: 1;
-                height: 100%;
-                width: 100%;
-                margin-bottom: 4vh;
-              }
             }
             .work-slide-item-fred-second {
               border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
@@ -391,13 +380,6 @@
 
               &:hover {
                 cursor: pointer;
-              }
-
-              .video {
-                opacity: 1;
-                height: 100%;
-                width: 100%;
-                margin-bottom: 4vh;
               }
             }
             .work-slide-item-fred-third {
@@ -418,20 +400,6 @@
               &:hover {
                 cursor: pointer;
               }
-
-              .video {
-                opacity: 1;
-                height: 100%;
-                width: 100%;
-                margin-bottom: 4vh;
-              }
-            }
-
-            .hidden {
-              opacity: 0.1;
-            }
-            .visible {
-              opacity: 1;
             }
 
             // MEIJER
@@ -439,6 +407,11 @@
               border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
               height: 70vh;
               width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
               background: url("/meijer/burger.jpg");
               background-position: center;
@@ -453,6 +426,11 @@
               border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
               height: 70vh;
               width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
               background: url("/meijer/ice-cream.jpg");
               background-position: center;
@@ -467,6 +445,11 @@
               border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
               height: 70vh;
               width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
               background: url("/meijer/sizzle.jpg");
               background-position: center;
@@ -476,6 +459,195 @@
               &:hover {
                 cursor: pointer;
               }
+            }
+
+            // THYME
+            .work-slide-item-thyme-first {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/ftm-long-form.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-thyme-second {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/salmon.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-thyme-third {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/steack.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            // BRAND
+            .work-slide-item-brand-first {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/ftm-long-form.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-brand-second {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/salmon.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-brand-third {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/thyme/steack.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            // WIGGLES
+            .work-slide-item-wig-first {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/wiggles/dance.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-wig-second {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/wiggles/dole-jokes.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-wig-third {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/wiggles/tickle.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .video {
+              z-index: 100;
+              opacity: 1;
+              height: 100%;
+              width: 100%;
+              margin-bottom: 4vh;
+            }
+
+            .hidden {
+              opacity: 0;
             }
           }
         }
