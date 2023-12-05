@@ -168,16 +168,43 @@ gsap.to(howWeWorkItems, {
 // WORKS MODAL
 const firstWork = document.querySelector(".first-item")
 const firstModal = document.querySelector(".first-modal")
+const secondWork = document.querySelector(".second-item")
+const secondModal = document.querySelector(".second-modal")
 const closeModalBtn = document.querySelector(".close-modal")
+
+//TEST ANIM
+const slideFirst = document.querySelector(".work-slide-item-fred-first")
+const slideSecond = document.querySelector(".work-slide-item-fred-second")
+const slideThird = document.querySelector(".work-slide-item-fred-third")
+
+const videoFirst = document.querySelector(".work-slide-item-fred-first .video")
+const videoSecond = document.querySelector(".work-slide-item-fred-second .video")
+const videoThird = document.querySelector(".work-slide-item-fred-third .video")
+
+slideFirst.addEventListener("click", () => {
+  videoFirst.classList.remove("hidden")
+})
+slideSecond.addEventListener("click", () => {
+  videoSecond.classList.remove("hidden")
+})
+slideThird.addEventListener("click", () => {
+  videoThird.classList.remove("hidden")
+})
 
 firstWork.addEventListener("click", () => {
   firstModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+secondWork.addEventListener("click", () => {
+  secondModal.classList.remove("hidden")
+  closeModalBtn.classList.remove("hidden")
+  lenis.stop()
+})
 
 closeModalBtn.addEventListener("click", () => {
   firstModal.classList.add("hidden")
+  secondModal.classList.add("hidden")
   closeModalBtn.classList.add("hidden")
   lenis.start()
 })

@@ -346,12 +346,129 @@
 
             gap: 30vw;
 
-            .work-slide-item {
+            // FREDERIKS
+            .work-slide-item-fred-first {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/fredriks/pasta.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              .video {
+                z-index: 100;
+                opacity: 1;
+                height: 100%;
+                width: 100%;
+                margin-bottom: 4vh;
+              }
+            }
+            .work-slide-item-fred-second {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/fredriks/sizzle.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              .video {
+                opacity: 1;
+                height: 100%;
+                width: 100%;
+                margin-bottom: 4vh;
+              }
+            }
+            .work-slide-item-fred-third {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+              overflow: hidden;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              background: url("/fredriks/taco.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              .video {
+                opacity: 1;
+                height: 100%;
+                width: 100%;
+                margin-bottom: 4vh;
+              }
+            }
+
+            .hidden {
+              opacity: 0.1;
+            }
+            .visible {
+              opacity: 1;
+            }
+
+            // MEIJER
+            .work-slide-item-mei-first {
               border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
               height: 70vh;
               width: 60vw;
 
-              background: url("/dance.jpg");
+              background: url("/meijer/burger.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-mei-second {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+
+              background: url("/meijer/ice-cream.jpg");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .work-slide-item-mei-third {
+              border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+              height: 70vh;
+              width: 60vw;
+
+              background: url("/meijer/sizzle.jpg");
               background-position: center;
               background-repeat: no-repeat;
               background-size: cover;
