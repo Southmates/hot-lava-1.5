@@ -23,10 +23,12 @@ requestAnimationFrame(raf)
 
 // LENIS ANCHOR NAVIGATION
 const aboutLink = document.querySelector(".about-link")
+const ourWayLink = document.querySelector(".our-way-link")
 const workLink = document.querySelector(".work-link")
 const contactLink = document.querySelector(".contact-link")
 const aboutEl = document.querySelector("#about-us")
-const workEl = document.querySelector("#our-work")
+const ourWayEl = document.querySelector("#our-way")
+const workEl = document.querySelector("#work")
 const contactEl = document.querySelector("#contact")
 const mobileNavBtn = document.querySelector(".mobile-nav")
 const mobileNav = document.querySelector(".mobile")
@@ -34,6 +36,7 @@ let mobileNavOpen = false
 
 const setBlankMenu = () => {
   aboutLink.classList.remove("active")
+  ourWayLink.classList.remove("active")
   workLink.classList.remove("active")
   contactLink.classList.remove("active")
 
@@ -42,6 +45,16 @@ const setBlankMenu = () => {
 }
 const setAboutMenu = () => {
   aboutLink.classList.add("active")
+  ourWayLink.classList.remove("active")
+  workLink.classList.remove("active")
+  contactLink.classList.remove("active")
+
+  mobileNav.classList.add("hidden")
+  mobileNavOpen = false
+}
+const setOurWayMenu = () => {
+  aboutLink.classList.remove("active")
+  ourWayLink.classList.add("active")
   workLink.classList.remove("active")
   contactLink.classList.remove("active")
 
@@ -50,6 +63,7 @@ const setAboutMenu = () => {
 }
 const setWorkMenu = () => {
   workLink.classList.add("active")
+  ourWayLink.classList.remove("active")
   aboutLink.classList.remove("active")
   contactLink.classList.remove("active")
 
@@ -59,6 +73,7 @@ const setWorkMenu = () => {
 const setContactMenu = () => {
   contactLink.classList.add("active")
   aboutLink.classList.remove("active")
+  ourWayLink.classList.remove("active")
   workLink.classList.remove("active")
   
   mobileNav.classList.add("hidden")
@@ -66,6 +81,7 @@ const setContactMenu = () => {
 }
 
 aboutLink.addEventListener("click", () => {lenis.scrollTo(aboutEl), setAboutMenu()})
+ourWayLink.addEventListener("click", () => {lenis.scrollTo(ourWayEl), setOurWayMenu()})
 workLink.addEventListener("click", () => {lenis.scrollTo(workEl), setWorkMenu()})
 contactLink.addEventListener("click", () => {lenis.scrollTo(contactEl), setContactMenu()})
 
@@ -85,6 +101,8 @@ const hero = document.querySelector(".hero")
 const fadeHero = document.querySelector(".fade-hero-section")
 const about = document.querySelector(".about-section")
 const howWeWork = document.querySelector(".how-we-work")
+const ourWay = document.querySelector(".our-way-wrapper")
+const work = document.querySelector(".our-work-wrapper")
 const contact = document.querySelector(".contact")
 
 ScrollTrigger.create( {
@@ -101,7 +119,7 @@ ScrollTrigger.create( {
   start: 'top top',
   end: '+=490%',
   onEnter: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu()),
-  onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setWorkMenu()),
+  onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setOurWayMenu()),
   onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
   onEnterBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
 })
