@@ -45,24 +45,24 @@ const setAboutMenu = () => {
   workLink.classList.remove("active")
   contactLink.classList.remove("active")
 
-  /* mobileNav.classList.add("hidden")
-  mobileNavOpen = false */
+  mobileNav.classList.add("hidden")
+  mobileNavOpen = false
 }
 const setWorkMenu = () => {
   workLink.classList.add("active")
   aboutLink.classList.remove("active")
   contactLink.classList.remove("active")
 
-  /* mobileNav.classList.add("hidden")
-  mobileNavOpen = false */
+  mobileNav.classList.add("hidden")
+  mobileNavOpen = false
 }
 const setContactMenu = () => {
   contactLink.classList.add("active")
   aboutLink.classList.remove("active")
   workLink.classList.remove("active")
   
-  /* mobileNav.classList.add("hidden")
-  mobileNavOpen = false */
+  mobileNav.classList.add("hidden")
+  mobileNavOpen = false
 }
 
 aboutLink.addEventListener("click", () => {lenis.scrollTo(aboutEl), setAboutMenu()})
