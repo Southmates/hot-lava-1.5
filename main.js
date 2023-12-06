@@ -211,21 +211,21 @@ const wigVideoFirst = document.querySelector(".work-slide-item-wig-first .video"
 const wigVideoSecond = document.querySelector(".work-slide-item-wig-second .video")
 const wigVideoThird = document.querySelector(".work-slide-item-wig-third .video")
 
-fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("hidden")})
-fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("hidden")})
-fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("hidden")})
+fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
+fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
+fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("video-hidden")})
 
-meiSlideFirst.addEventListener("click", () => {meiVideoFirst.classList.remove("hidden")})
-meiSlideSecond.addEventListener("click", () => {meiVideoSecond.classList.remove("hidden")})
-meiSlideThird.addEventListener("click", () => {meiVideoThird.classList.remove("hidden")})
+meiSlideFirst.addEventListener("click", () => {meiVideoFirst.classList.remove("video-hidden")})
+meiSlideSecond.addEventListener("click", () => {meiVideoSecond.classList.remove("video-hidden")})
+meiSlideThird.addEventListener("click", () => {meiVideoThird.classList.remove("video-hidden")})
 
-thymeSlideFirst.addEventListener("click", () => {thymeVideoFirst.classList.remove("hidden")})
-thymeSlideSecond.addEventListener("click", () => {thymeVideoSecond.classList.remove("hidden")})
-thymeSlideThird.addEventListener("click", () => {thymeVideoThird.classList.remove("hidden")})
+thymeSlideFirst.addEventListener("click", () => {thymeVideoFirst.classList.remove("video-hidden")})
+thymeSlideSecond.addEventListener("click", () => {thymeVideoSecond.classList.remove("video-hidden")})
+thymeSlideThird.addEventListener("click", () => {thymeVideoThird.classList.remove("video-hidden")})
 
-wigSlideFirst.addEventListener("click", () => {wigVideoFirst.classList.remove("hidden")})
-wigSlideSecond.addEventListener("click", () => {wigVideoSecond.classList.remove("hidden")})
-wigSlideThird.addEventListener("click", () => {wigVideoThird.classList.remove("hidden")})
+wigSlideFirst.addEventListener("click", () => {wigVideoFirst.classList.remove("video-hidden")})
+wigSlideSecond.addEventListener("click", () => {wigVideoSecond.classList.remove("video-hidden")})
+wigSlideThird.addEventListener("click", () => {wigVideoThird.classList.remove("video-hidden")})
 
 firstWork.addEventListener("click", () => {
   firstModal.classList.remove("hidden")
@@ -272,7 +272,8 @@ var swiper = new Swiper('.swiper-container', {
   speed: 800,
   loopAddBlankSlides: true,
   centeredSlides: true,
-  centerInsufficientSlides: true
+  centerInsufficientSlides: true,
+  autoplayDisableOnInteraction: false,
 });
 
 // BLOB CURSOR FOLLOWER SETUP ANS STATE MANAGEMENT
