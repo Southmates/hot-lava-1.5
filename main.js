@@ -176,6 +176,8 @@ const fourthWork = document.querySelector(".fourth-item")
 const fourthModal = document.querySelector(".fourth-modal")
 const fifthWork = document.querySelector(".fifth-item")
 const fifthModal = document.querySelector(".fifth-modal")
+const sixthWork = document.querySelector(".sixth-item")
+const seventhModal = document.querySelector(".seventh-modal")
 const closeModalBtn = document.querySelector(".close-modal")
 
 //TEST ANIM
@@ -189,9 +191,13 @@ const fredVideoThird = document.querySelector(".work-slide-item-fred-third .vide
 const meiSlideFirst = document.querySelector(".work-slide-item-mei-first")
 const meiSlideSecond = document.querySelector(".work-slide-item-mei-second")
 const meiSlideThird = document.querySelector(".work-slide-item-mei-third")
+const meiSlideFourth = document.querySelector(".work-slide-item-mei-fourth")
+const meiSlideFifth = document.querySelector(".work-slide-item-mei-fifth")
 const meiVideoFirst = document.querySelector(".work-slide-item-mei-first .video")
 const meiVideoSecond = document.querySelector(".work-slide-item-mei-second .video")
 const meiVideoThird = document.querySelector(".work-slide-item-mei-third .video")
+const meiVideoFourth = document.querySelector(".work-slide-item-mei-fourth .video")
+const meiVideoFifth = document.querySelector(".work-slide-item-mei-fifth .video")
 
 const thymeSlideFirst = document.querySelector(".work-slide-item-thyme-first")
 const thymeSlideSecond = document.querySelector(".work-slide-item-thyme-second")
@@ -200,16 +206,22 @@ const thymeVideoFirst = document.querySelector(".work-slide-item-thyme-first .vi
 const thymeVideoSecond = document.querySelector(".work-slide-item-thyme-second .video")
 const thymeVideoThird = document.querySelector(".work-slide-item-thyme-third .video")
 
-const brandSlideFirst = document.querySelector(".work-slide-item-brand-first")
-const brandSlideSecond = document.querySelector(".work-slide-item-brand-second")
-const brandSlideThird = document.querySelector(".work-slide-item-brand-third")
-
 const wigSlideFirst = document.querySelector(".work-slide-item-wig-first")
 const wigSlideSecond = document.querySelector(".work-slide-item-wig-second")
 const wigSlideThird = document.querySelector(".work-slide-item-wig-third")
 const wigVideoFirst = document.querySelector(".work-slide-item-wig-first .video")
 const wigVideoSecond = document.querySelector(".work-slide-item-wig-second .video")
 const wigVideoThird = document.querySelector(".work-slide-item-wig-third .video")
+
+const doleSlideFirst = document.querySelector(".work-slide-item-dole-first")
+const doleSlideSecond = document.querySelector(".work-slide-item-dole-second")
+const doleSlideThird = document.querySelector(".work-slide-item-dole-third")
+const doleVideoFirst = document.querySelector(".work-slide-item-dole-first .video")
+const doleVideoSecond = document.querySelector(".work-slide-item-dole-second .video")
+const doleVideoThird = document.querySelector(".work-slide-item-dole-third .video")
+
+const byeSlideFirst = document.querySelector(".work-slide-item-bye-first")
+const byeVideoFirst = document.querySelector(".work-slide-item-bye-first .video")
 
 fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
 fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
@@ -218,6 +230,8 @@ fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove(
 meiSlideFirst.addEventListener("click", () => {meiVideoFirst.classList.remove("video-hidden")})
 meiSlideSecond.addEventListener("click", () => {meiVideoSecond.classList.remove("video-hidden")})
 meiSlideThird.addEventListener("click", () => {meiVideoThird.classList.remove("video-hidden")})
+meiSlideFourth.addEventListener("click", () => {meiVideoFourth.classList.remove("video-hidden")})
+meiSlideFifth.addEventListener("click", () => {meiVideoFifth.classList.remove("video-hidden")})
 
 thymeSlideFirst.addEventListener("click", () => {thymeVideoFirst.classList.remove("video-hidden")})
 thymeSlideSecond.addEventListener("click", () => {thymeVideoSecond.classList.remove("video-hidden")})
@@ -226,6 +240,12 @@ thymeSlideThird.addEventListener("click", () => {thymeVideoThird.classList.remov
 wigSlideFirst.addEventListener("click", () => {wigVideoFirst.classList.remove("video-hidden")})
 wigSlideSecond.addEventListener("click", () => {wigVideoSecond.classList.remove("video-hidden")})
 wigSlideThird.addEventListener("click", () => {wigVideoThird.classList.remove("video-hidden")})
+
+doleSlideFirst.addEventListener("click", () => {doleVideoFirst.classList.remove("video-hidden")})
+doleSlideSecond.addEventListener("click", () => {doleVideoSecond.classList.remove("video-hidden")})
+doleSlideThird.addEventListener("click", () => {doleVideoThird.classList.remove("video-hidden")})
+
+byeSlideFirst.addEventListener("click", () => {byeVideoFirst.classList.remove("video-hidden")})
 
 firstWork.addEventListener("click", () => {
   firstModal.classList.remove("hidden")
@@ -252,6 +272,11 @@ fifthWork.addEventListener("click", () => {
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+fourthWork.addEventListener("click", () => {
+  seventhModal.classList.remove("hidden")
+  closeModalBtn.classList.remove("hidden")
+  lenis.stop()
+})
 
 closeModalBtn.addEventListener("click", () => {
   firstModal.classList.add("hidden")
@@ -259,6 +284,7 @@ closeModalBtn.addEventListener("click", () => {
   thirdModal.classList.add("hidden")
   fourthModal.classList.add("hidden")
   fifthModal.classList.add("hidden")
+  seventhModal.classList.add("hidden")
   closeModalBtn.classList.add("hidden")
   lenis.start()
 })

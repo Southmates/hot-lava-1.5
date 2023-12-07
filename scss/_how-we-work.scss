@@ -27,6 +27,7 @@
       .about-phrase {
         margin-top: 5vh;
         h3 {
+          font-family: "komet", sans-serif;
           color: $color-orange;
           margin-left: 2vw;
 
@@ -51,11 +52,6 @@
       
             display: block;
           }
-        }
-        h3 {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 900;
-          margin-left: 2vw;
         }
     
         span {
@@ -487,6 +483,44 @@
             cursor: pointer;
           }
         }
+        .work-slide-item-mei-fourth {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/meijer/sizzle.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .work-slide-item-mei-fifth {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/meijer/sizzle.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
 
         // THYME
         .work-slide-item-thyme-first {
@@ -665,6 +699,87 @@
           }
         }
 
+        // DOLE
+        .work-slide-item-dole-first {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/wiggles/dance.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .work-slide-item-dole-second {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/wiggles/dole-jokes.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .work-slide-item-dole-third {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/wiggles/tickle.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        // BYE
+        .work-slide-item-bye-first {
+          border-radius: 5% 5% 5% 5% / 8% 8% 8% 8%;
+          height: 70vh;
+          width: 60vw;
+          overflow: hidden;
+          margin-left: -38vw;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: url("/wiggles/dance.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
         .video {
           z-index: 100;
           opacity: 1;
@@ -674,7 +789,7 @@
           
           video {
             margin-top: -1vh;
-            width: 60vw;
+            width: 100%;
             height: 73vh;
           }
         }
