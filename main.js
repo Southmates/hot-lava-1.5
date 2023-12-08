@@ -177,6 +177,7 @@ const fourthModal = document.querySelector(".fourth-modal")
 const fifthWork = document.querySelector(".fifth-item")
 const fifthModal = document.querySelector(".fifth-modal")
 const sixthWork = document.querySelector(".sixth-item")
+const sixthModal = document.querySelector(".sixth-modal")
 const seventhModal = document.querySelector(".seventh-modal")
 const closeModalBtn = document.querySelector(".close-modal")
 
@@ -237,6 +238,7 @@ for (let i = 0; i < videos.length; i++) {
   videos[i].addEventListener("play", onPlay)
 } 
 
+
 fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
 fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
 fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("video-hidden")})
@@ -276,13 +278,13 @@ thirdWork.addEventListener("click", () => {
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
-fourthWork.addEventListener("click", () => {
-  fourthModal.classList.remove("hidden")
+fifthWork.addEventListener("click", () => {
+  fifthModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
-fifthWork.addEventListener("click", () => {
-  fifthModal.classList.remove("hidden")
+sixthWork.addEventListener("click", () => {
+  sixthModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
@@ -298,6 +300,7 @@ closeModalBtn.addEventListener("click", () => {
   thirdModal.classList.add("hidden")
   fourthModal.classList.add("hidden")
   fifthModal.classList.add("hidden")
+  sixthModal.classList.add("hidden")
   seventhModal.classList.add("hidden")
   closeModalBtn.classList.add("hidden")
 
