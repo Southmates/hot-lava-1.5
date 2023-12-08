@@ -23,7 +23,7 @@
         </button>
       </div>
 
-      <div class="close-modal show hidden">
+      <div class="close-modal show hidden js-close">
         <button>
           <svg width="84" height="85" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="42" cy="42.1001" r="41" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
@@ -90,8 +90,8 @@
 
     <div class="copyright">
       <div>
-        <p class="desktop">COPYRIGHT 2023 - HOT LAVA* - ALL RIGHTS RESERVED. <span>LEGAL & PRIVACY NOTICES</span></p>
-        <p class="mobile">COPYRIGHT 2023 - HOT LAVA*</p>
+        <p class="desktop">©2023 - HOT LAVA* - ALL RIGHTS RESERVED.</p>
+        <p class="mobile">©2023 - HOT LAVA*</p>
       </div>
     </div>
 
@@ -657,5 +657,30 @@
 
     <script type="module" src="/main.js"></script>
 
+    <script>
+      // assume only one video is playing at a time
+      var videoPlaying = null;
+
+      const onPlay = function () {
+        if (videoPlaying && videoPlaying != this) {
+          videoPlaying.pause();
+        }
+        videoPlaying = this;
+      };
+
+      // init event handler
+      const videos = document.querySelectorAll(".video video");
+      for (let i = 0; i < videos.length; i++) {
+        videos[i].addEventListener("play", onPlay);
+      }
+
+      let closebtn = document.querySelector(".js-close");
+      closebtn.addEventListener("click", function (e) {
+        // console.log(e.target);
+        document.querySelectorAll("video").forEach((v) => {
+          v.pause();
+        });
+      });
+    </script>
   </body>
 </html>
