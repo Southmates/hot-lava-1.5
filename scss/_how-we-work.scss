@@ -820,6 +820,11 @@
             height: 73vh;
             // filter: brightness(100%);
           }
+          img {
+            width: 100%;
+            height: 110%;
+            object-fit: cover;
+          }
         }
 
         .video-hidden {
