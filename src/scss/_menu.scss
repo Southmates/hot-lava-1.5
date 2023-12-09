@@ -2,53 +2,58 @@
 
   .desktop {
     position: fixed;
-    left: -5%;
-    right: 0;
-    bottom: 46%;
-    width: 200vw;
-    color: #FFFFFF;
-    font-weight: 900;
-    transform: rotate(-90deg); 
-    font-weight: 900;
-    font-size: clamp(10px, 6vw, 16px);
+    right: calc(5% - 18px);
+    width: 40px;
     z-index: 998;
+    height: 100vh;
 
     @media (max-width: 780px) {
       display: none;
     }
 
     .active {
-      // color: $color-grey;
-      opacity: .5;
+      opacity: .15;
     }
-  
+
     ul {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: row-reverse;
+
       margin: 0;
-  
+      transform: rotate(-90deg);
+      position: absolute;
+      width: 100vh;
+      bottom: 0;
+      left: 15px;
+      transform-origin: 0;
+
       li {
         list-style-type: none;
 
         a {
+          padding: 1rem;
+
+          font-size: clamp(16px, 2vw, 18px);
+          font-weight: 900;
+          letter-spacing: .05rem;
           color: #FFFFFF;
           text-decoration: none;
-          letter-spacing: .05rem;
-          padding: 1rem;
-          transition-duration: 1s;
-  
+
+          transition-duration: .35s;
+
           &:hover {
-            transition-duration: 1s;
-            color: $color-grey;
+            transition-duration: .35s;
             cursor: pointer;
+            opacity: .5;
           }
         }
 
       }
 
       span {
-        font-weight: 600;        
+        font-weight: 600;
         display: block;
         margin-top: 4px;
       }
@@ -79,6 +84,7 @@
 
         li {
           list-style-type: none;
+
           a {
             color: #FFFFFF;
             text-decoration: none;
@@ -86,12 +92,6 @@
             padding: 1rem;
             transition-duration: 1s;
             font-size: clamp(24px, 7vw, 55px);
-  
-            &:hover {
-              transition-duration: 1s;
-              color: $color-grey;
-              cursor: pointer;
-            }
           }
         }
       }
@@ -101,9 +101,7 @@
       width: 80%;
       margin-left: 10vw;
       color: $color-white;
-      font-family: "komet", sans-serif;
       font-weight: 400;
-      font-style: normal;
     }
 
     .socials {

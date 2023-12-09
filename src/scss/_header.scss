@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  width: 80%;
-  margin: 5vh 10vw 0 10vw;
+
+  width: 100%;
+  margin: 5vh 0 0 0;
   z-index: 1000;
 
   @media (max-width: 580px) {

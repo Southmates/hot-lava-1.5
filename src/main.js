@@ -2,11 +2,9 @@ import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import Lenis from '@studio-freight/lenis'
 import MouseFollower from "mouse-follower"
-import Swiper from "swiper"
-import { register } from 'swiper/element/bundle';
+import Swiper from "swiper" 
 
 import './style.scss'
-//import './cursor.scss'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -43,6 +41,7 @@ const setBlankMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
+
 const setAboutMenu = () => {
   aboutLink.classList.add("active")
   ourWayLink.classList.remove("active")
@@ -52,6 +51,7 @@ const setAboutMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
+
 const setOurWayMenu = () => {
   aboutLink.classList.remove("active")
   ourWayLink.classList.add("active")
@@ -61,6 +61,7 @@ const setOurWayMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
+
 const setWorkMenu = () => {
   workLink.classList.add("active")
   ourWayLink.classList.remove("active")
@@ -70,6 +71,7 @@ const setWorkMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
+
 const setContactMenu = () => {
   contactLink.classList.add("active")
   aboutLink.classList.remove("active")
@@ -97,13 +99,15 @@ mobileNavBtn.addEventListener("click", () => {
 
 // GSAP BACKGROUND COLOR CHANGES
 const container = document.querySelector(".main")
-const hero = document.querySelector(".hero")
-const fadeHero = document.querySelector(".fade-hero-section")
-const about = document.querySelector(".about-section")
+const fadeHero = document.querySelector(".intro")
+const about = document.querySelector(".about")
 const howWeWork = document.querySelector(".how-we-work")
-const ourWay = document.querySelector(".our-way-wrapper")
-const work = document.querySelector(".our-work-wrapper")
-const contact = document.querySelector(".contact")
+const card = document.querySelector(".team-card")
+
+// const hero = document.querySelector(".hero")
+// const ourWay = document.querySelector(".our-way-wrapper")
+// const work = document.querySelector(".our-work-wrapper")
+// const contact = document.querySelector(".contact")
 
 ScrollTrigger.create( {
   trigger: fadeHero,
@@ -114,6 +118,7 @@ ScrollTrigger.create( {
   onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
   onEnterBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu())
 })
+
 ScrollTrigger.create( {
   trigger: about,
   start: 'top +=40%',
@@ -123,23 +128,36 @@ ScrollTrigger.create( {
   onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
   onEnterBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
 })
+
 ScrollTrigger.create( {
   trigger: howWeWork,
-  start: '+=10%',
+  start: '+=1%',
   end: '+=1000%',
-  onEnter: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setWorkMenu()),
-  onLeave: () => gsap.to(container, {backgroundColor:"#FCA720", duration: 1, ease:"ease.out"}, setContactMenu()),
-  onLeaveBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu()),
-  onEnterBack: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setWorkMenu())
+  onEnter: () => {
+     gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setWorkMenu())
+     gsap.to('.team__card', {backgroundColor:"#1C374D", duration: .5, ease:"ease.in"})
+  },
+  onLeave: () => {
+    gsap.to(container, {backgroundColor:"#FCA720", duration: 1, ease:"ease.out"}, setContactMenu())
+    gsap.to('.team__card', {backgroundColor:"#FCA720", duration: .5, ease:"ease.out"})
+  },
+  onLeaveBack: () => {
+    gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
+    gsap.to('.team__card', {backgroundColor:"#108896", duration: .5, ease:"ease.out"})
+  },
+  onEnterBack: () => {
+    gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setWorkMenu())
+    gsap.to('.team__card', {backgroundColor:"#1C374D", duration: .5, ease:"ease.in"})
+  }
 })
 
 // GSAP HORIZONTAL SCROLL
 //MEMBERS
-const membersSection = document.querySelector(".members")
-let sectionItems = gsap.utils.toArray(".member-item")
+const membersSection = document.querySelector(".team")
+let sectionItems = gsap.utils.toArray(".team__card")
 
 gsap.to(sectionItems, {
-  xPercent: -155 * (sectionItems.length - 1),
+  xPercent: -110 * (sectionItems.length - 1),
   ease: "sine.out",
   scrollTrigger: {
     trigger: membersSection,
@@ -150,20 +168,6 @@ gsap.to(sectionItems, {
   }
 })
 
-// HOW WE WORK
-/* const howWeWorkSection = document.querySelector(".our-way-wrapper")
-let howWeWorkItems = gsap.utils.toArray(".how-we-work-item")
-
-gsap.to(howWeWorkItems, {
-  xPercent: -120.9 * (howWeWorkItems.length - 1),
-  ease: "sine.out",
-  scrollTrigger: {
-    trigger: howWeWorkSection,
-    pin: true,
-    scrub: 2,
-    end: "+=" + howWeWorkSection.offsetWidth
-  }
-}) */
 
 // WORKS MODAL
 const firstWork = document.querySelector(".first-item")
@@ -224,20 +228,6 @@ const doleVideoThird = document.querySelector(".work-slide-item-dole-third .vide
 const byeSlideFirst = document.querySelector(".work-slide-item-bye-first")
 const byeVideoFirst = document.querySelector(".work-slide-item-bye-first .video")
 
-// let videoPlaying = null;
-
-// const onPlay = function() {
-//   if (videoPlaying && videoPlaying != this) {
-//     videoPlaying.pause()
-//   }
-//   videoPlaying = this
-// }
-
-// const videos = document.getElementsByClassName("video")
-// for (let i = 0; i < videos.length; i++) {
-//   videos[i].addEventListener("play", onPlay)
-// } 
-
 
 fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
 fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
@@ -273,21 +263,25 @@ secondWork.addEventListener("click", () => {
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+
 thirdWork.addEventListener("click", () => {
   thirdModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+
 fifthWork.addEventListener("click", () => {
   fifthModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+
 sixthWork.addEventListener("click", () => {
   sixthModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
   lenis.stop()
 })
+
 fourthWork.addEventListener("click", () => {
   seventhModal.classList.remove("hidden")
   closeModalBtn.classList.remove("hidden")
@@ -303,9 +297,7 @@ closeModalBtn.addEventListener("click", () => {
   sixthModal.classList.add("hidden")
   seventhModal.classList.add("hidden")
   closeModalBtn.classList.add("hidden")
-
   
-
   lenis.start()
 })
 
@@ -362,4 +354,32 @@ const cursor = new MouseFollower({
   hideOnLeave: true,
   hideTimeout: 300,
   hideMediaTimeout: 300
+});
+
+
+
+// VIDEO MUTING
+
+// assume only one video is playing at a time
+var videoPlaying = null;
+
+const onPlay = function () {
+  if (videoPlaying && videoPlaying != this) {
+    videoPlaying.pause();
+  }
+  videoPlaying = this;
+};
+
+// init event handler
+const videos = document.querySelectorAll(".video video");
+for (let i = 0; i < videos.length; i++) {
+  videos[i].addEventListener("play", onPlay);
+}
+
+let closebtn = document.querySelector(".js-close");
+closebtn.addEventListener("click", function (e) {
+  // console.log(e.target);
+  document.querySelectorAll("video").forEach((v) => {
+    v.pause();
+  });
 });

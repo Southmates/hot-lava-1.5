@@ -1,40 +1,23 @@
 .contact {
-  //background-color: $color-mustard;
-  width: 100vw;
+  position: relative;
 
+  h3,
   p {
     color: $color-orange;
   }
 
-  .title {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    margin-left: 10vw;
-    color: $color-orange;
 
-    h3 {
-      font-size: clamp(50px, 11vw, 120px);;
-      margin-top: 12vw;
-      
-      span {
-        display: block;
-      }
-    }
-  }
-
-  .contact-wrapper {
+  .wrapper {
     height: 120vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     .contact-info {
-      width: 80%;
+      width: 100%;
       color: $color-orange;
+
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
+      align-items: center;
+
       align-items: last baseline;
       z-index: 10;
 
@@ -45,21 +28,21 @@
       }
 
       .contact-phrase {
-        p { 
+        p {
           font-size: clamp(50px, 12vw, 80px);
-          font-weight: 900; 
-          line-height: 1.1; 
-          
+          font-weight: 900;
+          line-height: 1.1;
+
           span {
             display: block;
 
-            &:nth-child(1) { 
+            &:nth-child(1) {
               line-height: 0.85;
             }
           }
         }
       }
-      
+
       .contact-links {
         width: 40%;
         margin-bottom: 6vw;
@@ -77,6 +60,7 @@
           @media (max-width: 800px) {
             font-size: clamp(16px, 4vw, 50px);
           }
+
           @media (max-width: 800px) {
             font-size: clamp(22px, 5vw, 60px);
           }
@@ -87,15 +71,18 @@
         }
 
         .socials {
-          width: 60%;
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
 
+          width: 60%;
+          margin-top: 32px;
+
           @media (max-width: 1480px) {
             width: 80%;
           }
+
           @media (max-width: 1128px) {
             width: 100%;
           }
@@ -124,16 +111,27 @@
         }
       }
     }
-    .brand-name-transition {
-      position: absolute;
-      font-family: 'Montserrat', sans-serif;
+
+  }
+
+  .brand-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    >div {
+      font-size: clamp(400px, 66vw, 600px);
       font-weight: 900;
-      bottom: -1250%;
-      left: -135%;
-      font-size: clamp(200px, 66vw, 600px);
+      line-height: .8;
       color: $color-orange;
-      width: 600vw;
-      z-index: 1;
+      text-wrap: nowrap;
+      transform: translateY(25%);
     }
   }
 }

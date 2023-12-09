@@ -1,0 +1,59 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  font-family: var(--font-main), sans-serif;
+  color: $color-white;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// Reset
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+section {
+  width: 100%;
+}
+
+// Font
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: var(--font-main), sans-serif;
+  font-style: normal;
+}
+
+h1,
+h3 {
+  font-size: clamp(48px, 7vw, 120px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-weight: 400;
+  color: $color-white;
+}
+
+img {
+  display: block;
+}
