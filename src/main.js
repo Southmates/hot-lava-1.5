@@ -1,7 +1,10 @@
 import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import Lenis from '@studio-freight/lenis'
-import MouseFollower from "mouse-follower"  
+import MouseFollower from "mouse-follower"
+import Swiper from "swiper"
+import { register } from 'swiper/element/bundle';
+
 import './style.scss'
 //import './cursor.scss'
 
@@ -40,16 +43,15 @@ const setBlankMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
-
 const setAboutMenu = () => {
   aboutLink.classList.add("active")
   ourWayLink.classList.remove("active")
   workLink.classList.remove("active")
   contactLink.classList.remove("active")
+
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
-
 const setOurWayMenu = () => {
   aboutLink.classList.remove("active")
   ourWayLink.classList.add("active")
@@ -59,7 +61,6 @@ const setOurWayMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
-
 const setWorkMenu = () => {
   workLink.classList.add("active")
   ourWayLink.classList.remove("active")
@@ -69,7 +70,6 @@ const setWorkMenu = () => {
   mobileNav.classList.add("hidden")
   mobileNavOpen = false
 }
-
 const setContactMenu = () => {
   contactLink.classList.add("active")
   aboutLink.classList.remove("active")
@@ -97,11 +97,10 @@ mobileNavBtn.addEventListener("click", () => {
 
 // GSAP BACKGROUND COLOR CHANGES
 const container = document.querySelector(".main")
+const hero = document.querySelector(".hero")
 const fadeHero = document.querySelector(".fade-hero-section")
 const about = document.querySelector(".about-section")
 const howWeWork = document.querySelector(".how-we-work")
-
-const hero = document.querySelector(".hero")
 const ourWay = document.querySelector(".our-way-wrapper")
 const work = document.querySelector(".our-work-wrapper")
 const contact = document.querySelector(".contact")
@@ -115,7 +114,6 @@ ScrollTrigger.create( {
   onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
   onEnterBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu())
 })
-
 ScrollTrigger.create( {
   trigger: about,
   start: 'top +=40%',
@@ -125,10 +123,9 @@ ScrollTrigger.create( {
   onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
   onEnterBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
 })
-
 ScrollTrigger.create( {
   trigger: howWeWork,
-  start: '+=1%',
+  start: '+=10%',
   end: '+=1000%',
   onEnter: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setWorkMenu()),
   onLeave: () => gsap.to(container, {backgroundColor:"#FCA720", duration: 1, ease:"ease.out"}, setContactMenu()),
@@ -142,7 +139,7 @@ const membersSection = document.querySelector(".members")
 let sectionItems = gsap.utils.toArray(".member-item")
 
 gsap.to(sectionItems, {
-  xPercent: -100 * (sectionItems.length - 1),
+  xPercent: -155 * (sectionItems.length - 1),
   ease: "sine.out",
   scrollTrigger: {
     trigger: membersSection,
@@ -242,9 +239,9 @@ const byeVideoFirst = document.querySelector(".work-slide-item-bye-first .video"
 // } 
 
 
-// fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
-// fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
-// fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("video-hidden")})
+fredSlideFirst.addEventListener("click", () => {fredVideoFirst.classList.remove("video-hidden")})
+fredSlideSecond.addEventListener("click", () => {fredVideoSecond.classList.remove("video-hidden")})
+fredSlideThird.addEventListener("click", () => {fredVideoThird.classList.remove("video-hidden")})
 
 meiSlideFirst.addEventListener("click", () => {meiVideoFirst.classList.remove("video-hidden")})
 meiSlideSecond.addEventListener("click", () => {meiVideoSecond.classList.remove("video-hidden")})
@@ -311,7 +308,19 @@ closeModalBtn.addEventListener("click", () => {
 
   lenis.start()
 })
- 
+
+// SWIPER SETTER
+var swiper = new Swiper('.swiper-container', {
+  //loop: true,
+  mousewheel: true,
+  slidesPerView: 3,
+  spaceBetween: 1,
+  speed: 800,
+  loopAddBlankSlides: true,
+  centeredSlides: true,
+  centerInsufficientSlides: true,
+  // autoplayDisableOnInteraction: false,
+});
 
 // BLOB CURSOR FOLLOWER SETUP ANS STATE MANAGEMENT
 MouseFollower.registerGSAP(gsap);
