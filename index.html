@@ -5,6 +5,8 @@
     <link rel="icon" href="/Logo.png">
     <link rel="stylesheet" href="https://use.typekit.net/fqq8lsn.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
     <title>HOT LAVA</title>
   </head>
   <body class="main">
@@ -330,7 +332,8 @@
 
         <!-- Meijer -->
         <div class="swiper-container modal second-modal hidden">
-          <swiper-container class="swiper-wrapper">
+          <swiper-container class="swiper-wrapper" pagination="true" pagination-clickable="true" slides-per-view="auto"  mousewheel="true" keyboard="true"
+          centered-slides="true" space-between="30">
             <swiper-slide class="swiper-slide" >
               <div class="work-slide work-slide-item-mei-first">
                 <div class="video video-hidden">
@@ -729,5 +732,25 @@
         });
       });
     </script>
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwipers", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 30,
+        mousewheel: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+
+
   </body>
 </html>

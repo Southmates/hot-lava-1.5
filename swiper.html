@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      swiper-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      swiper-slide {
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      swiper-slide {
+        width: 90%;
+        max-width: 900px;
+      }
+
+      swiper-slide.slide-img {
+        width: 90%;
+        max-width: 30vw;
+      }
+
+      /* swiper-slide:nth-child(2n) {
+        width: 40%;
+      }
+
+      swiper-slide:nth-child(3n) {
+        width: 20%;
+      } */
+
+      .works {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: lightblue;
+      }
+      .works__slider {
+        width: 100%;
+        height: 90%;
+        background: gray;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        width: 100%;
+        /* aspect-ratio: 16 / 9; */
+      }
+      .card video {
+        width: 100%;
+        display: block;
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+
+        display: block;
+        margin: auto;
+      }
+      .card-vertical img {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sliders -->
+
+    <!-- Meijer -->
+    <div class="works" data-slider="meijer">
+      <div class="works__slider">
+        <swiper-container
+          class="mySwiper"
+          pagination="true"
+          pagination-clickable="true"
+          free-mode="false"
+          centered-slides="true"
+          slides-per-view="auto"
+          mousewheel="true"
+          keyboard="true"
+          space-between="30"
+        >
+          <swiper-slide>
+            <div class="card">
+              <video controls poster="public/meijer/burger.jpg">
+                <source
+                  src="https://player.vimeo.com/progressive_redirect/playback/891988063/rendition/1080p/file.mp4?loc=external&signature=f06e20e3690743dd77714fa441d10956129c6c0ad06e8671aea4813fe80f1716"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class="card">
+              <video controls>
+                <source
+                  src="https://player.vimeo.com/progressive_redirect/playback/891988114/rendition/1080p/file.mp4?loc=external&signature=999313a4915d142a5d569fda78cb1ffcb765ad7a337bda50bece24eef5fc6c95"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class="card">
+              <video controls>
+                <source
+                  src="https://player.vimeo.com/progressive_redirect/playback/891428371/rendition/1080p/file.mp4?loc=external&signature=3bd1e9886da60dfa4e7319e89f33d19d34c091c36083ec82caa55e2d2ce13601"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class="card">
+              <video controls>
+                <source
+                  src="https://player.vimeo.com/progressive_redirect/playback/891989054/rendition/1080p/file.mp4?loc=external&signature=f96df84cecede914afb914f3e6bf9299da0a5237bd9fb2b2949b7e3c290d6e25"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class="card">
+              <video controls>
+                <source
+                  src="https://player.vimeo.com/progressive_redirect/playback/891988200/rendition/1080p/file.mp4?loc=external&signature=9a51c35210d52fa7637943d3988cd9da330750d897bc8650990de3187e25ac2b"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class="card">
+              <img src="/meijer/prints/01-msg-cover.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/02-msg-breakfast.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/03-msg-pets.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/04-msg-cleaning.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/05-msg-laundry.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/06-msg-dairy.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card">
+              <img src="/meijer/prints/07-msg-pasta.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+
+          <swiper-slide class="slide-img">
+            <div class="card card-vertical">
+              <img src="/meijer/prints/08-msg-mailer.jpg" alt="Meijer" />
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+
+    <!-- Fredericks -->
+    <div class="works" data-slider="Fredericks">
+      <div class="works__slider">
+        <swiper-container
+          class="mySwiper"
+          pagination="true"
+          pagination-clickable="true"
+          free-mode="false"
+          centered-slides="true"
+          slides-per-view="auto"
+          mousewheel="true"
+          keyboard="true"
+          space-between="30"
+        > 
+          <swiper-slide>            
+              <div class="card">
+                <video controls>
+                  <source src="https://player.vimeo.com/progressive_redirect/playback/891428262/rendition/1080p/file.mp4?loc=external&signature=ad1ac65aab40f8e1ee83bfa5d77b28bc66fd0b54467989e891604c2c5b36091c" type="video/mp4" />
+                </video>
+              </div>            
+          </swiper-slide>
+
+          <swiper-slide>            
+              <div class="card">
+                <video controls>
+                  <source src="https://player.vimeo.com/progressive_redirect/playback/891428216/rendition/1080p/file.mp4?loc=external&signature=14be2789b262925a4aea524a41eaa55d810fc6761252cfae0dbe2188a5f38eb5" type="video/mp4" />
+                </video>
+              </div>            
+          </swiper-slide>
+
+          <swiper-slide>            
+              <div class="card">
+                <video controls>
+                  <source src="https://player.vimeo.com/progressive_redirect/playback/891428216/rendition/1080p/file.mp4?loc=external&signature=14be2789b262925a4aea524a41eaa55d810fc6761252cfae0dbe2188a5f38eb5" type="video/mp4" />
+                </video>
+              </div>            
+          </swiper-slide>
+ 
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+    <script>
+      // assume only one video is playing at a time
+      var videoPlaying = null;
+
+      const onPlay = function () {
+        if (videoPlaying && videoPlaying != this) {
+          videoPlaying.pause();
+        }
+        videoPlaying = this;
+      };
+
+      // init event handler
+      const videos = document.querySelectorAll(".card video");
+      for (let i = 0; i < videos.length; i++) {
+        videos[i].addEventListener("play", onPlay);
+      }
+
+      let closebtn = document.querySelector(".js-close");
+      closebtn.addEventListener("click", function (e) {
+        // console.log(e.target);
+        document.querySelectorAll("video").forEach((v) => {
+          v.pause();
+        });
+      });
+    </script>
+  </body>
+</html>
