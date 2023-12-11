@@ -1,19 +1,25 @@
 @import "./scss/vars";
+
+// For all html tags
 @import "./scss/html";
 
-@import "./scss/main";
-@import "./scss/lenis";
-@import "./scss/cursor";
+// Layout components
 @import "./scss/menu";
 @import "./scss/copyright";
 @import "./scss/header";
-@import "./scss/hero";
-@import "./scss/fade-hero";
+@import "./scss/slogan";
 
+// External components
+@import "./scss/lenis";
+@import "./scss/cursor";
+
+// Main Section + Generic styles
+@import "./scss/main";
+
+// Sections
+@import "./scss/hero";
+@import "./scss/intro";
 @import "./scss/about";
-@import "./scss/about-team";
 @import "./scss/how";
 @import "./scss/work";
-
-@import "./scss/footer";
-@import "./scss/slogan";
+@import "./scss/contact";

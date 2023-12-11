@@ -4,7 +4,7 @@ function videoMuting() {
 
   const onPlay = function () {
   if (videoPlaying && videoPlaying != this) {
-      videoPlaying.pause();
+    videoPlaying.pause();
   }
   videoPlaying = this;
   };
@@ -12,15 +12,14 @@ function videoMuting() {
   // init event handler
   const videos = document.querySelectorAll(".video video");
   for (let i = 0; i < videos.length; i++) {
-  videos[i].addEventListener("play", onPlay);
+    videos[i].addEventListener("play", onPlay);
   }
 
   let closebtn = document.querySelector(".js-close");
-  closebtn.addEventListener("click", function (e) {
-  // console.log(e.target);
-  document.querySelectorAll("video").forEach((v) => {
-      v.pause();
-  });
+    closebtn.addEventListener("click", function (e) { 
+    document.querySelectorAll("video").forEach((v) => {
+        v.pause();
+    });
   });
 }
 

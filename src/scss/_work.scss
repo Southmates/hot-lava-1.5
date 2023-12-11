@@ -1,6 +1,9 @@
-.work,
-.our-work-wrapper {
+.work {
   color: $color-orange;
+
+  .wrapper {
+    height: 70vh;
+  }
 
   .section-title {
     height: 100vh;
@@ -14,7 +17,6 @@
       color: $color-orange;
     }
   }
-
 
   // .modal
 

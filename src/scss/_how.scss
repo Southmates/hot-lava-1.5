@@ -1,21 +1,26 @@
 .how {
 
+  .section__slide {
+    padding: 20vh 0;
+  }
+
   .section__h3 {
     color: $color-orange;
 
-    sub {
-      &:nth-child(1) {
-        font-size: clamp(14px, 8vw, 28px);
-        margin-left: -1vw;
-        line-height: 0.5;
-      }
+    // --> For small numbers
+    // sub {
+    //   &:nth-child(1) {
+    //     font-size: clamp(14px, 8vw, 28px);
+    //     margin-left: -1vw;
+    //     line-height: 0.5;
+    //   }
 
-      &:nth-child(2) {
-        line-height: 1;
-      }
+    //   &:nth-child(2) {
+    //     line-height: 1;
+    //   }
 
-      display: block;
-    }
+    //   display: block;
+    // }
   }
 
 }
