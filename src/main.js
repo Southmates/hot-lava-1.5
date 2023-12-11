@@ -116,7 +116,7 @@ function handleNav(){
     trigger: hero,
     start: 'top top',
     end: 'bottom top',
-    onEnter: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()), 
+    onEnter: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
     onEnterBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu())
   })
 
@@ -207,6 +207,8 @@ function checkMobile() {
     newState = "mobile";
   }
 
+  console.log(state);
+
   if(newState !== state) {
     if(newState === "large") {
       handleScrolHorizontal();
@@ -218,10 +220,6 @@ function checkMobile() {
   }
 }
 
-document.addEventListener("resize", checkMobile);
-checkMobile();
-
-
 // Handle modal, stop/start Lenis
 function handleModal() { 
 
@@ -229,7 +227,6 @@ function handleModal() {
   const modalSliders = document.querySelectorAll('.work__slider');
   const closeModalBtn = document.querySelector(".js-close");
   const modalTarget = document.querySelector(".modal");
-
 
   // --> 1. Open modal, stop body scroll and activate slider
   worksTrigger.forEach(item => {
@@ -263,6 +260,11 @@ function handleModal() {
 
 // Call functions 
 handleNav();
+
+// Handle swiper scroll
+document.addEventListener("resize", checkMobile);
+checkMobile();
+
 // handleScrolHorizontal();
 handleModal(); 
 
