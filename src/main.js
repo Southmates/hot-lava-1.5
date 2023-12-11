@@ -122,31 +122,40 @@ function handleNav(){
   ScrollTrigger.create( {
     trigger: fadeHero,
     start: 'top top',
-    end: 'bottom top',
+    end: 'bottom +=75%',
+    // markers: true,
     onEnter: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
     onLeave: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.out"}, setAboutMenu()),
-    onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
+    // onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
     onEnterBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu())
   })
 
   ScrollTrigger.create( {
     trigger: about,
-    start: 'top +=40%',
+    start: 'top +=75%',
     end: 'bottom top',
-    // markers: true,
     onEnter: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu()),
-    // onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setOurWayMenu()),
+    onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setOurWayMenu()),
     // onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
-    onEnterBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
+    onEnterBack: () => {
+      gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
+      gsap.to('.team__card picture', {backgroundColor:"#108896", duration: 1, ease:"ease.in"})
+    }
   })
 
   ScrollTrigger.create( {
     trigger: howWeWork,
-    start: 'top +=75%', 
-    end: 'bottom top',
-    onEnter: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setOurWayMenu()),
+    start: 'top 70%', 
+    end: 'bottom top', 
+    onEnter: () => {
+      gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setOurWayMenu())
+      gsap.to('.team__card picture', {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"})
+    },
     onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setWorkMenu()),
-    onLeaveBack: () => gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu()),
+    onLeaveBack: () => {
+      gsap.to(container, {backgroundColor:"#108896", duration: 1, ease:"ease.in"}, setAboutMenu())
+      gsap.to('.team__card picture', {backgroundColor:"#108896", duration: 1, ease:"ease.in"})
+    },
     onEnterBack: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.in"}, setOurWayMenu())
   })
 
@@ -161,12 +170,14 @@ function handleNav(){
 
   ScrollTrigger.create( {
     trigger: contact,
-    start: 'top 20%',
-    end: 'bottom bottom',
-    onEnter: () => gsap.to(container, {backgroundColor:"#E69C24", duration: 1, ease:"ease.in"}, setContactMenu()), 
-    onLeaveBack: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setWorkMenu()),
+    start: 'top 40%',
+    end: 'bottom top', 
+    onEnter: () => gsap.to(container, {backgroundColor:"#E69C24", duration: 1, ease:"ease.in"}, setContactMenu()),   
+    onLeave: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setWorkMenu()), 
+    onLeaveBack: () => gsap.to(container, {backgroundColor:"#1C374D", duration: 1, ease:"ease.out"}, setWorkMenu()), 
   })
 }
+
 
 // Scrolling "Team Members" horizontally
 function handleScrolHorizontal() {
@@ -180,10 +191,35 @@ function handleScrolHorizontal() {
       trigger: membersSection,
       pin: true,
       scrub: 2, 
-      end: "+=0" + membersSection.offsetWidth
+      // end: "+=100%" + membersSection.offsetWidth
+      end: "+=100%"
     }
   })
 }
+
+var state = "";
+function checkMobile() {
+  var newState = state;
+  if (innerWidth > 1024) {
+    newState = "large";
+  } else {
+    newState = "mobile";
+  }
+
+  if(newState !== state) {
+    if(newState === "large") {
+      handleScrolHorizontal();
+    } else {
+      return
+    }
+
+    state = newState;
+  }
+}
+
+document.addEventListener("resize", checkMobile);
+checkMobile();
+
 
 // Handle modal, stop/start Lenis
 function handleModal() { 
@@ -198,9 +234,8 @@ function handleModal() {
 
 // Call functions 
 handleNav();
-handleScrolHorizontal();
-handleModal();
-handleBg();
+// handleScrolHorizontal();
+handleModal(); 
 
 // Custom Cursor *
 customCursor();

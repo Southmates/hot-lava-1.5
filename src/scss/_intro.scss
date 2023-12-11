@@ -1,7 +1,11 @@
  .intro {
 
    .wrapper {
-     padding: 20vh 0;
+     padding: 10vh 0;
+
+     @media (min-width:$change-layout) {
+       padding: 20vh 0;
+     }
    }
 
    .phrase {

@@ -1,9 +1,14 @@
 .slogan {
   p {
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: -0.0225em;
-    opacity: .8;
     text-align: right;
+
+    opacity: .8;
+
+    @media (min-width: $change-layout) {
+      font-size: 19px;
+    }
   }
 }
