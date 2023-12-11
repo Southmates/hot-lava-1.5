@@ -185,7 +185,7 @@ function handleScrolHorizontal() {
   let sectionItems = gsap.utils.toArray(".team__card")
 
   gsap.to(sectionItems, {
-    xPercent: -95 * (sectionItems.length - 1),
+    xPercent: -100 * (sectionItems.length - 1),
     ease: "sine.out",
     scrollTrigger: {
       trigger: membersSection,
