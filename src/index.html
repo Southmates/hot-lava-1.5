@@ -3,6 +3,19 @@
   {{> head }}
 
   <body class="main">
+
+    <div class="modal">
+      <div class="modal__close js-close"> 
+        <div class="ui-close"></div>
+      </div>
+      {{> works/meijer }} 
+      {{> works/frederiks }} 
+      {{> works/dole-wiggles }} 
+      {{> works/fresh-thyme }} 
+      {{> works/buybuybaby }} 
+      {{> works/dole-juice }} 
+    </div>
+
     {{> header }}
     {{> nav }} 
     {{> copyright }}
@@ -12,9 +25,9 @@
     {{> sections/about }} 
     {{> sections/how }} 
     {{> sections/work }} 
- 
+
     {{> footer }} 
 
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

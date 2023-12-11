@@ -3,7 +3,8 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import Lenis from '@studio-freight/lenis' 
 import customCursor from './js/cursor.js';
 import videoMuting from './js/videomuting.js';
-
+import { register } from 'swiper/element/bundle';
+register();
 // CSS Styles
 import './style.scss'
 
@@ -185,7 +186,7 @@ function handleScrolHorizontal() {
   let sectionItems = gsap.utils.toArray(".team__card")
 
   gsap.to(sectionItems, {
-    xPercent: -100 * (sectionItems.length - 1),
+    xPercent: -90 * (sectionItems.length - 1),
     ease: "sine.out",
     scrollTrigger: {
       trigger: membersSection,
@@ -224,13 +225,41 @@ checkMobile();
 // Handle modal, stop/start Lenis
 function handleModal() { 
 
-  let closeModalBtn = document.querySelector(".js-close");
-  closeModalBtn.addEventListener("click", () => { 
-    closeModalBtn.classList.add("hidden")
-    
-    lenis.start()
-  })
+  const worksTrigger = document.querySelectorAll('.js-work');
+  const modalSliders = document.querySelectorAll('.work__slider');
+  const closeModalBtn = document.querySelector(".js-close");
+  const modalTarget = document.querySelector(".modal");
+
+
+  // --> 1. Open modal, stop body scroll and activate slider
+  worksTrigger.forEach(item => {
+    item.addEventListener('click', item => {
+
+      modalTarget.classList.add("is-active");
+      
+      // Find slide that matches the clicked data atrribute and display it
+      let targetSlide = item.target.dataset.slide;  
+ 
+      document.querySelector(`[data-client=${targetSlide}]`).hidden = false;
+ 
+      lenis.stop();
+    })
+  })  
+ 
+
+  // --> 2. Close modal, hide slider and restart scroll
+  closeModalBtn.addEventListener("click", closeModal)
+
+  function closeModal(){ 
+    modalTarget.classList.remove("is-active");
+  
+    // Apply hidden attribute to all swiper slider
+    modalSliders.forEach( slider => slider.hidden = true);
+ 
+    lenis.start();
+  }
 }
+ 
 
 // Call functions 
 handleNav();

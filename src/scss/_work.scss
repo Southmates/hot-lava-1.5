@@ -10,8 +10,6 @@
     padding: 10vh 0 5vh 0;
   }
 
-  // .modal
-
   .hidden {
     display: none;
   }
@@ -84,6 +82,10 @@
 
   }
 
+  >* {
+    pointer-events: none;
+  }
+
   .name {
     position: absolute;
     width: 100%;
@@ -118,29 +120,3 @@
     transition-timing-function: ease-in-out;
   }
 }
-
-// .work-slide {
-//   background-color: #000;
-//   border-radius: 16px;
-//   overflow: hidden;
-// }
-
-// .work-slide-img {
-//   background-color: transparent !important;
-//   border-radius: 0 !important;
-
-//   img {
-//     width: auto;
-//     height: 100%;
-
-//     border-radius: 16px;
-//     overflow: hidden;
-//   }
-
-//   &--landscape {
-//     img {
-//       width: 100%;
-//       height: auto;
-//     }
-//   }
-// }
