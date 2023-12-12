@@ -5,15 +5,28 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
 
   display: flex;
   align-items: center;
   overflow: hidden;
   
+  overflow-x: hidden;
+
   video {
     position: absolute;
+    left: -5vw;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     z-index: 1;
+
+    @media (max-width: 980px) {
+      left: -80vw;
+    }
+    @media (max-width: 480px) {
+      left: -170vw;
+    }
   }
 
   .slogan {
