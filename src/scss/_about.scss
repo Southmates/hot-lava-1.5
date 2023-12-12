@@ -24,10 +24,10 @@
 
 .team__card {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 
   width: 100vw;
-  height: clamp(435px, 45vh, 500px);
+  //height: clamp(435px, 45vh, 500px);
 
   @media (min-width:$change-layout) {
     width: 1200px;
@@ -95,6 +95,10 @@
   width: fit-content;
   height: fit-content;
   z-index: 2;
+
+  @media (max-width: 580px) {
+    margin-top: 2vh;
+  }
 
   h3 {
     color: $color-white;
