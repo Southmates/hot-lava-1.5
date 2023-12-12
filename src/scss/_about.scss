@@ -96,7 +96,13 @@
   height: fit-content;
   z-index: 2;
 
+  @media (max-width: 1023px) {
+    margin-top: 10vh;
+  }
   @media (max-width: 580px) {
+    margin-top: 8vh;
+  }
+  @media (max-width: 480px) {
     margin-top: 2vh;
   }
 
