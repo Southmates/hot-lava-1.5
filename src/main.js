@@ -1,13 +1,13 @@
 import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import Lenis from '@studio-freight/lenis' 
-import customCursor from './js/cursor.js';
-import videoMuting from './js/videomuting.js';
-import "splitting/dist/splitting.css";
-import "splitting/dist/splitting-cells.css";
-import Splitting from "splitting";
+import customCursor from './js/cursor.js'
+import videoMuting from './js/videomuting.js'
+// import "splitting/dist/splitting.css"
+// import "splitting/dist/splitting-cells.css"
+import Splitting from "splitting"
 Splitting();
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element/bundle'
 register()
 // CSS Styles
 import './style.scss'
@@ -15,7 +15,7 @@ import './style.scss'
 gsap.registerPlugin(ScrollTrigger)
 
 // Virtual smooth scroll (Lenis)
-const lenis = new Lenis();
+const lenis = new Lenis()
 
 function raf(time) {
   lenis.raf(time)
@@ -290,7 +290,7 @@ const titleIntroSecond = [...document.querySelectorAll('.title-second[data-split
 const phraseIntro = [...document.querySelectorAll('.paragraph-intro[data-splitting][data-effect3]')]
 
 titleIntroFirst.forEach(title => {
-        
+
   const chars = title.querySelectorAll('.char');
 
   gsap.fromTo(chars, { 
@@ -313,8 +313,8 @@ titleIntroFirst.forEach(title => {
           trigger: title,
           start: 'center bottom+=50%',
           end: 'bottom top+=40%',
-          scrub: true
-          // duration: 2
+          // scrub: true
+          duration: 2
       }
   });
 
