@@ -285,6 +285,17 @@ function randomSlogan() {
 randomSlogan()
 
 // GSAP titles animations
+
+const wrapElements = (elems, wrapType, wrapClass) => {
+  elems.forEach(char => {
+      const wrapEl = document.createElement(wrapType);
+      wrapEl.classList = wrapClass;
+      char.parentNode.appendChild(wrapEl);
+      wrapEl.appendChild(char);
+  });
+}
+
+// Intro
 const titleIntroFirst = [...document.querySelectorAll('.title-intro[data-splitting][data-effect1]')]
 const titleIntroSecond = [...document.querySelectorAll('.title-second[data-splitting][data-effect2]')]
 const phraseIntro = [...document.querySelectorAll('.paragraph-intro[data-splitting][data-effect3]')]
@@ -319,7 +330,6 @@ titleIntroFirst.forEach(title => {
   });
 
 });
-
 titleIntroSecond.forEach(title => {
         
   const chars = title.querySelectorAll('.char');
@@ -346,7 +356,6 @@ titleIntroSecond.forEach(title => {
   });
 
 });
-
 phraseIntro.forEach(title => {
         
   gsap.fromTo(title, {
@@ -374,12 +383,301 @@ phraseIntro.forEach(title => {
           start: 'top bottom-=20%',
           end: 'center top+=20%',
           // scrub: true,
-          duration: 2
+          delay: 3,
+          duration: 2,
       }
   });
 
 });
 
+// About
+const aboutGreeting = [...document.querySelectorAll('.section__h3[data-splitting][data-effect4]')]
+const aboutPhrase = [...document.querySelectorAll('.section__p[data-splitting][data-effect5]')]
+
+aboutGreeting.forEach(title => {
+        
+  const chars = title.querySelectorAll('.char');
+  
+  chars.forEach(char => gsap.set(char.parentNode, { perspective: 1000 })); 
+  
+  gsap.fromTo(chars, {
+    'will-change': 'opacity, transform', 
+    transformOrigin: '50% 100%',
+    opacity: 0,
+    rotationX: 90
+  }, 
+  {
+    ease: 'power4',
+    opacity: 1,
+    stagger:  {
+      each: 0.03,
+      from: 'random'
+    },
+    rotationX: 0,
+    scrollTrigger: {
+      trigger: title,
+      start: 'center bottom',
+      end: 'bottom top+=20%',
+      // scrub: true,
+      duration: 2
+    }
+  });
+  
+});
+aboutPhrase.forEach(title => {
+        
+  gsap.fromTo(title, {
+      transformOrigin: '0% 50%',
+  }, {
+      ease: 'none',
+      scrollTrigger: {
+          trigger: title,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+      }
+  });
+
+  gsap.fromTo(title.querySelectorAll('.word'), {
+      'will-change': 'opacity',
+      opacity: 0.1
+  }, 
+  {
+      ease: 'none',
+      opacity: 1,
+      stagger: 0.05,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top bottom-=20%',
+          end: 'center top+=20%',
+          // scrub: true,
+          delay: 3,
+          duration: 2,
+      }
+  });
+
+});
+
+// How we work
+const howTitle = [...document.querySelectorAll('.section__h3[data-splitting][data-effect6]')]
+const firstSlideTitle = [...document.querySelectorAll('.section__h3[data-splitting][data-effect7]')]
+const firstSlideInfo = [...document.querySelectorAll('.section__p[data-splitting][data-effect8]')]
+const secondSlideTitle = [...document.querySelectorAll('.section__h3[data-splitting][data-effect9]')]
+const secondSlideInfo = [...document.querySelectorAll('.section__p[data-splitting][data-effect10]')]
+const thirdSlideTitle = [...document.querySelectorAll('.section__h3[data-splitting][data-effect11]')]
+const thirdSlideInfo = [...document.querySelectorAll('.section__p[data-splitting][data-effect12]')]
+
+howTitle.forEach(title => {
+
+  const chars = title.querySelectorAll('.char');
+
+  gsap.fromTo(chars, { 
+      'will-change': 'opacity, transform', 
+      opacity: 0, 
+      yPercent: 120, 
+      scaleY: 2.3, 
+      scaleX: 0.7, 
+      transformOrigin: '50% 0%' 
+  }, 
+  {
+      duration: 1,
+      ease: 'back.inOut(2)',
+      opacity: 1,
+      yPercent: 0,
+      scaleY: 1,
+      scaleX: 1,
+      stagger: 0.03,
+      scrollTrigger: {
+          trigger: title,
+          start: '+=100%',
+          end: '+=100%',
+          // scrub: true
+          duration: 2,
+          // markers: true
+      }
+  });
+
+});
+firstSlideTitle.forEach(title => {
+        
+  const chars = title.querySelectorAll('.char');
+  wrapElements(chars, 'span', 'char-wrap');
+
+  gsap.fromTo(chars, { 
+      'will-change': 'transform', 
+      transformOrigin: '0% 50%',
+      xPercent: 105,
+      opacity: 0
+  }, 
+  {
+      duration: 1,
+      ease: 'expo',
+      xPercent: 0,
+      opacity: 1,
+      stagger: 0.042,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          //markers: true,
+          //toggleActions: "play resume resume reset",
+      }
+  });
+
+});
+firstSlideInfo.forEach(title => {
+        
+  gsap.fromTo(title, {
+      transformOrigin: '0% 50%',
+  }, {
+      ease: 'none',
+      scrollTrigger: {
+          trigger: title,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+      }
+  });
+
+  gsap.fromTo(title.querySelectorAll('.word'), {
+      'will-change': 'opacity',
+      opacity: 0
+  }, 
+  {
+      ease: 'none',
+      opacity: 1,
+      stagger: 0.05,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          // scrub: true,
+          delay: 3,
+          duration: 2,
+      }
+  });
+
+});
+secondSlideTitle.forEach(title => {
+        
+  const chars = title.querySelectorAll('.char');
+  wrapElements(chars, 'span', 'char-wrap');
+
+  gsap.fromTo(chars, { 
+      'will-change': 'transform', 
+      transformOrigin: '0% 50%',
+      xPercent: 105,
+      opacity: 0
+  }, 
+  {
+      duration: 1,
+      ease: 'expo',
+      xPercent: 0,
+      opacity: 1,
+      stagger: 0.042,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          //markers: true,
+          //toggleActions: "play resume resume reset",
+      }
+  });
+
+});
+secondSlideInfo.forEach(title => {
+        
+  gsap.fromTo(title, {
+      transformOrigin: '0% 50%',
+  }, {
+      ease: 'none',
+      scrollTrigger: {
+          trigger: title,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+      }
+  });
+
+  gsap.fromTo(title.querySelectorAll('.word'), {
+      'will-change': 'opacity',
+      opacity: 0
+  }, 
+  {
+      ease: 'none',
+      opacity: 1,
+      stagger: 0.05,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          // scrub: true,
+          delay: 3,
+          duration: 2,
+      }
+  });
+
+});
+thirdSlideTitle.forEach(title => {
+        
+  const chars = title.querySelectorAll('.char');
+  wrapElements(chars, 'span', 'char-wrap');
+
+  gsap.fromTo(chars, { 
+      'will-change': 'transform', 
+      transformOrigin: '0% 50%',
+      xPercent: 105,
+      opacity: 0
+  }, 
+  {
+      duration: 1,
+      ease: 'expo',
+      xPercent: 0,
+      opacity: 1,
+      stagger: 0.042,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          //markers: true,
+          //toggleActions: "play resume resume reset",
+      }
+  });
+
+});
+thirdSlideInfo.forEach(title => {
+        
+  gsap.fromTo(title, {
+      transformOrigin: '0% 50%',
+  }, {
+      ease: 'none',
+      scrollTrigger: {
+          trigger: title,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+      }
+  });
+
+  gsap.fromTo(title.querySelectorAll('.word'), {
+      'will-change': 'opacity',
+      opacity: 0
+  }, 
+  {
+      ease: 'none',
+      opacity: 1,
+      stagger: 0.05,
+      scrollTrigger: {
+          trigger: title,
+          start: 'top+=120%',
+          end: 'top+=400%',
+          // scrub: true,
+          delay: 3,
+          duration: 2,
+      }
+  });
+
+});
 
 // Call functions 
 handleNav();
