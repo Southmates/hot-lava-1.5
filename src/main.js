@@ -211,7 +211,6 @@ function checkMobile() {
     newState = "mobile";
   }
 
-  console.log(state);
 
   if(newState !== state) {
     if(newState === "large") {
@@ -260,6 +259,9 @@ function handleModal() {
     lenis.start();
   }
 }
+// Handle swiper scroll
+document.addEventListener("resize", checkMobile);
+checkMobile();
 
 // Assign random slogan
 const sloganContainer = document.querySelector(".slogan p")
@@ -282,18 +284,36 @@ function randomSlogan() {
 
   sloganContainer.append(randomValue)
 }
-randomSlogan()
 
 // GSAP titles animations
 
-const wrapElements = (elems, wrapType, wrapClass) => {
+// Function to wrap and apply overflow to chars
+/* const wrapElements = (elems, wrapType, wrapClass) => {
   elems.forEach(char => {
       const wrapEl = document.createElement(wrapType);
       wrapEl.classList = wrapClass;
       char.parentNode.appendChild(wrapEl);
       wrapEl.appendChild(char);
   });
+} */
+// Check mobile to set start and end of trigger
+let elStart
+let elEnd
+
+function setStartEnd() {
+  let newStart = elStart
+  let newEnd = elEnd
+
+  if(newStart !== elStart || newEnd !== elEnd) {
+    if(state === "large") {
+      elStart = 'top+=120%'
+      elEnd = 'top+=400%'
+    } else {
+      return
+    }
+  }
 }
+setStartEnd()
 
 // Intro
 const titleIntroFirst = [...document.querySelectorAll('.title-intro[data-splitting][data-effect1]')]
@@ -499,7 +519,7 @@ howTitle.forEach(title => {
       stagger: 0.18,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -529,7 +549,7 @@ firstSlideTitle.forEach(title => {
       stagger: 0.2,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -558,7 +578,7 @@ firstSlideInfo.forEach(title => {
       stagger: 0.05,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -588,7 +608,7 @@ secondSlideTitle.forEach(title => {
       stagger: 0.22,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -617,7 +637,7 @@ secondSlideInfo.forEach(title => {
       stagger: 0.05,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -647,7 +667,7 @@ thirdSlideTitle.forEach(title => {
       stagger: 0.25,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -676,7 +696,7 @@ thirdSlideInfo.forEach(title => {
       stagger: 0.05,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -710,7 +730,7 @@ ourWorkTitle.forEach(title => {
       stagger: 0.2,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -745,7 +765,7 @@ contactTitle.forEach(title => {
       stagger: 0.2,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -774,7 +794,7 @@ contactInfo.forEach(title => {
       stagger: 0.8,
       scrollTrigger: {
           trigger: title,
-          start: 'top+=120%',
+          start: elStart,
           end: 'top+=400%',
       }
   });
@@ -784,9 +804,8 @@ contactInfo.forEach(title => {
 // Call functions 
 handleNav();
 
-// Handle swiper scroll
-document.addEventListener("resize", checkMobile);
-checkMobile();
+// Choose random slogan
+randomSlogan()
 
 // handleScrolHorizontal();
 handleModal(); 
