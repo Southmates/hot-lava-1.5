@@ -3,8 +3,8 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import Lenis from '@studio-freight/lenis' 
 import customCursor from './js/cursor.js'
 import videoMuting from './js/videomuting.js'
-// import "splitting/dist/splitting.css"
-// import "splitting/dist/splitting-cells.css"
+import "splitting/dist/splitting.css"
+import "splitting/dist/splitting-cells.css"
 import Splitting from "splitting"
 Splitting();
 import { register } from 'swiper/element/bundle'
@@ -307,13 +307,13 @@ titleIntroFirst.forEach(title => {
   gsap.fromTo(chars, { 
       'will-change': 'opacity, transform', 
       opacity: 0, 
-      yPercent: 120, 
-      scaleY: 2.3, 
-      scaleX: 0.7, 
+      yPercent: 2, 
+      scaleY: 1.2, 
+      scaleX: 0.9, 
       transformOrigin: '50% 0%' 
   }, 
   {
-      duration: 1,
+      duration: 3,
       ease: 'back.inOut(2)',
       opacity: 1,
       yPercent: 0,
@@ -325,7 +325,6 @@ titleIntroFirst.forEach(title => {
           start: 'center bottom+=50%',
           end: 'bottom top+=40%',
           // scrub: true
-          duration: 2
       }
   });
 
@@ -339,7 +338,7 @@ titleIntroSecond.forEach(title => {
   gsap.fromTo(chars, { 
       'will-change': 'opacity, transform', 
       opacity: 0.2,
-      z: -800
+      z: -20
   }, 
   {
       ease: 'back.out(1.2)',
@@ -404,7 +403,7 @@ aboutGreeting.forEach(title => {
     'will-change': 'opacity, transform', 
     transformOrigin: '50% 100%',
     opacity: 0,
-    rotationX: 90
+    rotationX: 40
   }, 
   {
     ease: 'power4',
@@ -414,12 +413,12 @@ aboutGreeting.forEach(title => {
       from: 'random'
     },
     rotationX: 0,
+    duration: 3,
     scrollTrigger: {
       trigger: title,
       start: 'center bottom',
       end: 'bottom top+=20%',
       // scrub: true,
-      duration: 2
     }
   });
   
@@ -472,31 +471,28 @@ howTitle.forEach(title => {
   const chars = title.querySelectorAll('.char');
 
   gsap.fromTo(chars, { 
-      'will-change': 'opacity, transform', 
-      opacity: 0, 
-      yPercent: 120, 
-      scaleY: 2.3, 
-      scaleX: 0.7, 
-      transformOrigin: '50% 0%' 
+    'will-change': 'opacity, transform', 
+    opacity: 0, 
+    yPercent: 3, 
+    scaleY: 1.2, 
+    scaleX: 0.9, 
+    transformOrigin: '50% 0%' 
   }, 
   {
-      duration: 1,
-      ease: 'back.inOut(2)',
-      opacity: 1,
-      yPercent: 0,
-      scaleY: 1,
-      scaleX: 1,
-      stagger: 0.03,
-      scrollTrigger: {
-          trigger: title,
-          start: '+=100%',
-          end: '+=100%',
-          // scrub: true
-          duration: 2,
-          // markers: true
-      }
+    duration: 3,
+    ease: 'back.inOut(2)',
+    opacity: 1,
+    yPercent: 0,
+    scaleY: 1,
+    scaleX: 1,
+    stagger: 0.03,
+    scrollTrigger: {
+      trigger: title,
+      start: 'center bottom+=50%',
+      end: 'bottom top+=40%',
+      // scrub: true
+    }
   });
-
 });
 firstSlideTitle.forEach(title => {
         
@@ -504,24 +500,24 @@ firstSlideTitle.forEach(title => {
   wrapElements(chars, 'span', 'char-wrap');
 
   gsap.fromTo(chars, { 
-      'will-change': 'transform', 
-      transformOrigin: '0% 50%',
-      xPercent: 105,
-      opacity: 0
+    'will-change': 'transform', 
+    transformOrigin: '0% 50%',
+    xPercent: 20,
+    opacity: 0
   }, 
   {
-      duration: 1,
-      ease: 'expo',
-      xPercent: 0,
-      opacity: 1,
-      stagger: 0.042,
-      scrollTrigger: {
-          trigger: title,
-          start: 'top+=120%',
-          end: 'top+=400%',
-          //markers: true,
-          //toggleActions: "play resume resume reset",
-      }
+    duration: 3,
+    ease: 'expo',
+    xPercent: 0,
+    opacity: 1,
+    stagger: 0.042,
+    scrollTrigger: {
+        trigger: title,
+        start: 'top+=120%',
+        end: 'top+=400%',
+        //markers: true,
+        //toggleActions: "play resume resume reset",
+    }
   });
 
 });
@@ -564,24 +560,24 @@ secondSlideTitle.forEach(title => {
   wrapElements(chars, 'span', 'char-wrap');
 
   gsap.fromTo(chars, { 
-      'will-change': 'transform', 
-      transformOrigin: '0% 50%',
-      xPercent: 105,
-      opacity: 0
+    'will-change': 'transform', 
+    transformOrigin: '0% 50%',
+    xPercent: 20,
+    opacity: 0
   }, 
   {
-      duration: 1,
-      ease: 'expo',
-      xPercent: 0,
-      opacity: 1,
-      stagger: 0.042,
-      scrollTrigger: {
-          trigger: title,
-          start: 'top+=120%',
-          end: 'top+=400%',
-          //markers: true,
-          //toggleActions: "play resume resume reset",
-      }
+    duration: 3,
+    ease: 'expo',
+    xPercent: 0,
+    opacity: 1,
+    stagger: 0.042,
+    scrollTrigger: {
+        trigger: title,
+        start: 'top+=120%',
+        end: 'top+=400%',
+        //markers: true,
+        //toggleActions: "play resume resume reset",
+    }
   });
 
 });
@@ -624,24 +620,24 @@ thirdSlideTitle.forEach(title => {
   wrapElements(chars, 'span', 'char-wrap');
 
   gsap.fromTo(chars, { 
-      'will-change': 'transform', 
-      transformOrigin: '0% 50%',
-      xPercent: 105,
-      opacity: 0
+    'will-change': 'transform', 
+    transformOrigin: '0% 50%',
+    xPercent: 20,
+    opacity: 0
   }, 
   {
-      duration: 1,
-      ease: 'expo',
-      xPercent: 0,
-      opacity: 1,
-      stagger: 0.042,
-      scrollTrigger: {
-          trigger: title,
-          start: 'top+=120%',
-          end: 'top+=400%',
-          //markers: true,
-          //toggleActions: "play resume resume reset",
-      }
+    duration: 3,
+    ease: 'expo',
+    xPercent: 0,
+    opacity: 1,
+    stagger: 0.042,
+    scrollTrigger: {
+        trigger: title,
+        start: 'top+=120%',
+        end: 'top+=400%',
+        //markers: true,
+        //toggleActions: "play resume resume reset",
+    }
   });
 
 });
