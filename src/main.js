@@ -296,18 +296,22 @@ function randomSlogan() {
       wrapEl.appendChild(char);
   });
 } */
+
 // Check mobile to set start and end of trigger
 let elStart
 let elEnd
+let elStartPhil
 
 function setStartEnd() {
   let newStart = elStart
   let newEnd = elEnd
+  let newStartPhil = elStartPhil
 
-  if(newStart !== elStart || newEnd !== elEnd) {
+  if(newStart !== elStart || newEnd !== elEnd || newStartPhil !== elStartPhil) {
     if(state === "large") {
       elStart = 'top+=120%'
       elEnd = 'top+=400%'
+      elStartPhil= '+=100%'
     } else {
       return
     }
@@ -581,7 +585,7 @@ kristi.forEach(title => {
       stagger: 0.05,
       scrollTrigger: {
           trigger: title,
-          start: 'top bottom+=20%',
+          start: 'top bottom-=20%',
           end: 'center top+=20%',
           // scrub: true,
           delay: 3,
@@ -614,7 +618,7 @@ phil.forEach(title => {
       stagger: 0.05,
       scrollTrigger: {
           trigger: title,
-          start: '+=10%',
+          start: 'top bottom-=20%',
           end: 'center top+=20%',
           // scrub: true,
           // markers: true
