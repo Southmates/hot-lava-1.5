@@ -617,7 +617,7 @@ phil.forEach(title => {
           start: '+=10%',
           end: 'center top+=20%',
           // scrub: true,
-          markers: true
+          // markers: true
       }
   });
 
