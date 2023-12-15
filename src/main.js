@@ -339,41 +339,6 @@ heroWelcome.forEach(title => {
 
 });
 
-// Copyright
-const copyright = [...document.querySelectorAll('.copyright__text[data-splitting][data-effect18]')]
-
-copyright.forEach(title => {
-        
-  gsap.fromTo(title, {
-      transformOrigin: '0% 50%',
-  }, {
-      ease: 'none',
-      scrollTrigger: {
-          trigger: title,
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true,
-      }
-  });
-
-  gsap.fromTo(title.querySelectorAll('.word'), {
-      'will-change': 'opacity',
-      opacity: 0.1
-  }, 
-  {
-      ease: 'none',
-      opacity: 1,
-      stagger: 0.15,
-      delay: .5,
-      scrollTrigger: {
-          trigger: title,
-          start: 'top bottom',
-          end: 'center top',
-      }
-  });
-
-});
-
 
 // Call functions 
 handleNav();
