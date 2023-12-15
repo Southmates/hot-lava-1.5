@@ -53,11 +53,10 @@
 
     h1 {
       font-size: clamp(100px, 22vw, 200px);
-      line-height: 0.9;
+      line-height: 0.76;
 
       .word:nth-child(odd) {
         &:nth-child(3) {
-
           span:nth-child(2) {
             margin-left: .5vw;
             // background-color: red;
