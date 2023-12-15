@@ -302,6 +302,8 @@ function handleVideoSource() {
   video.appendChild(videoSource)
 }
 
+handleVideoSource();
+
 // GSAP titles animations
 
 // Check mobile to set start and end of trigger
@@ -951,7 +953,6 @@ contactInfo.forEach(title => {
 handleNav();
 
 // Set video
-handleVideoSource();
 
 // Choose random slogan
 randomSlogan()
