@@ -111,7 +111,6 @@ function handleNav(){
   mobileNavBtnClose.addEventListener("click", () => {
     mobileNav.classList.add("hidden")
     mobileNavOpen = false
-    console.log('clicked');
   })
 
   const container = document.querySelector(".main")
