@@ -37,6 +37,7 @@ function handleNav(){
   const contactEl = document.querySelector("#contact")
 
   const mobileNavBtn = document.querySelector(".burger")
+  const mobileNavBtnClose = document.querySelector(".close")
   const mobileNav = document.querySelector(".mobile")
 
 
@@ -105,7 +106,13 @@ function handleNav(){
       mobileNav.classList.remove("hidden")
       mobileNavOpen = true
     }
-  })  
+  })
+  
+  mobileNavBtnClose.addEventListener("click", () => {
+    mobileNav.classList.add("hidden")
+    mobileNavOpen = false
+    console.log('clicked');
+  })
 
   const container = document.querySelector(".main")
   const fadeHero = document.querySelector(".intro")

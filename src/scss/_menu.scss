@@ -64,7 +64,7 @@
   // Menu mobile, burger menu
   .mobile {
     position: fixed;
-    z-index: 9990;
+    z-index: 9992;
     height: 100vh;
     width: 100%;
     padding: 0 10% 15% 10%;
@@ -81,8 +81,35 @@
       display: none;
     }
 
+    .close {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      margin-top: 5.7vh;
+      width: 111%;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.6rem 1.6rem;
+        border-radius: 50%;
+        background-color: #FFFFFF;
+        border: none;
+      }
+
+      @media (max-width: 580px) {
+        margin-top: 1.5vh;
+        width: 103.5%;
+      }
+  
+      @media (min-width: 780px) {
+        display: none;
+      }
+    }
+
     .nav {
-      padding: 25vh 0 0 0;
+      padding: 12vh 0 0 0;
 
       ul {
         display: flex;
