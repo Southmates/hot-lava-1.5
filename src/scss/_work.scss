@@ -77,14 +77,21 @@
     height: 50%;
     bottom: 0;
     left: 0;
+    transition: .35s;
     background: linear-gradient(0deg, rgba(238, 81, 47, .275), rgba(28, 55, 77, 0));
   }
 
   &:hover {
     background: #000;
+    transition: .35s;
+
+    &::after {
+      background: linear-gradient(0deg, rgba(238, 81, 47, 0), rgba(28, 55, 77, 0));
+    }
 
     .name p {
-      color: $color-white;
+      // color: $color-white;
+      color: $color-orange;
     }
 
     >img {
@@ -118,7 +125,7 @@
       @media (min-width:$change-layout) {
         bottom: 40px;
         left: 40px;
-        color: $color-orange;
+        // color: $color-orange;
       }
     }
   }

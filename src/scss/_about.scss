@@ -6,6 +6,13 @@
     // height: 500vh;
     padding-bottom: 10vh;
   }
+
+  .section__p {
+    small {
+      color: $color-aquaGreen;
+      opacity: 1;
+    }
+  }
 }
 
 .team {
@@ -110,16 +117,19 @@
   h3 {
     color: $color-white;
     color: $color-aquaGreen;
+    // color: $color-white;
   }
 
   p {
     width: 85%;
     max-width: 540px;
-    margin-top: 16px;
+    min-height: 120px;
+    margin-top: 1.5rem;
+    // margin-top: 16px;
 
-    font-size: clamp(18px, 3vw, 21px);
-    line-height: 1.35;
-    color: $color-aquaGreen;
+    font-size: clamp(21px, 3vw, 23px);
+    line-height: 1.425;
+    // color: $color-aquaGreen;
     color: $color-white;
   }
 }
