@@ -13,7 +13,8 @@
   opacity: 0;
 }
 .show {
-  animation: videoEnters 2s forwards;
+  opacity: 1;
+  //animation: videoEnters 2s forwards;
 }
 
 @keyframes videoEnters {

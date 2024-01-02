@@ -14,6 +14,7 @@
     <p></p>
   </div> 
   {{!-- <!-- Videobackground on loop from Vimeo --> --}}
+  <div class="red-cover"></div>
   <div class="videofull hide">
     <div id="heroVideo" class="videofull__wrapper parallax"></div>
   </div>
@@ -35,6 +36,7 @@
       // console.log("loaded");
       document.querySelector(".videofull").classList.remove("hide")
       document.querySelector(".videofull").classList.add("show")
+      document.querySelector(".red-cover").classList.add("cover-out")
     })
   </script> 
 

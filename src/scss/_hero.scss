@@ -31,6 +31,32 @@
     }
   }
 
+  .red-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    overflow: hidden;
+    background-color: red;
+    pointer-events: none;
+  }
+
+  .cover-out {
+    animation: coverOut 2s forwards;
+  }
+
+  @keyframes coverOut {
+    /* from {
+      top: 0%;
+    } */
+    to {
+      transform: translateY(-150%);
+    }
+  }
+
+
   &__title {
     position: absolute;
     position: relative;
