@@ -32,10 +32,9 @@
     const heroPlayer = new Vimeo.Player('heroVideo', heroPlayerOptions);
     // Checks that video loaded in buffer
     heroPlayer.on('bufferend', function(){
-      console.log("loaded");
+      // console.log("loaded");
       document.querySelector(".videofull").classList.remove("hide")
       document.querySelector(".videofull").classList.add("show")
-      console.log(document.querySelector(".videofull"))
     })
   </script> 
 
