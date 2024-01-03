@@ -425,6 +425,7 @@ const heroWelcome = [
 ];
 const copyright = document.querySelector(".copyright__text");
 const slogan = document.querySelector(".slogan");
+const lastWord = document.querySelector(".last-brand")
 
 // Logo
 gsap.fromTo(
@@ -566,14 +567,33 @@ gsap.fromTo(
     },
   }
 );
+// Last brand
+gsap.fromTo(
+  lastWord,
+  {
+    "will-change": "opacity",
+    opacity: 0,
+    y: +60
+  },
+  {
+    ease: "power1.inOut",
+    opacity: 1,
+    delay: 0.5,
+    y: 0,
+    scrollTrigger: {
+      trigger: lastWord,
+      start: "top bottom",
+      end: "center top",
+    },
+  }
+);
 
 // Images parallax
 const images_prllx = document.querySelectorAll(".parallax");
 images_prllx.forEach(image => {
-  new Ukiyo(image, {
+  new Ukiyo(image, { 
     speed: 3,
     scale: 1.1,
-    wrapperClass: "parallax-wrapper"
   });
 });
 
