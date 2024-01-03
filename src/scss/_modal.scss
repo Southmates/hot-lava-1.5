@@ -15,6 +15,8 @@
   opacity: 0;
   pointer-events: none;
 
+  transition: .12s;
+
   &.is-active {
     transform: translateX(0);
     opacity: 1;
