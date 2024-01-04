@@ -102,6 +102,17 @@
           span:nth-child(5) {
             margin-left: -1vw;
             // background-color: brown;
+            transform-origin: 50% 30%;
+            animation: rotateAsterisk 22s linear infinite;
+          }
+
+          @keyframes rotateAsterisk {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
           }
         }
       }
