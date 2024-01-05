@@ -42,10 +42,10 @@
           color: #FFFFFF;
           text-decoration: none;
 
-          transition-duration: .35s;
+          transition-duration: opacity .35s;
 
           &:hover {
-            transition-duration: .35s;
+            transition-duration: opacity .35s;
             cursor: pointer;
             opacity: .5;
           }

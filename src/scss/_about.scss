@@ -79,7 +79,7 @@
     @media (min-width:$change-layout) {
       // width: clamp(900px, 75vw, 1080px);
       width: 90%;
-      max-width: 1000px;
+      // max-width: 1000px;
 
       border-radius: 100vh;
       aspect-ratio: 3/2;
@@ -88,8 +88,8 @@
 
   .team__blend {
     aspect-ratio: 3/2;
-    background: $color-lightBlue;
-    // background: $color-orange;
+    // background: $color-lightBlue;
+    background: $color-orange;
   }
 
   img {

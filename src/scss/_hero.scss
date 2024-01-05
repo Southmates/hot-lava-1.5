@@ -39,10 +39,10 @@
     left: 0;
     z-index: 2;
     overflow: hidden;
-    background-color: red;
+    background-color: #EE512F;
     pointer-events: none;
     animation: coverOut .7s ease-out forwards;
-    animation-delay: 2.8s;
+    animation-delay: .8s;
   }
 
   @keyframes coverOut {
@@ -50,7 +50,6 @@
       transform: translateY(-150%);
     }
   }
-
 
   &__title {
     position: absolute;
@@ -108,6 +107,7 @@
             from {
               transform: rotate(0deg);
             }
+
             to {
               transform: rotate(360deg);
             }

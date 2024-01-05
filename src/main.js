@@ -153,18 +153,30 @@ function handleNav() {
     start: "top top",
     end: "bottom +=75%",
     // markers: true,
-    onEnter: () =>
+    onEnter: () => {
       gsap.to(
         container,
         { backgroundColor: "#EE512F", duration: 1, ease: "ease.in" },
         setBlankMenu()
-      ),
-    onLeave: () =>
+      );
+      gsap.to(".team__card .team__blend", {
+        backgroundColor: "#EE512F",
+        duration: 1,
+        ease: "ease.in",
+      });
+    },
+    onLeave: () => {
       gsap.to(
         container,
         { backgroundColor: "#108896", duration: 1, ease: "ease.out" },
         setAboutMenu()
-      ),
+      );
+      gsap.to(".team__card .team__blend", {
+        backgroundColor: "#108896",
+        duration: 1,
+        ease: "ease.in",
+      });
+    },
     // onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
     onEnterBack: () =>
       gsap.to(
@@ -197,7 +209,7 @@ function handleNav() {
         { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
         setAboutMenu()
       );
-      gsap.to(".team__card .team__pic", {
+      gsap.to(".team__card .team__blend", {
         backgroundColor: "#108896",
         duration: 1,
         ease: "ease.in",
@@ -215,7 +227,7 @@ function handleNav() {
         { backgroundColor: "#1C374D", duration: 1, ease: "ease.in" },
         setOurWayMenu()
       );
-      gsap.to(".team__card .team__pic", {
+      gsap.to(".team__card .team__blend", {
         backgroundColor: "#1C374D",
         duration: 1,
         ease: "ease.in",
@@ -233,7 +245,7 @@ function handleNav() {
         { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
         setAboutMenu()
       );
-      gsap.to(".team__card .team__pic", {
+      gsap.to(".team__card .team__blend", {
         backgroundColor: "#108896",
         duration: 1,
         ease: "ease.in",
@@ -368,6 +380,7 @@ function handleModal() {
     lenis.start();
   }
 }
+
 // Handle swiper scroll
 document.addEventListener("resize", checkMobile);
 checkMobile();
@@ -394,7 +407,8 @@ function randomSlogan() {
   sloganContainer.append(randomValue);
 }
 
-// Function to set video source
+// --> Function to set video source
+
 // const video = document.querySelector(".hero .wrapper video");
 // let videoSource = document.createElement("source");
 
@@ -416,16 +430,17 @@ function randomSlogan() {
 //   video.appendChild(videoSource);
 // }
 
-// GSAP animations
+// ---> GSAP animations
 // Hero
 const logo = document.querySelector(".logo");
 const burguer = document.querySelector(".burguer-btn");
 const heroWelcome = [
   ...document.querySelectorAll(".hero__title[data-splitting][data-effect17]"),
 ];
-const bioImages = document.querySelectorAll(".team__blend");
+const bioImages = document.querySelectorAll(".team__bio");
 const copyright = document.querySelector(".copyright__text");
 const slogan = document.querySelector(".slogan");
+const navbar = document.querySelector(".navbar");
 const lastWord = document.querySelector(".last-brand");
 
 // Logo
@@ -447,6 +462,7 @@ gsap.fromTo(
     },
   }
 );
+
 // Burguer
 gsap.fromTo(
   burguer,
@@ -466,19 +482,22 @@ gsap.fromTo(
     },
   }
 );
+
 // Hero Title
 heroWelcome.forEach((title) => {
   gsap.fromTo(
     title.querySelectorAll(".word"),
     {
       "will-change": "opacity",
-      opacity: 0.1,
+      opacity: 0,
+      y: 30,
     },
     {
-      ease: "none",
+      ease: "power1.out",
       opacity: 1,
-      stagger: 0.18,
-      delay: 0.5,
+      stagger: 0.1,
+      y: 0,
+      delay: 0.75,
       scrollTrigger: {
         trigger: title,
         start: "top bottom",
@@ -487,6 +506,7 @@ heroWelcome.forEach((title) => {
     }
   );
 });
+
 // Main titles
 const titles = document.querySelectorAll(".title");
 
@@ -514,7 +534,7 @@ titles.forEach((title) => {
 });
 
 // Bio images
-/* if (innerWidth >= 1024) {
+if (innerWidth >= 1024) {
   bioImages.forEach((image) => {
     gsap.fromTo(
       image,
@@ -534,7 +554,7 @@ titles.forEach((title) => {
       }
     );
   });
-} */
+}
 
 // Copyright
 gsap.fromTo(
@@ -542,12 +562,12 @@ gsap.fromTo(
   {
     "will-change": "opacity",
     opacity: 0,
-    y: -30,
+    y: 30,
   },
   {
     ease: "power1.inOut",
     opacity: 1,
-    delay: 0.8,
+    delay: 1.2,
     y: 0,
     scrollTrigger: {
       trigger: copyright,
@@ -556,18 +576,40 @@ gsap.fromTo(
     },
   }
 );
+
+// Navbar
+gsap.fromTo(
+  navbar,
+  {
+    "will-change": "opacity",
+    opacity: 0,
+    x: 30,
+  },
+  {
+    ease: "power1.inOut",
+    opacity: 1,
+    delay: 1.5,
+    x: 0,
+    scrollTrigger: {
+      trigger: slogan,
+      start: "top bottom",
+      end: "center top",
+    },
+  }
+);
+
 // Slogan
 gsap.fromTo(
   slogan,
   {
     "will-change": "opacity",
     opacity: 0,
-    y: -30,
+    y: 30,
   },
   {
     ease: "power1.inOut",
     opacity: 1,
-    delay: 0.8,
+    delay: 1.5,
     y: 0,
     scrollTrigger: {
       trigger: slogan,
@@ -576,6 +618,7 @@ gsap.fromTo(
     },
   }
 );
+
 // Last brand
 gsap.fromTo(
   lastWord,
@@ -599,6 +642,7 @@ gsap.fromTo(
 
 // Images parallax
 const images_prllx = document.querySelectorAll(".parallax");
+
 images_prllx.forEach((image) => {
   new Ukiyo(image, {
     speed: 3,

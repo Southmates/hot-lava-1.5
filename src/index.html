@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  {{> head }}
+{{> head }}
 
-  <body class="main">
+<body class="main">
 
-    <div class="modal">
-      <div class="modal__close js-close"> 
-        <div class="ui-close"></div>
-      </div>
-      {{> works/meijer }} 
-      {{> works/frederiks }} 
-      {{> works/dole-wiggles }} 
-      {{> works/fresh-thyme }} 
-      {{> works/buybuybaby }} 
-      {{> works/dole-juice }} 
+  <div class="modal">
+    <div class="modal__close js-close">
+      <div class="ui-close"></div>
     </div>
+    {{> works/meijer }}
+    {{> works/frederiks }}
+    {{> works/dole-wiggles }}
+    {{> works/fresh-thyme }}
+    {{> works/buybuybaby }}
+    {{> works/dole-juice }}
+  </div>
 
-    {{> header }}
-    {{> nav }} 
-    {{> copyright }}
+  {{> header }}
 
-    {{> sections/hero }}
-    {{> sections/intro }}
-    {{> sections/about }} 
-    {{> sections/how }} 
-    {{> sections/work }} 
+  {{> nav }}
 
-    {{> footer }} 
+  {{> copyright }}
 
-    <script type="module" src="./main.js"></script>
-  </body>
+  {{> sections/hero }}
+
+  {{> sections/intro }}
+
+  {{> sections/about }}
+
+  {{> sections/how }}
+
+  {{> sections/work }}
+
+  {{> footer }}
+
+  <script type="module" src="./main.js"></script>
+</body>
+
 </html>
