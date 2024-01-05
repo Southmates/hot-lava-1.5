@@ -181,7 +181,7 @@ function handleNav() {
     onEnter: () =>
       gsap.to(
         container,
-        { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
+        { backgroundColor: "#108896", duration: 0, ease: "ease.in" },
         setAboutMenu()
       ),
     onLeave: () =>

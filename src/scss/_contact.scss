@@ -90,7 +90,7 @@
     }
 
     >div {
-      font-size: clamp(180px, 36vw, 375px);
+      font-size: clamp(32px, 20vw, 142px);
       font-weight: 900;
       line-height: .8;
       color: $color-orange;
@@ -100,8 +100,18 @@
       transform: translateY(10%);
       pointer-events: none;
 
+      @media (min-width: 420px) {
+        font-size: clamp(85px, 20vw, 282px);
+      }
+      @media (min-width: 580px) {
+        font-size: clamp(120px, 20vw, 280px);
+      }
+      @media (min-width: 780px) {
+        font-size: clamp(150px, 20vw, 325px);
+      }
       @media (min-width: $change-layout) {
         transform: translateY(12%);
+        font-size: clamp(160px, 22vw, 372px);
       }
     }
 
