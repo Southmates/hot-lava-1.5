@@ -6,15 +6,33 @@
       <small>Welcome to</small>
       <h1>HOT</br >LAVA*</h1>
     </div>
-    <video autoplay muted loop playsinline>   
-      <source
-        src="https://player.vimeo.com/progressive_redirect/playback/891441750/rendition/1080p/file.mp4?loc=external&signature=fda31ffe3b21ba36b3a3aa3b65e4746b7a94eda1389a7ab609de05b7d73a8079"
-        type="video/mp4" 
-      />
-    </video>
+    {{!-- <!-- to use directly to .mp4 URL with handleVideoSource() -> main.js -->
+    <video autoplay muted loop playsinline>    
+    </video>  --}}   
   </div>
   <div class="slogan">
     <p></p>
+  </div> 
+  
+  {{!-- <!-- Videobackground on loop from Vimeo --> --}}
+  <div class="red-cover"></div>
+  <div class="videofull">
+    <div id="heroVideo" class="videofull__wrapper parallax"></div>
   </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <script>
+    const heroPlayerOptions = {
+      id: 891441750, 
+      autoplay: true,
+      autopause: false,
+      background: true,
+      controls: false,
+      loop: true,
+      muted: true,
+      quality: 'auto',
+    };
+    const heroPlayer = new Vimeo.Player('heroVideo', heroPlayerOptions);
+  </script> 
 
 </section>

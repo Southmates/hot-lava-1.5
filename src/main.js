@@ -13,6 +13,10 @@ register();
 // CSS Styles
 import "./style.scss";
 
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Virtual smooth scroll (Lenis)
@@ -159,11 +163,6 @@ function handleNav() {
         { backgroundColor: "#EE512F", duration: 1, ease: "ease.in" },
         setBlankMenu()
       );
-      gsap.to(".team__card .team__blend", {
-        backgroundColor: "#EE512F",
-        duration: 1,
-        ease: "ease.in",
-      });
     },
     onLeave: () => {
       gsap.to(
@@ -171,6 +170,7 @@ function handleNav() {
         { backgroundColor: "#108896", duration: 1, ease: "ease.out" },
         setAboutMenu()
       );
+
       gsap.to(".team__card .team__blend", {
         backgroundColor: "#108896",
         duration: 1,
@@ -190,12 +190,18 @@ function handleNav() {
     trigger: about,
     start: "top +=75%",
     end: "bottom top",
-    onEnter: () =>
+    onEnter: () => {
       gsap.to(
         container,
-        { backgroundColor: "#108896", duration: 0, ease: "ease.in" },
+        { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
         setAboutMenu()
-      ),
+      );
+      gsap.to(".team__card .team__blend", {
+        backgroundColor: "#108896",
+        duration: 1,
+        ease: "ease.in",
+      });
+    },
     onLeave: () =>
       gsap.to(
         container,
@@ -209,11 +215,11 @@ function handleNav() {
         { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
         setAboutMenu()
       );
-      gsap.to(".team__card .team__blend", {
-        backgroundColor: "#108896",
-        duration: 1,
-        ease: "ease.in",
-      });
+      // gsap.to(".team__card .team__blend", {
+      //   backgroundColor: "#108896",
+      //   duration: 1,
+      //   ease: "ease.in",
+      // });
     },
   });
 
@@ -320,6 +326,7 @@ function handleScrolHorizontal() {
       trigger: membersSection,
       pin: true,
       scrub: 2,
+      delay: 1,
       // end: "+=100%" + membersSection.offsetWidth
       end: "+=100%",
       // end: "bottom",
@@ -437,7 +444,7 @@ const burguer = document.querySelector(".burguer-btn");
 const heroWelcome = [
   ...document.querySelectorAll(".hero__title[data-splitting][data-effect17]"),
 ];
-const bioImages = document.querySelectorAll(".team__bio");
+const bioImages = document.querySelectorAll(".team__blend");
 const copyright = document.querySelector(".copyright__text");
 const slogan = document.querySelector(".slogan");
 const navbar = document.querySelector(".navbar");

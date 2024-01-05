@@ -70,18 +70,11 @@
     opacity: 0.85;
     z-index: 1;
 
-    border-radius: 0 100vh 100vh 0;
-
     object-fit: cover;
-    overflow: hidden;
     aspect-ratio: 3/2;
 
     @media (min-width:$change-layout) {
-      // width: clamp(900px, 75vw, 1080px);
       width: 90%;
-      // max-width: 1000px;
-
-      border-radius: 100vh;
       aspect-ratio: 3/2;
     }
   }
@@ -90,19 +83,29 @@
     aspect-ratio: 3/2;
     // background: $color-lightBlue;
     background: $color-orange;
-  }
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    // border-radius: 0 100vh 100vh 0;
-    mix-blend-mode: multiply;
+    overflow: hidden;
+    border-radius: 0 100vh 100vh 0;
 
     @media (min-width:$change-layout) {
       border-radius: 100vh;
     }
+
+  }
+
+  img {
+    display: block;
+    width: 120%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    // border-radius: 0 100vh 100vh 0;
+
+    // @media (min-width:$change-layout) {
+    //   border-radius: 100vh;
+    // }
+
+    // opacity: 0;
   }
 }
 
