@@ -147,12 +147,11 @@
       }
     }
   }
-
-  >img {
-    width: 100%;
-    height: 100%;
+  
+  img {
+    width: 105%;
+    height: 105%;
     object-fit: cover;
-    transition: .35s;
     transform: scale(1.05);
     transition-timing-function: ease-in-out;
   }
