@@ -1,27 +1,132 @@
 <a id="home"></a>
 <section id="hero" class="hero">
-
+  <canvas id="noise" class="noise"></canvas>
   <div class="wrapper">
     <div class="hero__title" data-splitting data-effect17>
       <small>Welcome to</small>
       <h1>HOT</br >LAVA*</h1>
-    </div>
-    {{!-- <!-- to use directly to .mp4 URL with handleVideoSource() -> main.js -->
-    <video autoplay muted loop playsinline>    
-    </video>  --}}   
+    </div> 
+    <video autoplay muted loop playsinline> 
+      <source src="hot-lava-1920.mp4" type="video/mp4">
+      <source src="hot-lava-1920.webm" type="video/webm">
+    </video>
   </div>
   <div class="slogan">
     <p></p>
   </div> 
-  
+  <style>
+    .noise {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        width: 100%;
+        height: 100%;
+        
+        pointer-events: none;
+        opacity: .075;
+    }
+  </style>
   {{!-- <!-- Videobackground on loop from Vimeo --> --}}
   <div class="red-cover"></div>
   <div class="videofull">
     <div id="heroVideo" class="videofull__wrapper parallax"></div>
   </div>
-  <script src="https://player.vimeo.com/api/player.js"></script>
 
   <script>
+    const noise = () => {
+      let canvas, ctx;
+
+      let wWidth, wHeight;
+
+      let noiseData = [];
+      let frame = 0;
+
+      let loopTimeout;
+
+
+      // Create Noise
+      const createNoise = () => {
+          const idata = ctx.createImageData(wWidth, wHeight);
+          const buffer32 = new Uint32Array(idata.data.buffer);
+          const len = buffer32.length;
+
+          for (let i = 0; i < len; i++) {
+              if (Math.random() < 0.5) {
+                  buffer32[i] = 0xff000000;
+              }
+          }
+
+          noiseData.push(idata);
+      };
+
+
+      // Play Noise
+      const paintNoise = () => {
+          if (frame === 9) {
+              frame = 0;
+          } else {
+              frame++;
+          }
+
+          ctx.putImageData(noiseData[frame], 0, 0);
+      };
+
+
+      // Loop
+      const loop = () => {
+          paintNoise(frame);
+
+          loopTimeout = window.setTimeout(() => {
+              window.requestAnimationFrame(loop);
+          }, (1000 / 25));
+      };
+
+
+      // Setup
+      const setup = () => {
+          wWidth = window.innerWidth;
+          wHeight = window.innerHeight;
+
+          canvas.width = wWidth;
+          canvas.height = wHeight;
+
+          for (let i = 0; i < 10; i++) {
+              createNoise();
+          }
+
+          loop();
+      };
+
+
+      // Reset
+      let resizeThrottle;
+      const reset = () => {
+          window.addEventListener('resize', () => {
+              window.clearTimeout(resizeThrottle);
+
+              resizeThrottle = window.setTimeout(() => {
+                  window.clearTimeout(loopTimeout);
+                  setup();
+              }, 200);
+          }, false);
+      };
+
+
+      // Init
+      const init = (() => {
+          canvas = document.getElementById('noise');
+          ctx = canvas.getContext('2d');
+
+          setup();
+      })();
+    };
+
+    noise();
+  </script>
+  <!--script src="https://player.vimeo.com/api/player.js"></script-->
+  <!--script>
     const heroPlayerOptions = {
       id: 911762681, 
       autoplay: true,
@@ -33,6 +138,6 @@
       quality: 'auto',
     };
     const heroPlayer = new Vimeo.Player('heroVideo', heroPlayerOptions);
-  </script> 
+  </script--> 
 
 </section>
