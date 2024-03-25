@@ -242,7 +242,7 @@ function handleNav() {
     onLeave: () =>
       gsap.to(
         container,
-        { backgroundColor: "#1C374D", duration: 1, ease: "ease.out" },
+        { backgroundColor: "#E69C24", duration: 0.5, ease: "ease.out" },
         setWorkMenu()
       ),
     onLeaveBack: () => {
