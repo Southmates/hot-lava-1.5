@@ -208,18 +208,12 @@ function handleNav() {
         { backgroundColor: "#1C374D", duration: 1, ease: "ease.out" },
         setOurWayMenu()
       ),
-    // onLeaveBack: () => gsap.to(container, {backgroundColor:"#EE512F", duration: 1, ease:"ease.in"}, setBlankMenu()),
     onEnterBack: () => {
       gsap.to(
         container,
         { backgroundColor: "#108896", duration: 1, ease: "ease.in" },
         setAboutMenu()
       );
-      // gsap.to(".team__card .team__blend", {
-      //   backgroundColor: "#108896",
-      //   duration: 1,
-      //   ease: "ease.in",
-      // });
     },
   });
 
@@ -335,6 +329,7 @@ function handleScrolHorizontal() {
 }
 
 var state = "";
+
 function checkMobile() {
   var newState = state;
   if (innerWidth > 1023) {
@@ -390,6 +385,7 @@ function handleModal() {
 
 // Handle swiper scroll
 document.addEventListener("resize", checkMobile);
+
 checkMobile();
 
 // Assign random slogan

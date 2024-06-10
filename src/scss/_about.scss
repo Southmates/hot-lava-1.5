@@ -16,12 +16,12 @@
 }
 
 .team {
-  width: 150vw;
+  width: 400vw;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   gap: 10vh;
 
@@ -33,18 +33,13 @@
     margin: 0;
     height: 100vh;
     align-items: center;
-    // top: 50% !important;
-    // transform: translateY(-50%) !important;
   }
 }
 
 .team__card {
   position: relative;
-  // overflow: hidden;
-  //height: clamp(435px, 45vh, 500px);
-
   width: 100vw;
-  padding-bottom: 20vw;
+  padding-bottom: 50vw;
 
   @media (min-width:$landscape) {
     padding-bottom: 10vw;
@@ -109,7 +104,7 @@
 
 .team__bio {
   position: absolute;
-  bottom: 30%;
+  top: 52.5vw;
   left: 8%;
   width: fit-content;
   height: fit-content;
@@ -117,6 +112,7 @@
 
 
   @media (min-width:$change-layout) {
+    top: unset;
     bottom: 15%;
     left: 15%;
   }
@@ -124,6 +120,7 @@
   h3 {
     color: $color-white;
     color: $color-aquaGreen;
+    font-size: clamp(48px, 15.5vw, 96px);
     // color: $color-white;
   }
 
