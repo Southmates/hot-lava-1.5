@@ -33,12 +33,14 @@ requestAnimationFrame(raf);
 function handleNav() {
   const aboutLink = document.querySelector(".about-link");
   const ourWayLink = document.querySelector(".how-we-work-link");
-  const workLink = document.querySelector(".work-link");
+  // const workLink = document.querySelector(".work-link");
+  const shopLink = document.querySelector(".shop-link");
   const contactLink = document.querySelector(".contact-link");
 
   const aboutEl = document.querySelector("#about-us");
   const ourWayEl = document.querySelector("#how-we-work");
-  const workEl = document.querySelector("#work");
+  // const workEl = document.querySelector("#work");
+  const shopEl = document.querySelector("#shop");
   const contactEl = document.querySelector("#contact");
 
   const mobileNavBtn = document.querySelector(".burger");
@@ -46,9 +48,10 @@ function handleNav() {
   const mobileNav = document.querySelector(".mobile");
 
   const setBlankMenu = () => {
+    shopLink.classList.remove("active");
     aboutLink.classList.remove("active");
     ourWayLink.classList.remove("active");
-    workLink.classList.remove("active");
+    // workLink.classList.remove("active");
     contactLink.classList.remove("active");
 
     mobileNav.classList.add("hidden");
@@ -56,9 +59,10 @@ function handleNav() {
   };
 
   const setAboutMenu = () => {
+    shopLink.classList.remove("active");
     aboutLink.classList.add("active");
     ourWayLink.classList.remove("active");
-    workLink.classList.remove("active");
+    // workLink.classList.remove("active");
     contactLink.classList.remove("active");
 
     mobileNav.classList.add("hidden");
@@ -66,17 +70,30 @@ function handleNav() {
   };
 
   const setOurWayMenu = () => {
+    shopLink.classList.remove("active");
     aboutLink.classList.remove("active");
     ourWayLink.classList.add("active");
-    workLink.classList.remove("active");
+    // workLink.classList.remove("active");
     contactLink.classList.remove("active");
 
     mobileNav.classList.add("hidden");
     mobileNavOpen = false;
   };
 
-  const setWorkMenu = () => {
-    workLink.classList.add("active");
+  // const setWorkMenu = () => {
+  //   shopLink.classList.remove("active");
+  //   workLink.classList.add("active");
+  //   ourWayLink.classList.remove("active");
+  //   aboutLink.classList.remove("active");
+  //   contactLink.classList.remove("active");
+
+  //   mobileNav.classList.add("hidden");
+  //   mobileNavOpen = false;
+  // };
+
+  const setShopMenu = () => {
+    shopLink.classList.add("active");
+    // workLink.classList.remove("active");
     ourWayLink.classList.remove("active");
     aboutLink.classList.remove("active");
     contactLink.classList.remove("active");
@@ -86,10 +103,11 @@ function handleNav() {
   };
 
   const setContactMenu = () => {
+    shopLink.classList.remove("active");
     contactLink.classList.add("active");
     aboutLink.classList.remove("active");
     ourWayLink.classList.remove("active");
-    workLink.classList.remove("active");
+    // workLink.classList.remove("active");
 
     mobileNav.classList.add("hidden");
     mobileNavOpen = false;
@@ -101,8 +119,11 @@ function handleNav() {
   ourWayLink.addEventListener("click", () => {
     lenis.scrollTo(ourWayEl), setOurWayMenu();
   });
-  workLink.addEventListener("click", () => {
-    lenis.scrollTo(workEl), setWorkMenu();
+  // workLink.addEventListener("click", () => {
+  //   lenis.scrollTo(workEl), setWorkMenu();
+  // });
+  shopLink.addEventListener("click", () => {
+    lenis.scrollTo(shopEl), setShopMenu();
   });
   contactLink.addEventListener("click", () => {
     lenis.scrollTo(contactEl), setContactMenu();
@@ -129,7 +150,8 @@ function handleNav() {
   const fadeHero = document.querySelector(".intro");
   const about = document.querySelector(".about");
   const howWeWork = document.querySelector(".how-we-work");
-  const work = document.querySelector(".work");
+  // const work = document.querySelector(".work");
+  const shop = document.querySelector(".shop");
   const contact = document.querySelector(".contact");
 
   const hero = document.querySelector(".hero");
@@ -236,8 +258,8 @@ function handleNav() {
     onLeave: () =>
       gsap.to(
         container,
-        { backgroundColor: "#E69C24", duration: 0.5, ease: "ease.out" },
-        setWorkMenu()
+        { backgroundColor: "#1C374D", duration: 0.5, ease: "ease.out" },
+        setShopMenu()
       ),
     onLeaveBack: () => {
       gsap.to(
@@ -259,15 +281,40 @@ function handleNav() {
       ),
   });
 
+  // ScrollTrigger.create({
+  //   trigger: work,
+  //   start: "top 50%",
+  //   end: "bottom 20%",
+  //   onEnter: () =>
+  //     gsap.to(
+  //       container,
+  //       { backgroundColor: "#1C374D", duration: 1, ease: "ease.in" },
+  //       setWorkMenu()
+  //     ),
+  //   onLeave: () =>
+  //     gsap.to(
+  //       container,
+  //       { backgroundColor: "#E69C24", duration: 1, ease: "ease.out" },
+  //       setContactMenu()
+  //     ),
+  //   onEnterBack: () =>
+  //     gsap.to(
+  //       container,
+  //       { backgroundColor: "#1C374D", duration: 1, ease: "ease.in" },
+  //       setWorkMenu()
+  //     ),
+  // });
+
   ScrollTrigger.create({
-    trigger: work,
+    trigger: shop,
     start: "top 50%",
-    end: "bottom 20%",
+    end: "bottom 30%",
+    markers: true,
     onEnter: () =>
       gsap.to(
         container,
         { backgroundColor: "#1C374D", duration: 1, ease: "ease.in" },
-        setWorkMenu()
+        setShopMenu()
       ),
     onLeave: () =>
       gsap.to(
@@ -279,7 +326,7 @@ function handleNav() {
       gsap.to(
         container,
         { backgroundColor: "#1C374D", duration: 1, ease: "ease.in" },
-        setWorkMenu()
+        setShopMenu()
       ),
   });
 
@@ -287,6 +334,7 @@ function handleNav() {
     trigger: contact,
     start: "top 40%",
     end: "bottom top",
+    // markers: true,
     onEnter: () =>
       gsap.to(
         container,
@@ -303,7 +351,7 @@ function handleNav() {
       gsap.to(
         container,
         { backgroundColor: "#1C374D", duration: 1, ease: "ease.out" },
-        setWorkMenu()
+        setShopMenu()
       ),
   });
 }

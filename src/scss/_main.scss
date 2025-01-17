@@ -16,8 +16,12 @@
 
 .wrapper {
   position: relative;
-  width: min(95%, var(--wrapper));
+  width: min(90%, var(--wrapper));
   margin: 0 auto;
+
+  @media (min-width: $change-layout) {
+    width: min(95%, var(--wrapper));
+  }
 }
 
 .section__slide {
