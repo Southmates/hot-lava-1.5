@@ -121,7 +121,9 @@
     color: $color-white;
     color: $color-aquaGreen;
     font-size: clamp(48px, 15.5vw, 96px);
+    line-height: 1;
     // color: $color-white;
+    margin: -2px 0 0 0;
   }
 
   p {

@@ -124,8 +124,9 @@
             color: #FFFFFF;
             transition-duration: 1s;
 
+            font-family: $main-font-title;
             font-size: clamp(36px, 6vw, 48px);
-            font-weight: 900;
+            font-weight: 400;
           }
         }
       }
