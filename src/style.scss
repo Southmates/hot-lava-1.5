@@ -1,23 +1,23 @@
 @font-face {
   font-family: 'graphiksuper';
-  src: url('./public/fonts/graphiksuper-webfont.woff2') format('woff2'),
-    url('./public/fonts/graphiksuper-webfont.woff') format('woff');
+  src: url('/fonts/graphiksuper-webfont.woff2') format('woff2'),
+    url('/fonts/graphiksuper-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'graphiksemibold';
-  src: url('./public/fonts/graphiksemibold-webfont.woff2') format('woff2'),
-    url('./public/fonts/graphiksemibold-webfont.woff') format('woff');
+  src: url('/fonts/graphiksemibold-webfont.woff2') format('woff2'),
+    url('/fonts/graphiksemibold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'graphik_regularregular';
-  src: url('./public/fonts/graphikregular-webfont.woff2') format('woff2'),
-    url('./public/fonts/graphikregular-webfont.woff') format('woff');
+  src: url('/fonts/graphikregular-webfont.woff2') format('woff2'),
+    url('/fonts/graphikregular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
