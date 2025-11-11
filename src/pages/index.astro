@@ -1,0 +1,56 @@
+---
+// index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Copyright from '../components/Copyright.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Intro from '../components/sections/Intro.astro';
+import About from '../components/sections/About.astro';
+import How from '../components/sections/How.astro';
+import Works from '../components/sections/Works.astro';
+import Shop from '../components/sections/Shop.astro';
+import Meijer from '../components/works/Meijer.astro';
+import BuyBuyBaby from '../components/works/BuyBuyBaby.astro';
+import DoleJuice from '../components/works/DoleJuice.astro';
+import DoleWiggles from '../components/works/DoleWiggles.astro';
+import Frederiks from '../components/works/Frederiks.astro';
+import FreshThyme from '../components/works/FreshThyme.astro';
+import '../styles/global.scss';
+---
+
+<BaseLayout>
+  <div class="modal">
+    <div class="modal__close js-close">
+      <div class="ui-close"></div>
+    </div>
+    <Meijer />
+    <BuyBuyBaby />
+    <DoleJuice />
+    <DoleWiggles />
+    <Frederiks />
+    <FreshThyme />
+  </div>
+
+  <Header />
+  <Nav />
+  <Copyright />
+
+  <Hero />
+  <Intro />
+  <About />
+  <How />
+  <Works />
+  <Shop />
+  <Footer />
+
+  <script>
+    import '../scripts/main.js';
+  </script>
+
+  <script is:inline>
+    const noise = () => { let e, t, n, i, o, a = [], d = 0; const r = () => { const e = t.createImageData(n, i), o = new Uint32Array(e.data.buffer), d = o.length; for (let e = 0; e < d; e++)Math.random() < .5 && (o[e] = 4278190080); a.push(e) }, w = () => { 9 === d ? d = 0 : d++, t.putImageData(a[d], 0, 0), o = window.setTimeout((() => { window.requestAnimationFrame(w) }), 40) }, s = () => { n = window.innerWidth, i = window.innerHeight, e.width = n, e.height = i; for (let e = 0; e < 10; e++)r(); w() }; e = document.getElementById("noise"), t = e.getContext("2d"), s() }; noise();
+  </script>
+</BaseLayout>
+

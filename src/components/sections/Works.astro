@@ -1,3 +1,7 @@
+---
+// Works.astro
+---
+
 <section id="work" class="work">
 
   <div class="wrapper --flexbotm">
@@ -10,13 +14,21 @@
 
   <div class="work__list">
 
+    <div class="work__container">
+      <div class="work__item js-work" data-slide="meijer">
+        <div class="name">
+          <p>*Meijer</p>
+        </div>
+        <img class="parallax" src="./meijer/ice-cream.jpg" alt="Meijer">
+      </div>
+    </div>
 
     <div class="work__container">
-      <div class="work__item js-work" data-slide="dole-juice">
+      <div class="work__item js-work" data-slide="frederiks">
         <div class="name">
-          <p>*Dole Juice</p>
+          <p>*Frederik’s</p>
         </div>
-        <img class="parallax" src="./dole/juice/rebecca.jpg" alt="Dole Juice">
+        <img class="parallax" src="./frederiks/pasta.jpg" alt="Frederik’s">
       </div>
     </div>
 
@@ -29,14 +41,14 @@
       </div>
     </div>
 
-    {{!-- <div class="work__container">
+    <div class="work__container">
       <div class="work__item js-work" data-slide="fresh-thyme">
         <div class="name">
           <p>*Fresh Thyme</p>
         </div>
         <img class="parallax" src="./fresh-thyme/get-real-steak.jpg" alt="Fresh Thyme">
       </div>
-    </div> --}}
+    </div>
 
     <div class="work__container">
       <div class="work__item js-work" data-slide="buybuybaby">
@@ -48,22 +60,13 @@
     </div>
 
     <div class="work__container">
-      <div class="work__item js-work" data-slide="frederiks">
+      <div class="work__item js-work" data-slide="dole-juice">
         <div class="name">
-          <p>*Frederik’s</p>
+          <p>*Dole Juice</p>
         </div>
-        <img class="parallax" src="./frederiks/pasta.jpg" alt="Frederik’s">
+        <img class="parallax" src="./dole/juice/rebecca.jpg" alt="Dole Juice">
       </div>
     </div>
-    
-    {{!-- <div class="work__container">
-      <div class="work__item js-work" data-slide="meijer">
-        <div class="name">
-          <p>*Meijer</p>
-        </div>
-        <img class="parallax" src="./meijer/ice-cream.jpg" alt="Meijer">
-      </div>
-    </div> --}}
     
   </div>
 </section>

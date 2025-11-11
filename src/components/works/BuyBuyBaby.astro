@@ -1,0 +1,45 @@
+---
+// BuyBuyBaby.astro
+---
+
+<div class="work__slider" data-client="buybuybaby" hidden>
+  <swiper-container 
+    class="work__swiper" 
+    free-mode="false" 
+    centered-slides="true" 
+    slides-per-view="auto"
+    mousewheel="true" 
+    keyboard="true" 
+    space-between="30" 
+    pagination-dynamic-bullets="true"
+  >
+    <swiper-slide>
+      <div class="card">
+        <div id="buy-baby"></div>
+      </div>
+    </swiper-slide>
+
+    <script is:inline>
+      (function() {
+        function initBuyBuyBabyPlayers() {
+          if (typeof Vimeo === 'undefined') {
+            setTimeout(initBuyBuyBabyPlayers, 100);
+            return;
+          }
+          const babyPlayerOptions = {
+            id: 892010823, 
+            controls: true,
+            quality: 'auto'
+          };
+          const byeBabyPlayer = new Vimeo.Player('buy-baby', babyPlayerOptions);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initBuyBuyBabyPlayers);
+        } else {
+          initBuyBuyBabyPlayers();
+        }
+      })();
+    </script> 
+  </swiper-container>
+</div>
+

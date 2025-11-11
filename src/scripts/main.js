@@ -1,8 +1,8 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
-import customCursor from "./js/cursor.js";
-import videoMuting from "./js/videomuting.js";
+import customCursor from "./cursor.js";
+import videoMuting from "./videomuting.js";
 import Ukiyo from "ukiyojs";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
@@ -10,8 +10,6 @@ import Splitting from "splitting";
 Splitting();
 import { register } from "swiper/element/bundle";
 register();
-// CSS Styles
-import "./style.scss";
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);

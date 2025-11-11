@@ -1,9 +1,12 @@
+---
+// Hero.astro
+---
+
 <a id="home"></a>
 <section id="hero" class="hero">
   <div class="wrapper">
     <div class="hero__title" data-splitting data-effect17>
       <small>Welcome to</small>
-      {{! <h1>HOT</br >LAVA*</h1> }}
 
       <div class="logo-container">
         <svg
@@ -24,38 +27,15 @@
           />
         </svg>
       </div>
-
     </div>
   </div>
-  {{! <div class="slogan">
-    <p></p>
-  </div>  }}
 
   <canvas id="noise" class="noise"></canvas>
   <video autoplay muted loop playsinline>
-    <source src="hot-lava-1920.mp4" type="video/mp4" />
-    <source src="hot-lava-1920.webm" type="video/webm" />
+    <source src="/hot-lava-1920.mp4" type="video/mp4" />
+    <source src="/hot-lava-1920.webm" type="video/webm" />
   </video>
 
-  {{! <!-- Videobackground on loop from Vimeo --> }}
   <div class="red-cover"></div>
-  {{! <div class="videofull">
-    <div id="heroVideo" class="videofull__wrapper parallax"></div>
-  </div> }}
-
-  <!--script src="https://player.vimeo.com/api/player.js"></script-->
-  <!--script>
-    const heroPlayerOptions = {
-      id: 911762681, 
-      autoplay: true,
-      autopause: false,
-      background: true,
-      controls: false,
-      loop: true,
-      muted: true,
-      quality: 'auto',
-    };
-    const heroPlayer = new Vimeo.Player('heroVideo', heroPlayerOptions);
-  </script-->
-
 </section>
+

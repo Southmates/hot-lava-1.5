@@ -1,0 +1,89 @@
+---
+// Meijer.astro
+---
+
+<div class="work__slider" data-client="meijer" hidden>
+  <swiper-container
+    class="work__swiper"
+    free-mode="false"
+    centered-slides="true"
+    slides-per-view="auto"
+    mousewheel="true"
+    keyboard="true"
+    space-between="80"
+    pagination-dynamic-bullets="true"
+  >
+    <swiper-slide>
+      <div class="card">
+        <div id="stop-and-go"></div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="card">
+        <div id="windows-down"></div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="card">
+        <div id="dream-big"></div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="card">
+        <div id="lpga-baton"></div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-img">
+      <div class="card">
+        <img src="/meijer/prints/02-msg-breakfast.jpg" alt="Meijer" />
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-img">
+      <div class="card">
+        <img src="/meijer/prints/03-msg-pets-II.jpg" alt="Meijer" />
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-img">
+      <div class="card">
+        <img src="/meijer/prints/05-msg-laundry.jpg" alt="Meijer" />
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-img">
+      <div class="card">
+        <img src="/meijer/prints/06-msg-dairy.jpg" alt="Meijer" />
+      </div>
+    </swiper-slide>
+
+    <script is:inline>
+      (function() {
+        function initMeijerPlayers() {
+          if (typeof Vimeo === 'undefined') {
+            setTimeout(initMeijerPlayers, 100);
+            return;
+          }
+          const stopAndGoPlayerOptions = { id: 891988063, controls: true, quality: 'auto' };
+          const stopAndGoPlayer = new Vimeo.Player('stop-and-go', stopAndGoPlayerOptions);
+          const windowsDownPlayerOptions = { id: 891988114, controls: true, quality: 'auto' };
+          const windowsDownPlayer = new Vimeo.Player('windows-down', windowsDownPlayerOptions);
+          const dreamBigPlayerOptions = { id: 891989054, controls: true, quality: 'auto' };
+          const dreamBigPlayer = new Vimeo.Player('dream-big', dreamBigPlayerOptions);
+          const lpgaPlayerOptions = { id: 891988200, controls: true, quality: 'auto' };
+          const lpgaPlayer = new Vimeo.Player('lpga-baton', lpgaPlayerOptions);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMeijerPlayers);
+        } else {
+          initMeijerPlayers();
+        }
+      })();
+    </script>
+  </swiper-container>
+</div>
+
