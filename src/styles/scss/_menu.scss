@@ -3,7 +3,7 @@
   // Menu desktop, vertical layout
   .desktop {
     position: fixed;
-    right: calc(5% - 40px);
+    right: 1rem;
     width: 40px;
     z-index: 998;
     height: 100vh;
@@ -37,7 +37,7 @@
           padding: 1rem;
           font-family: $main-font-title;
           font-size: clamp(16px, 2vw, 18px);
-          font-weight: 400;
+          font-weight: 800;
           letter-spacing: .05rem;
           color: #FFFFFF;
           text-decoration: none;
@@ -66,16 +66,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10vh;
 
     position: fixed;
     z-index: 9992;
     height: 100vh;
     width: 100%;
-    padding: 0 10% 15% 10%;
+    padding: 20vh 2rem 0 2rem;
 
-    background-color: $color-orange;
+    background-color: var(--color-blue); 
+    transform: translateX(0%);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s all;
 
     @media (min-width: 780px) {
       display: none;
@@ -95,7 +97,14 @@
         display: none;
       }
 
+      button {
+        background: transparent;
+      }
+      
       svg {
+        width: 40px;
+        height: 40px;
+
         path {
           fill: #fff;
         }
@@ -125,8 +134,9 @@
             transition-duration: 1s;
 
             font-family: $main-font-title;
-            font-size: clamp(36px, 6vw, 48px);
-            font-weight: 400;
+            font-size: clamp(40px, 6vw, 48px);
+            font-weight: 900;
+            line-height: 1;
           }
         }
       }
@@ -134,9 +144,9 @@
 
     .contact {
       position: absolute;
-      bottom: 60px;
+      bottom: max(60px, 10vh);
 
-      width: 80%;
+      width: 100%;
       height: fit-content;
       margin-top: 0;
       padding: 0;
@@ -144,31 +154,69 @@
 
       p {
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
 
         font-weight: 400;
-        font-size: clamp(18px, 3vw, 21px);
+        font-size: 1rem;
+        line-height: 1.35;
         letter-spacing: -0.01em;
         color: $color-white;
+      }
+      a {
+        color: $color-white;
+        text-decoration: none;
+        transition: 0.35s;
+
+        font-size: 1.5rem;
+        font-weight: 700;
+
+        &:hover {
+          color: #000;
+        }
       }
     }
 
   }
 
   .hidden {
-    display: none;
+    // display: none;
+    transform: translateX(100%);
   }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;  
+    border-radius: 999px;
+    border: none;
+  }
+
 }
 
+.burger {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
 
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px);
-  border-radius: 999px;
-  border: none;
+  @media (min-width: 780px) {
+    display: none;
+  }
+
+  button {
+    background: transparent;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      transform: scale(1.75);
+
+      path {
+        stroke: #fff;
+      }
+    }
+  }
 }

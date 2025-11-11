@@ -1,26 +1,4 @@
-@font-face {
-  font-family: 'graphiksuper';
-  src: url('/fonts/graphiksuper-webfont.woff2') format('woff2'),
-    url('/fonts/graphiksuper-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'graphiksemibold';
-  src: url('/fonts/graphiksemibold-webfont.woff2') format('woff2'),
-    url('/fonts/graphiksemibold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'graphik_regularregular';
-  src: url('/fonts/graphikregular-webfont.woff2') format('woff2'),
-    url('/fonts/graphikregular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @import "./scss/vars";
 
@@ -31,7 +9,7 @@
 @import "./scss/menu";
 @import "./scss/copyright";
 @import "./scss/header";
-@import "./scss/slogan";
+// @import "./scss/slogan";
 @import "./scss/modal";
 @import "./scss/videofull";
 
@@ -51,17 +29,3 @@
 @import "./scss/works";
 @import "./scss/shop";
 @import "./scss/contact";
-
-
-.noise {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  pointer-events: none;
-  opacity: .05;
-}

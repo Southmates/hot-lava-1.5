@@ -77,16 +77,13 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
-
-    // transform-origin: 50% 30%;
-    // animation: rotateAsterisk 22s linear infinite;
-
-    .word:nth-child(3) {
-      span:nth-child(5) {
-        transform-origin: 50% 30%;
-        animation: rotateAsterisk 22s linear infinite;
-      }
-    }
+ 
+    // .word:nth-child(3) {
+    //   span:nth-child(5) {
+    //     transform-origin: 50% 30%;
+    //     animation: rotateAsterisk 22s linear infinite;
+    //   }
+    // }
 
     > div {
       font-size: clamp(32px, 20vw, 142px);
@@ -114,14 +111,14 @@
       }
     }
 
-    @keyframes rotateAsterisk {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    // @keyframes rotateAsterisk {
+    //   from {
+    //     transform: rotate(0deg);
+    //   }
+    //   to {
+    //     transform: rotate(360deg);
+    //   }
+    // }
   }
 }
 

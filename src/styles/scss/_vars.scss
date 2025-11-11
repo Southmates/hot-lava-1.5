@@ -1,11 +1,11 @@
-$color-orange: #EE512F;
-$color-lightBlue: #108896;
-$color-aquaGreen: #C5ECD8;
-$color-darkBlue: #1C374D;
-$color-mustard: #FCA720;
-$color-darkMustard: #E69C24;
-$color-white: #FFFFFF;
-$color-grey: #93A0AA;
+$color-orange: #EC532C;
+$color-lightBlue: #0F8896;
+$color-aquaGreen: #C7E6D5;
+$color-darkBlue: #103B60;
+$color-yellow: #FBC346;
+$color-darkMustard: #E69C24; /* version 1.0 */
+$color-white: #FFFFFF; /* version 1.0 */
+$color-grey: #93A0AA; /* version 1.0 */
 
 
 $pad-site: 5vw;
@@ -14,13 +14,20 @@ $landscape: 480px;
 $tablet-l: 1023px;
 $change-layout: 1024px;
 
-$main-font: "graphik_regularregular";
-$main-font-bold: "graphiksemibold";
-$main-font-title: "graphiksuper";
+$main-font: "inter", sans-serif;
+$main-font-bold: "inter", sans-serif;
+$main-font-title: "inter", sans-serif;
 
 :root {
-    --font-main: "graphik_regularregular", sans-serif;
-    --font-bold: "graphiksemibold", sans-serif;
-    --font-title: "graphiksuper", sans-serif;
+    --font-main: "inter", sans-serif;
+    --font-bold: "inter", sans-serif;
+    --font-title: "inter", sans-serif;
     --wrapper: 1800px;
+    --color-yellow: #FBC346;
+    --color-blue: #103B60;
+    --color-orange: #EC532C;
+    --color-aquaGreen: #C7E6D5;
+    --color-darkBlue: #103B60;
+    --color-white: #FFFFFF;
+    --color-grey: #93A0AA;
 }
