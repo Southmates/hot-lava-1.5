@@ -2,32 +2,87 @@
 // Intro.astro
 ---
 
-<section class="intro">
+<section class="intro intro-first">
   <div class="wrapper">
     <div class="container">
-      <h3 class="title title-intro">
-        <span class="asterisk">*</span>This is our phrase<br />for epiphany.<br />
-        We had one and<br />
-        that&#8217;s why we&#8217;re here…
-      </h3>
-    </div>
-
-    <div class="container">
-      <h3 class="title title-second">
-        Ideas need to
-        <br />flow more freely.
-      </h3>
-      <p class="section__p paragraph-intro">
-        <strong>We've reached our limits with limits.</strong><br />
-        The advertising industry has become comfortable with rigid campaign
-        constructs that cannot travel.
-        <br /><br />
-        <strong>It's time to evolve with our times. </strong><br />
-        We recognize the complexities of today's marketing challenges, and we
-        believe that ideas need to flow freely to be effective across audiences,
-        platforms and cultures.
-      </p>
+      <h3 class="title">
+        <span class="asterisk">*</span>Hot Lava is our phrase for epiphany. We had one and that’s why we’re here...
+      </h3> 
     </div>
   </div>
 </section>
+<section class="intro intro-second">
+  <div class="wrapper"> 
+    <div class="container">
+      <h3 class="title">
+        <span class="asterisk">*</span>
+        Ideas need to
+        <br />flow more freely.
+      </h3>
+      <div class="row">
+        <img src="/images/flow.jpg" alt="Ideas need to flow more freely.">
+        <p class="section__p paragraph-intro"> It’s never been more important. With the complexities of today’s marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="intro intro-third">
+  <div class="wrapper"> 
+    <div class="container">
+      <h3 class="title">
+        <span class="asterisk">*</span>Flow starts with
+        <br />the way we work.
+      </h3>
+      <p class="section__p">We're a full-service advertising agency that gives
+        clients direct access to award-winning creators and doers. Our team is
+        simply an extension of yours – with personal service, an agile approach,
+        and effective, defining work.
+      </p>
+    </div> 
+  </div>
+</section>
 
+
+<style type="text/scss">
+  .intro-first {
+    background: linear-gradient(to bottom, var(--color-orange), var(--color-yellow));
+  }
+
+  .intro-second {
+    background: var(--color-turquoise);
+  }
+  
+  .intro-third {
+    background: var(--color-orange);
+  }
+  
+  .intro-first{
+    .title {
+      max-width: 70%;
+    }
+  }
+
+  .intro-second {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 7vh;
+    }
+  }
+  .intro-third {
+    .container { 
+      align-items: flex-end;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+</style>

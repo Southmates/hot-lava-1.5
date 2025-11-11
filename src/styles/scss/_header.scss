@@ -40,8 +40,11 @@
 }
 
 .logo-container {
-  width: min(100%, 600px);
+  width: min(100%, 75vh);
+  width: 45vw;
+  padding-left: 5%;
 
+  
   svg {
     width: 100%;
     height: 100%;

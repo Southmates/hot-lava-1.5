@@ -23,13 +23,17 @@
 .container { 
   width: 90%;
   margin: 0 auto;
-  padding: 10vh 0;
+  padding: 0 0;
  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .section__p {
-  max-width: 480px; 
-  margin: 1.5rem 0 0 0; 
+  max-width: 480px;  
 }
 
 .asterisk {
