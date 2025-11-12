@@ -6,7 +6,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          // Configuración de Sass si es necesaria
+          api: 'modern-compiler'
         }
       }
     }
