@@ -1,10 +1,16 @@
 .about { 
+  position: relative;
+  overflow: hidden;
   padding-bottom: 15vh;
 
   @media (min-width: $change-layout) { 
     padding-bottom: 10vh;
   }
  
+  .logo {
+    bottom: 15%;
+    left: 2%; 
+  }
 }
 
 .team { 

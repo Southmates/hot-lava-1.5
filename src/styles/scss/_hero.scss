@@ -7,7 +7,7 @@
 
   overflow-x: hidden;
 
-  video {
+  .video, video {
     position: absolute;
     left: unset;
     right: 0;
@@ -20,6 +20,20 @@
     height: 100%;
     
     pointer-events: none; 
+  }
+
+  .video {
+    // background-image: url("/images/hero.jpg");
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+    }
   }
 
   .red-cover {
@@ -106,5 +120,8 @@
         }
       }
     }
+  }
+  .logo { 
+    left: 2%;
   }
 }
