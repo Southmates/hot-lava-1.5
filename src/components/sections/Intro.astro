@@ -46,4 +46,14 @@
       </p>
     </div> 
   </div>
-</section> 
+</section>
+
+<script>
+  import { initSplitText } from '../../scripts/utils/splittext.js';
+
+  // Initialize SplitText for all titles in Intro sections
+  const titles = document.querySelectorAll('.intro h3.title');
+  titles.forEach((title) => {
+    initSplitText(title);
+  });
+</script>

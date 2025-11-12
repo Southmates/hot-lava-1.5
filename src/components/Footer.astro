@@ -77,5 +77,15 @@
   <div class="logo-footer"> 
     <!-- <img src="./images/logo-hot-lava-footer.svg" alt="logo" /> -->
   </div>  
-</div> 
-</footer> 
+  </div> 
+</footer>
+
+<script>
+  import { initSplitText } from '../scripts/utils/splittext.js';
+
+  // Initialize SplitText for footer title
+  const title = document.querySelector('.contact h3.title');
+  if (title) {
+    initSplitText(title);
+  }
+</script>

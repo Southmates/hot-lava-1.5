@@ -2,7 +2,8 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
-import customCursor from "./cursor.js";
+import customCursor from "./utils/cursor.js";
+import { handleDynamicContentResize } from "./utils/dynamic-resize.js";
 
 import { register } from "swiper/element/bundle";
 register();
@@ -16,7 +17,7 @@ window.onbeforeunload = function () {
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // Initialize Lenis smooth scroll
-const lenis = new Lenis({
+export const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   smooth: true,
@@ -34,6 +35,9 @@ gsap.ticker.add((time) => {
 
 // Disable lag smoothing to prevent delays in scroll animations
 gsap.ticker.lagSmoothing(0);
+
+// Make lenis available globally for components
+window.lenis = lenis;
 
 // Navigation handler with anchor scrolling and menu state
 function handleNav() {
@@ -123,20 +127,24 @@ function handleNav() {
   // Mobile navigation toggle
   let mobileNavOpen = false;
 
-  mobileNavBtn.addEventListener("click", () => {
-    if (mobileNavOpen) {
+  if (mobileNavBtn) {
+    mobileNavBtn.addEventListener("click", () => {
+      if (mobileNavOpen) {
+        mobileNav.classList.add("hidden");
+        mobileNavOpen = false;
+      } else {
+        mobileNav.classList.remove("hidden");
+        mobileNavOpen = true;
+      }
+    });
+  }
+
+  if (mobileNavBtnClose) {
+    mobileNavBtnClose.addEventListener("click", () => {
       mobileNav.classList.add("hidden");
       mobileNavOpen = false;
-    } else {
-      mobileNav.classList.remove("hidden");
-      mobileNavOpen = true;
-    }
-  });
-
-  mobileNavBtnClose.addEventListener("click", () => {
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
-  });
+    });
+  }
 }
 
 // Modal handler - stop/start Lenis when modal opens/closes
@@ -159,7 +167,9 @@ function handleModal() {
   });
 
   // Close modal and restart scroll
-  closeModalBtn.addEventListener("click", closeModal);
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeModal);
+  }
 
   function closeModal() {
     modalTarget.classList.remove("is-active");
@@ -167,140 +177,6 @@ function handleModal() {
     lenis.start();
   }
 }
-
-// GSAP ScrollTrigger animations
-// Select elements
-const logo = document.querySelector(".logo");
-const burguer = document.querySelector(".burguer-btn");
-const heroLogo = document.querySelectorAll(".logo-container");
-const copyright = document.querySelector(".copyright__text");
-const slogan = document.querySelector(".slogan");
-const navbar = document.querySelector(".navbar");
-const lastWord = document.querySelector(".last-brand");
-
-// Logo animation
-gsap.fromTo(
-  logo,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    y: -30,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: logo,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
-
-// Burger button animation
-gsap.fromTo(
-  burguer,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    y: -30,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    y: 0,
-    scrollTrigger: {
-      trigger: burguer,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
-
-// Hero logo animation
-gsap.fromTo(
-  heroLogo,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    y: 30,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    delay: 1.2,
-    y: 0,
-    scrollTrigger: {
-      trigger: slogan,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
-
-// Copyright animation
-gsap.fromTo(
-  copyright,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    y: 30,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    delay: 1.2,
-    y: 0,
-    scrollTrigger: {
-      trigger: copyright,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
-
-// Navbar animation
-gsap.fromTo(
-  navbar,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    x: 30,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    delay: 1.5,
-    x: 0,
-    scrollTrigger: {
-      trigger: slogan,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
-
-// Last brand animation
-gsap.fromTo(
-  lastWord,
-  {
-    willChange: "opacity",
-    opacity: 0,
-    y: 60,
-  },
-  {
-    ease: "power1.inOut",
-    opacity: 1,
-    delay: 0.5,
-    y: 0,
-    scrollTrigger: {
-      trigger: lastWord,
-      start: "top bottom",
-      end: "center top",
-    },
-  }
-);
 
 // Header visibility based on hero viewport
 function handleHeaderVisibility() {
@@ -326,4 +202,5 @@ function handleHeaderVisibility() {
 handleNav();
 handleModal();
 handleHeaderVisibility();
+handleDynamicContentResize(lenis);
 customCursor();

@@ -11,3 +11,32 @@
   </div>
 </section>
 
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+  // Copyright animation
+  const copyright = document.querySelector(".copyright__text");
+  if (copyright) {
+    gsap.fromTo(
+      copyright,
+      {
+        willChange: "opacity",
+        opacity: 0,
+        y: 30,
+      },
+      {
+        ease: "power1.inOut",
+        opacity: 1,
+        delay: 1.2,
+        y: 0,
+        scrollTrigger: {
+          trigger: copyright,
+          start: "top bottom",
+          end: "center top",
+        },
+      }
+    );
+  }
+</script>
+

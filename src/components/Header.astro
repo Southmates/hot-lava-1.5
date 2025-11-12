@@ -37,3 +37,54 @@
   </div>
 </header>
 
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+  // Logo animation
+  const logo = document.querySelector(".header .logo");
+  if (logo) {
+    gsap.fromTo(
+      logo,
+      {
+        willChange: "opacity",
+        opacity: 0,
+        y: -30,
+      },
+      {
+        ease: "power1.inOut",
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: logo,
+          start: "top bottom",
+          end: "center top",
+        },
+      }
+    );
+  }
+
+  // Burger button animation
+  const burguer = document.querySelector(".burguer-btn");
+  if (burguer) {
+    gsap.fromTo(
+      burguer,
+      {
+        willChange: "opacity",
+        opacity: 0,
+        y: -30,
+      },
+      {
+        ease: "power1.inOut",
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: burguer,
+          start: "top bottom",
+          end: "center top",
+        },
+      }
+    );
+  }
+</script>
+

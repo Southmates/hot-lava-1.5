@@ -29,7 +29,17 @@
   </div>
 
   <img src="/images/lines-about.svg" alt="Hot Lava" class="lines-about">
-</section> 
+  </section>
+
+<script>
+  import { initSplitText } from '../../scripts/utils/splittext.js';
+
+  // Initialize SplitText for title
+  const title = document.querySelector('.about h3.title');
+  if (title) {
+    initSplitText(title);
+  }
+</script>
 
 <style>
   .lines-about {

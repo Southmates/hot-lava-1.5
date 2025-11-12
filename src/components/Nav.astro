@@ -41,3 +41,34 @@
     </div>
   </div>
 </nav>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+  // Navbar animation
+  const navbar = document.querySelector(".navbar");
+  const slogan = document.querySelector(".slogan");
+  
+  if (navbar && slogan) {
+    gsap.fromTo(
+      navbar,
+      {
+        willChange: "opacity",
+        opacity: 0,
+        x: 30,
+      },
+      {
+        ease: "power1.inOut",
+        opacity: 1,
+        delay: 1.5,
+        x: 0,
+        scrollTrigger: {
+          trigger: slogan,
+          start: "top bottom",
+          end: "center top",
+        },
+      }
+    );
+  }
+</script>
