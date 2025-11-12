@@ -1,6 +1,7 @@
 ---
 // index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Loader from '../components/Loader.astro';
 import Header from '../components/Header.astro';
 import Nav from '../components/Nav.astro';
 import Copyright from '../components/Copyright.astro';
@@ -14,6 +15,8 @@ import '../styles/global.scss';
 ---
 
 <BaseLayout>
+  <Loader />
+  
   <div class="modal">
     <div class="modal__close js-close">
       <div class="ui-close"></div>

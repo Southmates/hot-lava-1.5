@@ -1,0 +1,81 @@
+---
+// Loader.astro
+---
+
+<div class="loader" id="loader">
+  <div class="loader__content">
+    <!-- Puedes añadir contenido del loader aquí si lo necesitas -->
+  </div>
+</div>
+
+<script>
+  // Wait for fonts to load before removing loader and initializing SplitText
+  async function initLoader() {
+    const loader = document.getElementById('loader');
+    if (!loader) return;
+
+    try {
+      // Wait for all fonts to be ready
+      await document.fonts.ready;
+      
+      // Additional wait to ensure fonts are fully rendered
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Remove loader
+      loader.classList.add('loader--hidden');
+      
+      // Mark that fonts are ready and dispatch custom event
+      (window as any).fontsReadyDispatched = true;
+      window.dispatchEvent(new CustomEvent('fontsReady'));
+      
+      // Remove loader from DOM after animation
+      setTimeout(() => {
+        loader.remove();
+      }, 500);
+      
+    } catch (error) {
+      console.warn('Font loading error:', error);
+      // Even if there's an error, remove loader after a timeout
+      setTimeout(() => {
+        loader.classList.add('loader--hidden');
+        (window as any).fontsReadyDispatched = true;
+        window.dispatchEvent(new CustomEvent('fontsReady'));
+        setTimeout(() => loader.remove(), 500);
+      }, 2000);
+    }
+  }
+
+  // Initialize loader when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoader);
+  } else {
+    initLoader();
+  }
+</script>
+
+<style>
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #EE512F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .loader--hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  .loader__content {
+    /* Añade aquí el contenido visual del loader si lo necesitas */
+  }
+</style>
+

@@ -26,7 +26,7 @@
         <div class="image-ideas">
           <img src="/images/flow.jpg" alt="Ideas need to flow more freely.">
         </div> 
-        <p class="section__p paragraph-intro"> It’s never been more important. With the complexities of today’s marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.
+        <p class="paragraph paragraph-intro"> It’s never been more important. With the complexities of today’s marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.
         </p>
       </div>
     </div>
@@ -39,7 +39,7 @@
         <span class="asterisk">*</span>Flow starts with
         <br />the way we work.
       </h3>
-      <p>We're a full-service advertising agency that gives
+      <p class="paragraph">We're a full-service advertising agency that gives
         clients direct access to award-winning creators and doers. Our team is
         simply an extension of yours – with personal service, an agile approach,
         and effective, defining work.
@@ -50,10 +50,20 @@
 
 <script>
   import { initSplitText } from '../../scripts/utils/splittext.js';
+  import { waitForFonts } from '../../scripts/utils/fonts-ready.js';
 
-  // Initialize SplitText for all titles in Intro sections
-  const titles = document.querySelectorAll('.intro h3.title');
-  titles.forEach((title) => {
-    initSplitText(title);
+  // Wait for fonts to be ready before initializing SplitText
+  waitForFonts(() => {
+    // Initialize SplitText for all titles in Intro sections (words)
+    const titles = document.querySelectorAll('.intro h3.title');
+    titles.forEach((title) => {
+      initSplitText(title as HTMLElement, { type: 'words' });
+    });
+
+    // Initialize SplitText for all paragraphs in Intro sections (lines)
+    const paragraphs = document.querySelectorAll('.intro .paragraph');
+    paragraphs.forEach((paragraph) => {
+      initSplitText(paragraph as HTMLElement, { type: 'lines' });
+    });
   });
 </script>

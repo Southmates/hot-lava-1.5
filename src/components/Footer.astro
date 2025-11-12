@@ -82,10 +82,14 @@
 
 <script>
   import { initSplitText } from '../scripts/utils/splittext.js';
+  import { waitForFonts } from '../scripts/utils/fonts-ready.js';
 
-  // Initialize SplitText for footer title
-  const title = document.querySelector('.contact h3.title');
-  if (title) {
-    initSplitText(title);
-  }
+  // Wait for fonts to be ready before initializing SplitText
+  waitForFonts(() => {
+    // Initialize SplitText for footer title
+    const title = document.querySelector('.contact h3.title') as HTMLElement;
+    if (title) {
+      initSplitText(title, { type: 'words' });
+    }
+  });
 </script>

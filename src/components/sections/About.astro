@@ -9,7 +9,7 @@
         <span class="asterisk">*</span>The best ideas 
         <br />know no bounds.
       </h3>
-      <p>They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.      </p>
+      <p class="paragraph">They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.      </p>
     </div> 
     <div class="container about__team">
       <div class="team"> 
@@ -33,12 +33,22 @@
 
 <script>
   import { initSplitText } from '../../scripts/utils/splittext.js';
+  import { waitForFonts } from '../../scripts/utils/fonts-ready.js';
 
-  // Initialize SplitText for title
-  const title = document.querySelector('.about h3.title');
-  if (title) {
-    initSplitText(title);
-  }
+  // Wait for fonts to be ready before initializing SplitText
+  waitForFonts(() => {
+    // Initialize SplitText for title (words)
+    const title = document.querySelector('.about h3.title') as HTMLElement;
+    if (title) {
+      initSplitText(title, { type: 'words' });
+    }
+
+    // Initialize SplitText for paragraph (lines)
+    const paragraph = document.querySelector('.about .paragraph') as HTMLElement;
+    if (paragraph) {
+      initSplitText(paragraph, { type: 'lines' });
+    }
+  });
 </script>
 
 <style>
