@@ -3,6 +3,7 @@
 ---
 
 <section id="work" class="works"> 
+  <img src="/images/lines-works.svg" alt="Hot Lava" class="lines-works">
   <div class="logo logo--vertical">
     <img src="/logo-hot-lava-gradient.svg" alt="Hot Lava">
   </div>
@@ -84,4 +85,16 @@
   </div>
 </section>
 
- 
+<style>
+  .lines-works {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0; 
+    opacity: 0.5;  
+    z-index: 1;
+    width: 50vw;
+    height: auto;
+    mix-blend-mode: screen;
+  }
+</style>
