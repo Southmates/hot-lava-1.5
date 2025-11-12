@@ -5,12 +5,20 @@
 
   position: fixed;
   z-index: 9980;
-
+  opacity: 0;
+  will-change: opacity transform;
+  transition: opacity .35s ease-in-out, transform .35s ease-in-out;
+  transform: translateY(-100%);
   width: 100%;
   margin: 0 0 0 0;
 
   @media (max-width: 580px) {
     margin: 0;
+  }
+
+  &.is-active {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   img { 
@@ -24,14 +32,12 @@
   .hidden {
     display: none;
   }
-}
-
-.header {
+ 
   .logo {
     display: block;
     width: fit-content;
     max-width: 80px;
-    margin: 1rem 0 0 4%;
+    margin: 1rem 0 0 4%; 
   
   
     @media (min-width: 1024px) {

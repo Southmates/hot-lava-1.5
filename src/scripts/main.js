@@ -346,11 +346,36 @@ gsap.fromTo(
   }
 );
 
+// Header visibility based on hero viewport
+function handleHeaderVisibility() {
+  const header = document.querySelector(".header");
+  const hero = document.querySelector(".hero");
+
+  if (!header || !hero) return;
+
+  ScrollTrigger.create({
+    trigger: hero,
+    start: "top top",
+    end: "bottom top",
+    onLeave: () => {
+      // Hero se va hacia arriba → añadir .is-active
+      header.classList.add("is-active");
+    },
+    onEnterBack: () => {
+      // Hero vuelve al viewport → quitar .is-active
+      header.classList.remove("is-active");
+    },
+  });
+}
+
 // Call functions
 handleNav();
  
 // handleScrolHorizontal();
 handleModal();
+
+// Header visibility
+handleHeaderVisibility();
 
 // Custom Cursor *
 customCursor();
