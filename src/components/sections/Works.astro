@@ -2,19 +2,9 @@
 // Works.astro
 ---
 
-<section id="work" class="work">
-
+<section id="work" class="works"> 
   <div class="wrapper">
-    <div class="container">
-      <h3 class="title">
-        <span class="asterisk">*</span>See what </br > we do.
-      </h3>
-    </div>
-  </div>  
-
-  <div class="wrapper">
-
-    <div class="container">
+    <div class="container works__list">
 
       <div class="work__container">
         <div class="work__item js-work" data-slide="meijer">
@@ -70,6 +60,31 @@
         </div>
       </div>
     </div>
-    
+    <div class="container logos">
+      <h5>
+        Our expertise flows across CPG, B2B and retail. 
+      </h5>
+    </div>
   </div>
 </section>
+
+
+<style>
+  .works {
+    background: var(--color-blue);
+  }
+  .works__list {
+    padding-top: 20vh !important;
+    justify-content: flex-end;
+  }
+  .container {
+    gap: 1rem;
+    min-height: 70vh;
+    padding: 10vh 0;
+  }
+
+  .logos {
+    padding-top: 10vh !important;
+    justify-content: flex-start;
+  }
+  </style>

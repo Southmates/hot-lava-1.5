@@ -41,29 +41,34 @@ h6,
   font-family: $main-font-title;
   font-style: normal;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.1; }
  
 
 h1 {
-  font-size: clamp(48px, 7vw, 120px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(48px, 7vw, 120px);  
 }
 
 h3 { 
-  font-size: clamp(48px, 15.5vw, 96px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(48px, 15.5vw, 96px); 
   margin-bottom: 4rem !important;
  
 }
+
 h4 { 
   font-size: clamp(32px, 7vw, 40px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.01em; 
- 
+}
+
+h5 { 
+  font-size: clamp(18px, 7vw, 21px); 
 }
 
 p { 
