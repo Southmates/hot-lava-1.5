@@ -1,6 +1,10 @@
 .intro { 
-position: relative;
-padding: 20vh 0; 
+  position: relative;
+  z-index: 10;
+  padding: 10vh 0;
+
+  overflow-x: hidden;
+  overflow-y: visible;
 
   .row {
     display: flex;
@@ -48,6 +52,7 @@ padding: 20vh 0;
 .intro-third {
   .container { 
     align-items: flex-end;
+    min-height: 90vh;
   }
 }
 
@@ -85,4 +90,17 @@ padding: 20vh 0;
     height: 100%;
     object-fit: cover;
   }
+}
+.asterisk-lines-container {
+  position: relative;
+  overflow: hidden; 
+}
+.asterisk-lines {
+  position: absolute;
+  bottom: 27.5%;
+  left: -15%;
+  width:min(75vw, 1080px);
+  height: auto;
+  aspect-ratio: 1/1;
+  z-index: 10;
 }

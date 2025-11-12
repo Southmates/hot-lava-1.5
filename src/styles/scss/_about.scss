@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   padding-bottom: 15vh;
+  z-index: 9;
 
   @media (min-width: $change-layout) { 
     padding-bottom: 10vh;
@@ -11,6 +12,19 @@
     bottom: 15%;
     left: 2%; 
   }
+}
+
+.about {
+  background: linear-gradient(to bottom, var(--color-turquoise), var(--color-aquaGreen));
+}
+
+.about__intro { 
+  min-height: 50vh;
+  padding: 20vh 0;
+}
+
+.about__team { 
+  padding: 0 0 20vh 0;
 }
 
 .team { 
