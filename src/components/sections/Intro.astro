@@ -51,6 +51,7 @@
 <script>
   import { initSplitText } from '../../scripts/utils/splittext.js';
   import { waitForFonts } from '../../scripts/utils/fonts-ready.js';
+  import { initParallax } from '../../scripts/utils/parallax.js';
 
   // Wait for fonts to be ready before initializing SplitText
   waitForFonts(() => {
@@ -65,5 +66,25 @@
     paragraphs.forEach((paragraph) => {
       initSplitText(paragraph as HTMLElement, { type: 'lines' });
     });
+  });
+ 
+  initParallax('.intro-first h3.title', {
+    speed: 0.75  
+  });
+
+  initParallax('.intro-second h3.title', {
+    speed: 0.75  
+  });
+
+  initParallax('.intro-second .paragraph-intro', {
+    speed: 0.75  
+  });
+  
+  initParallax('.intro-third h3.title', {
+    speed: 0.75  
+  });
+
+  initParallax('.intro-third .paragraph', {
+    speed: 0.75  
   });
 </script>
