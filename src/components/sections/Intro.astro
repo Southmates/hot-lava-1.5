@@ -59,7 +59,9 @@
   
   .intro-first{
     .title {
-      max-width: 70%;
+      @media (min-width: 1024px) {
+        max-width: 70%;
+      }
     }
   }
 
@@ -84,5 +86,9 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 4rem;
+  }
+
+  .row img {
+    width: 100%;
   }
 </style>
