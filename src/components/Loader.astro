@@ -4,29 +4,49 @@
 
 <div class="loader" id="loader">
   <div class="loader__content">
-    <!-- Puedes añadir contenido del loader aquí si lo necesitas -->
+    <img src="/logo.svg" alt="Hot Lava" class="loader__logo" />
+    <div class="loader__spinner"></div>
   </div>
 </div>
 
 <script>
-  // Wait for fonts to load before removing loader and initializing SplitText
+  import { waitForAssets } from '../scripts/utils/images-ready.js';
+
+  // Wait for fonts and critical images to load before removing loader
   async function initLoader() {
     const loader = document.getElementById('loader');
     if (!loader) return;
 
+    const startTime = Date.now();
+    const minDisplayTime = 1500; // 1.5 segundos mínimo
+
     try {
-      // Wait for all fonts to be ready
-      await document.fonts.ready;
+      // Wait for both fonts and critical images
+      await new Promise<void>((resolve) => {
+        waitForAssets(() => {
+          resolve();
+        });
+      });
       
-      // Additional wait to ensure fonts are fully rendered
+      // Additional wait to ensure everything is fully rendered
       await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Calculate remaining time to ensure minimum display time
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, minDisplayTime - elapsed);
+      
+      // Wait for remaining time if needed
+      if (remaining > 0) {
+        await new Promise(resolve => setTimeout(resolve, remaining));
+      }
       
       // Remove loader
       loader.classList.add('loader--hidden');
       
-      // Mark that fonts are ready and dispatch custom event
+      // Mark that assets are ready and dispatch custom events
       (window as any).fontsReadyDispatched = true;
       window.dispatchEvent(new CustomEvent('fontsReady'));
+      window.dispatchEvent(new CustomEvent('assetsReady'));
       
       // Remove loader from DOM after animation
       setTimeout(() => {
@@ -34,14 +54,18 @@
       }, 500);
       
     } catch (error) {
-      console.warn('Font loading error:', error);
-      // Even if there's an error, remove loader after a timeout
+      console.warn('Asset loading error:', error);
+      // Even if there's an error, ensure minimum display time
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, minDisplayTime - elapsed);
+      
       setTimeout(() => {
         loader.classList.add('loader--hidden');
         (window as any).fontsReadyDispatched = true;
         window.dispatchEvent(new CustomEvent('fontsReady'));
+        window.dispatchEvent(new CustomEvent('assetsReady'));
         setTimeout(() => loader.remove(), 500);
-      }, 2000);
+      }, remaining);
     }
   }
 
@@ -61,7 +85,7 @@
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background-color: #EE512F;
+    background-color: var(--color-darkBlue, #103B60);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,11 +95,38 @@
   .loader--hidden {
     opacity: 0;
     transform: translateY(-100%);
+    transition: opacity 0.95s ease-out, transform 0.5s ease-out;
     pointer-events: none;
   }
 
   .loader__content {
-    /* Añade aquí el contenido visual del loader si lo necesitas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    width: 100%;
+  }
+
+  .loader__logo {
+    width: min(100%, 90px);
+    height: auto; 
+    display: block;
+  }
+
+  .loader__spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>
 

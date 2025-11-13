@@ -82,10 +82,10 @@
 
 <script>
   import { initSplitText } from '../scripts/utils/splittext.js';
-  import { waitForFonts } from '../scripts/utils/fonts-ready.js';
+  import { waitForAssets } from '../scripts/utils/images-ready.js';
 
-  // Wait for fonts to be ready before initializing SplitText
-  waitForFonts(() => {
+  // Wait for fonts and critical images to be ready before initializing SplitText
+  waitForAssets(() => {
     // Initialize SplitText for footer title
     const title = document.querySelector('.contact h3.title') as HTMLElement;
     if (title) {
