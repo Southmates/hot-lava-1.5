@@ -10,6 +10,9 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  // Transición suave para cambios de color de fondo
+  transition: background-color 1s ease-in-out;
 }
 
 * {

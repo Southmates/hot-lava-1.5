@@ -24,7 +24,17 @@
 @use './scss/intro' as *;
 @use './scss/about' as *; 
 @use './scss/works' as *;
+@use './scss/products' as *;
 @use './scss/shop' as *;
 @use './scss/contact' as *;
 // La URL externa de Google Fonts puede quedarse con @import
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+// section {
+//     border-top: 1px solid #000 !important;
+// }
+
+// .products {
+//     border-bottom: 1px solid red !important;
+// }

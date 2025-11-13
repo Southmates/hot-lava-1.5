@@ -19,17 +19,18 @@
   &:before {
     content: "";
     position: absolute;
-    top: -24px;
-    left: -24px;
+    top: calc(-1rem - 16px);
+    left: calc(1rem - 16px);
     display: block;
     width: 48px;
     height: 48px;
-    transform: scale(0.3);
+    transform: scale(0.4) rotate(var(--cursor-rotation, 0deg));
+    transform-origin: center center;
 
     // background:currentColor;
     background-image: url("/asterisk.svg");
-    border-radius: 50%;
-
+     // La transición solo afecta cambios de scale (en estados), 
+    // la rotación se actualiza directamente por GSAP sin transición
     transition: transform 0.25s ease-in-out, opacity 0.1s;
   }
 

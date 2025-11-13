@@ -4,6 +4,7 @@ import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
 import customCursor from "./utils/cursor.js";
 import { handleDynamicContentResize } from "./utils/dynamic-resize.js";
+import { initSectionColors } from "./utils/section-colors.js";
 
 import { register } from "swiper/element/bundle";
 register();
@@ -203,4 +204,7 @@ handleNav();
 handleModal();
 handleHeaderVisibility();
 handleDynamicContentResize(lenis);
-customCursor();
+// customCursor();
+
+// Initialize section-based body color changes
+initSectionColors();
