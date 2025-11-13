@@ -14,10 +14,15 @@ export function initSectionColors(options = {}) {
     sectionColors: {
       '#hero': '#EC532C', // orange
       '#intro-first': '#FBC346', // yellow (primera sección intro)
-      '#intro-second': '#C7E6D5', // aquaGreen (segunda sección intro)
+      '#intro-second': '#0F8896', // aquaGreen (segunda sección intro)
       '#intro-third': '#EC532C', // orange (tercera sección intro)
-      '#about-us': '#103B60', // darkBlue
-      '#work': '#0F8896', // turquoise
+      // '#about-us': {
+      //   type: 'gradient',
+      //   colors: ['#0F8896', '#C7E6D5'], // turquoise a aquaGreen
+      //   direction: 'to bottom'
+      // },
+      '#about-us': '#0F8896', // turquoise
+      '#work': '#103B60', // darkBlue
       '#products': '#EC532C', // orange
       '.contact, footer': '#103B60', // dark blue del footer
     },
@@ -96,6 +101,19 @@ export function initSectionColors(options = {}) {
     return mostVisible;
   };
 
+  // Función auxiliar para comparar colores (sólidos o gradientes)
+  const colorsEqual = (color1, color2) => {
+    if (typeof color1 === 'string' && typeof color2 === 'string') {
+      return color1 === color2;
+    }
+    if (typeof color1 === 'object' && typeof color2 === 'object') {
+      return color1.type === color2.type &&
+             JSON.stringify(color1.colors) === JSON.stringify(color2.colors) &&
+             color1.direction === color2.direction;
+    }
+    return false;
+  };
+
   // Función para cambiar el color con transición suave
   const changeBodyColor = (newColor, sectionName = '', force = false) => {
     // Si ya está cambiando y no es forzado, cancelar
@@ -104,7 +122,7 @@ export function initSectionColors(options = {}) {
     }
 
     // Si ya es el color actual y la misma sección, no hacer nada
-    if (currentColor === newColor && activeSection === sectionName) return;
+    if (colorsEqual(currentColor, newColor) && activeSection === sectionName) return;
 
     // Cancelar cambio pendiente si hay uno
     if (changeTimeout) {
@@ -124,25 +142,104 @@ export function initSectionColors(options = {}) {
       }
 
       // Si ya es el color actual, no hacer nada
-      if (currentColor === newColor && activeSection === sectionName) {
+      if (colorsEqual(currentColor, newColor) && activeSection === sectionName) {
         changeTimeout = null;
         return;
       }
 
       isChanging = true;
 
-      gsap.to(body, {
-        backgroundColor: newColor,
-        duration: config.transitionDuration,
-        ease: 'power2.inOut',
-        onComplete: () => {
-          isChanging = false;
+      // Detectar si es un gradiente o color sólido
+      const isGradient = typeof newColor === 'object' && newColor.type === 'gradient';
+      const isCurrentGradient = typeof currentColor === 'object' && currentColor.type === 'gradient';
+
+      if (isGradient) {
+        // Aplicar gradiente usando background-image
+        const [color1, color2] = newColor.colors;
+        const direction = newColor.direction || 'to bottom';
+        
+        // Crear o actualizar overlay para gradiente
+        let gradientOverlay = document.getElementById('body-gradient-overlay');
+        if (!gradientOverlay) {
+          gradientOverlay = document.createElement('div');
+          gradientOverlay.id = 'body-gradient-overlay';
+          gradientOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+          `;
+          if (config.transitionDuration > 0) {
+            gradientOverlay.style.transition = `opacity ${config.transitionDuration}s ease-in-out`;
+          }
+          document.body.appendChild(gradientOverlay);
         }
-      });
+        
+        // Si veníamos de un color sólido, establecer el color base primero
+        if (!isCurrentGradient) {
+          const currentBgColor = window.getComputedStyle(body).backgroundColor;
+          body.style.backgroundColor = currentBgColor;
+        }
+        
+        // Aplicar el gradiente al overlay
+        gradientOverlay.style.backgroundImage = `linear-gradient(${direction}, ${color1}, ${color2})`;
+        
+        // Animar la opacidad del overlay para transición suave
+        gsap.to(gradientOverlay, {
+          opacity: 1,
+          duration: config.transitionDuration,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            // Una vez que el gradiente está visible, limpiar backgroundColor
+            body.style.backgroundColor = '';
+            isChanging = false;
+          }
+        });
+        
+      } else {
+        // Color sólido
+        // Si veníamos de un gradiente, hacer fade out del overlay primero
+        const gradientOverlay = document.getElementById('body-gradient-overlay');
+        if (isCurrentGradient && gradientOverlay) {
+          gsap.to(gradientOverlay, {
+            opacity: 0,
+            duration: config.transitionDuration,
+            ease: 'power2.inOut',
+            onComplete: () => {
+              // Una vez que el overlay está oculto, establecer el color sólido
+              gsap.to(body, {
+                backgroundColor: newColor,
+                duration: config.transitionDuration,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                  isChanging = false;
+                }
+              });
+            }
+          });
+        } else {
+          // Transición directa a color sólido
+          gsap.to(body, {
+            backgroundColor: newColor,
+            duration: config.transitionDuration,
+            ease: 'power2.inOut',
+            onComplete: () => {
+              isChanging = false;
+            }
+          });
+        }
+      }
 
       // Mostrar en consola la sección en viewport
       if (sectionName) {
-        console.log('📍 Sección en viewport:', sectionName, '| Color:', newColor);
+        const displayColor = isGradient 
+          ? `gradient(${newColor.colors.join(' → ')})` 
+          : newColor;
+        console.log('📍 Sección en viewport:', sectionName, '| Color:', displayColor);
       }
 
       currentColor = newColor;
