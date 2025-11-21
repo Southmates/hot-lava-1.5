@@ -13,15 +13,15 @@ export function initSectionColors(options = {}) {
   const config = {
     sectionColors: {
       '#hero': '#EC532C', // orange
-      '#intro-first': '#FBC346', // yellow (primera sección intro)
-      '#intro-second': '#0F8896', // aquaGreen (segunda sección intro)
+      '#intro-first': '#F8B025', // yellow (primera sección intro)
+      '#intro-second': '#F8B025', // #0F8896 aquaGreen (segunda sección intro)
       '#intro-third': '#EC532C', // orange (tercera sección intro)
       // '#about-us': {
       //   type: 'gradient',
       //   colors: ['#0F8896', '#C7E6D5'], // turquoise a aquaGreen
       //   direction: 'to bottom'
       // },
-      '#about-us': '#0F8896', // turquoise
+      '#about-us': '#103B60', // #0F8896 turquoise
       '#work': '#103B60', // darkBlue
       '#products': '#EC532C', // orange
       '.contact, footer': '#103B60', // dark blue del footer
