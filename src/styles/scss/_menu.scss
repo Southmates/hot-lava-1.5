@@ -5,10 +5,23 @@
   // Menu desktop, vertical layout
   .desktop {
     position: fixed;
-    right: 1rem;
-    width: 40px;
+    // right: 1rem;
+    // width: 40px;
+    // z-index: 998;
+    // height: 100vh;
+
+    // border-left: 1px solid rgba(255, 255, 255, 0.25);
+
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px);
+
+    // left: 0;
+
+    right: 0;
+    width: 60px;
     z-index: 998;
     height: 100vh;
+    // border-right: 1px solid #fff;
 
     @media (max-width: 780px) {
       display: none;
@@ -20,16 +33,15 @@
 
     ul {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: row-reverse;
-
       margin: 0;
       transform: rotate(-90deg);
       position: absolute;
       width: 100vh;
-      bottom: 0;
-      left: 18px;
+      bottom: -10vh;
+      left: 2rem;
       transform-origin: 0;
 
       li {

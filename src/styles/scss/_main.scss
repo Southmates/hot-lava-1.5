@@ -18,12 +18,12 @@
   margin: 0 auto;
 
   @media (min-width: $change-layout) {
-    width: min(95%, var(--wrapper));
+    width: min(85%, var(--wrapper));
   }
 }
 
 .container { 
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 0;
  

@@ -3,40 +3,40 @@
 .hero {
   height: 100svh;
   min-height: 1080px;
-  width: 100vw; 
-  display: flex;
-  align-items: center;
+  width: 100vw;   
   overflow: hidden; 
-  overflow-x: hidden;
 
-  .video, video {
-    position: absolute;
-    left: unset;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    z-index: 1;
-
-    width: 65vw; 
-    min-height: 1080px;
-    height: 100vh;
-    
+  .video, video {   
+    z-index: 1;    
     pointer-events: none; 
   }
 
-  .video {
-    // background-image: url("/images/hero.jpg");
-    // background-size: cover;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  .video { 
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    
+    width: 100%;
+    max-width: 60vw;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 
-    padding-top: 10%;
 
     img {
+      width: 100%;
+    }
+
+    video {
+      // position: absolute;
+      // left: unset;
+      // right: 0;
+      // top: 0;
+      // bottom: 0;
+      transform: scale(1.1) translateY(-1%) translateX(10%);
+      margin: auto;
+
       width: 100%;
     }
   }
@@ -107,8 +107,27 @@
       }
     }
   }
+
   .logo { 
-    top: 5%;
-    left: 4%;
+    position: absolute;
+    bottom: 7.5%;
+    left: 5vw;
+    width: 40vw;
+    z-index: 10;
+
+    img, svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.logo--vertical { 
+  width: 100%;
+  max-width: 120px;
+
+  img {
+    width: 100%;
+    height: auto;
   }
 }

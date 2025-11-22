@@ -9,6 +9,21 @@
   margin: 0 0 3vh 0;
   z-index: 1000;
 
+  &__text {  
+    // width: 100%; 
+    // text-align: right;
+
+    width: 100vh;
+    text-align: left;
+    transform: rotate(-90deg) !important;
+    transform-origin: right;
+    height: 30px;
+    position: fixed;
+    right: 23px;
+    top: -50px;
+    
+  }
+
   .wrapper {
     display: flex;
     flex-direction: row;
