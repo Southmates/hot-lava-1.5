@@ -12,13 +12,13 @@ window.addEventListener("load", () => {
       SIM_RESOLUTION: 128, // (128)
       DYE_RESOLUTION: 1440, // (1440)
       CAPTURE_RESOLUTION: 512, // (512)
-      DENSITY_DISSIPATION: 3.2, // (1.2) Reducido para que el humo dure más y sea más persistente
+      DENSITY_DISSIPATION: 1.2, // (1.2) Reducido para que el humo dure más y sea más persistente
       VELOCITY_DISSIPATION: 0.9, // (0.9) Reducido para movimiento más fluido y persistente
       PRESSURE: 0.1, // (0.1)
       PRESSURE_ITERATIONS: 32, // Aumentado para más fluidez
       CURL: 6, // (8) Aumentado para más rotación y movimiento orgánico
       SPLAT_RADIUS: 0.45, // Aumentado para trazos más suaves y amplios
-      SPLAT_FORCE: 1500, // (3500) Reducido para movimientos más suaves y naturales
+      SPLAT_FORCE: 2500, // (3500) Reducido para movimientos más suaves y naturales
       SHADING: true,  
       COLOR_UPDATE_SPEED: 100, // (10)
       PAUSED: false, // (false)
