@@ -12,19 +12,19 @@ export function initSectionColors(options = {}) {
   // Configuración por defecto
   const config = {
     sectionColors: {
-      '#hero': '#EC532C', // orange
-      '#intro-first': '#F8B025', // yellow (primera sección intro)
-      '#intro-second': '#F8B025', // #0F8896 aquaGreen (segunda sección intro)
-      '#intro-third': '#EC532C', // orange (tercera sección intro)
+      '#hero': '#ef3910', //#dc2800 orange 
+      '#intro-first': '#ef3910', // #F8B025 yellow (primera sección intro)
+      '#intro-second': '#ef3910', //#da3c18  #0F8896 aquaGreen (segunda sección intro)
+      '#intro-third': '#ef3910', //#e54720 orange (tercera sección intro)
       // '#about-us': {
       //   type: 'gradient',
       //   colors: ['#0F8896', '#C7E6D5'], // turquoise a aquaGreen
       //   direction: 'to bottom'
       // },
-      '#about-us': '#103B60', // #0F8896 turquoise
-      '#work': '#103B60', //rgb(48, 146, 216) darkBlue
+      '#about-us': '#103B60', // #067a89 turquoise
+      '#work': '#103B60', // #3092d8 darkBlue
       '#products': '#103B60', // #103B60 darkBlue
-      '.contact, footer': '#082946', // #082946 dark blue del footer
+      '.contact, footer': '#103B60', // #082946 dark blue del footer
     },
     transitionDuration: 0,
     defaultColor: 'transparent',
@@ -192,7 +192,7 @@ export function initSectionColors(options = {}) {
         gsap.to(gradientOverlay, {
           opacity: 1,
           duration: config.transitionDuration,
-          ease: 'power2.inOut',
+          ease: 'none',
           onComplete: () => {
             // Una vez que el gradiente está visible, limpiar backgroundColor
             body.style.backgroundColor = '';
@@ -208,13 +208,13 @@ export function initSectionColors(options = {}) {
           gsap.to(gradientOverlay, {
             opacity: 0,
             duration: config.transitionDuration,
-            ease: 'power2.inOut',
+            ease: 'none',
             onComplete: () => {
               // Una vez que el overlay está oculto, establecer el color sólido
               gsap.to(body, {
                 backgroundColor: newColor,
                 duration: config.transitionDuration,
-                ease: 'power2.inOut',
+                ease: 'none',
                 onComplete: () => {
                   isChanging = false;
                 }
@@ -226,7 +226,7 @@ export function initSectionColors(options = {}) {
           gsap.to(body, {
             backgroundColor: newColor,
             duration: config.transitionDuration,
-            ease: 'power2.inOut',
+            ease: 'none',
             onComplete: () => {
               isChanging = false;
             }

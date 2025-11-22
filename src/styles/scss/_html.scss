@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
   // Transición suave para cambios de color de fondo
-  transition: background-color 1s ease-in-out, background-image 1s ease-in-out;
+  transition: background-color .2s linear, background-image .2s linear;
   
   // Variables para gradientes (inicializadas como transparentes)
   --gradient-color-1: transparent;
