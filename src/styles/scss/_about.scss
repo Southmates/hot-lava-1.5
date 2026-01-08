@@ -56,6 +56,7 @@
     display: block;
     aspect-ratio: 3 / 4;
     overflow: hidden;
+    position: relative;
     
     width: min(65vw, 480px);
     height: 100%; 
@@ -70,11 +71,35 @@
       object-fit: cover;
     }
   }
+
+  .team__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #002C52;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    .team__overlay {
+      opacity: 0.75;
+    }
+
+    .team__bio {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .team__name {
   position: absolute;
-  top: 70%;
+  top: 55%;
   left: 0;
   transform: translateX(-65%) translateY(-50%);
   z-index: 10;
@@ -114,19 +139,18 @@
   // }
 }
 
-.team__bio { 
+.team__bio {
   position: absolute;
-  z-index: 2;
-
-  padding: 2rem 0;   
-  width: 480px;
-  bottom: 10%;
-  left: -30%;
-
-  p {
-    width: 85%;
-    max-width: 540px;
-    min-height: 120px;
-    margin-top: 1.5rem;  
-  }
+  bottom: 1.5rem;
+  left: 0;
+  // transform: translateX(-50%);
+  z-index: 15;
+  padding: 1.5rem 2rem;
+  max-width: min(80vw, 500px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  color: var(--color-white);
+  line-height: 1.5;
+  pointer-events: none;
 }
