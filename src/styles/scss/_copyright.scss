@@ -9,6 +9,8 @@
   margin: 0 0 3vh 0;
   z-index: 1000;
 
+  pointer-events: none;
+
   &__text {  
     // width: 100%; 
     // text-align: right;
