@@ -1,79 +1,91 @@
 ---
 // Hero.astro
+
+const videoConfig = {
+  source: {
+    src: "/HLA.mp4",
+    type: "video/mp4",
+  },
+  settings: {
+    autoplay: true,
+    muted: true,
+    loop: true,
+    playsinline: true,
+    preload: "auto",
+  },
+  poster: "/HLA.jpg",
+  ariaLabel: "Hot Lava Agency - Vulcan erupts",
+};
+
+const logoSvg = {
+  width: "585",
+  height: "341",
+  viewBox: "0 0 585 341",
+  ariaLabel: "Hot Lava Agency Logo",
+  paths: [
+    "M522.995 340.799L481.538 181.261H460.247H436.485H415.194L373.737 340.799H418.79L425.257 315.948H471.495L477.963 340.799H523.015H522.995ZM461.673 278.139H435.079L448.376 226.972L461.673 278.139ZM428.893 47.1555H477.119V0.361038H428.893V0.240697H382.033V0.361038H333.807V47.1555H382.033V160.943H428.893V47.1555ZM325.009 83.3997C325.009 37.3273 287.89 0 242.095 0C196.299 0 159.18 37.3473 159.18 83.3997C159.18 129.452 196.299 166.819 242.095 166.819C287.89 166.819 325.009 129.472 325.009 83.3997ZM278.289 83.3997C278.289 103.517 262.08 119.824 242.095 119.824C222.109 119.824 205.9 103.517 205.9 83.3997C205.9 63.2819 222.109 46.975 242.095 46.975C262.08 46.975 278.289 63.2819 278.289 83.3997ZM172.819 181.261H151.528L110.07 340.799H155.123L161.591 315.948H207.828L214.296 340.799H259.348L217.891 181.261H172.839H172.819ZM171.413 278.139L184.709 226.972L198.006 278.139H171.413ZM92.2141 160.441H142.107V0.361038H92.2141V63.4022H49.9133V0.862479H0V160.943H49.9133V101.191H92.2141V160.421V160.441ZM49.9133 180.92H0V341H49.9133V340.799H97.8783V294.005H49.9133V180.92ZM245.971 181.261L287.428 340.799H346.521L387.978 181.261H342.926L316.975 281.128L291.024 181.261H245.971Z",
+    "M584.96 217.044L577.046 194.399L558.005 200.997V181.241H533.982V200.657L515.362 194.479L507.649 217.184L526.791 223.542L514.157 239.809L532.958 254.732L546.214 237.823L557.985 254.23L577.669 240.471L565.657 223.703L585 217.003L584.96 217.044Z",
+  ],
+};
 ---
 
 <a id="home"></a>
 <section id="hero" class="hero">
-  <div class="wrapper">
-  </div>
-  <div class="logo"> 
-    <!-- <svg width="120" height="815" viewBox="0 0 120 815" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M115.418 713.035V748.843H74.7095V779.192H115.778V815H0.728858V779.192H41.0783V748.843H0.369471V713.035H115.418Z" fill="#F39928"/>
-      <path d="M60.0548 615.501C74.5096 615.501 86.2291 627.128 86.2291 641.479C86.2291 655.83 74.5096 667.456 60.0548 667.456C45.6001 667.456 33.8806 655.83 33.8806 641.479C33.8806 627.128 45.6001 615.501 60.0548 615.501ZM60.0548 581.978C26.9428 581.978 0.109671 608.615 0.109671 641.469C0.109671 674.323 26.9527 700.959 60.0548 700.959C93.157 700.959 120 674.323 120 641.469C120 608.615 93.157 581.978 60.0548 581.978Z" fill="#F39928"/>
-      <path d="M33.9906 473.747V508.347H115.768V541.969H33.9906V576.57H0.359387V541.969H0.269548V508.347H0.359387V473.747H33.9906Z" fill="#F39928"/>
-      <path d="M114.909 357.181V391.592H115.049V427.4H0V391.592H81.2778V357.181H114.909Z" fill="#F39928"/>
-      <path d="M70.0272 285.166V305.156L31.5046 295.166L70.0272 285.176V285.166ZM115.058 241.165L0.39896 270.915V319.427L115.058 349.177V316.852L97.1897 312.212V278.13L115.058 273.49V241.165Z" fill="#F39928"/>
-      <path d="M114.909 174.18L0.249564 144.439V176.764L80.3096 197.533L0.249564 218.311V250.636L114.909 220.886V174.18Z" fill="#F39928"/>
-      <path d="M70.0272 90.6678V110.658L31.5046 100.668L70.0272 90.6778V90.6678ZM115.058 46.6664L0.39896 76.4165V124.929L115.058 154.679V122.354L97.1897 117.713V83.632L115.058 78.9913V46.6664Z" fill="#F39928"/>
-      <path d="M9.84244 5.67858L26.114 0L30.9256 13.8721L42.9745 5.24945L52.8572 19.371L41.0678 27.814L53.2166 37.3249L42.4854 50.8078L30.7858 41.736L26.2138 55.4784L9.89237 49.9395L14.3346 36.5864H0.388968V19.3511H14.5841L9.84244 5.67858Z" fill="#F39928" id="asterisk-hero"/>
-    </svg> -->
-      
-    <!-- <img src="/logo-hot-lava.svg" alt="Hot Lava"> -->
-    <svg width="585" height="341" viewBox="0 0 585 341" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M522.995 340.799L481.538 181.261H460.247H436.485H415.194L373.737 340.799H418.79L425.257 315.948H471.495L477.963 340.799H523.015H522.995ZM461.673 278.139H435.079L448.376 226.972L461.673 278.139ZM428.893 47.1555H477.119V0.361038H428.893V0.240697H382.033V0.361038H333.807V47.1555H382.033V160.943H428.893V47.1555ZM325.009 83.3997C325.009 37.3273 287.89 0 242.095 0C196.299 0 159.18 37.3473 159.18 83.3997C159.18 129.452 196.299 166.819 242.095 166.819C287.89 166.819 325.009 129.472 325.009 83.3997ZM278.289 83.3997C278.289 103.517 262.08 119.824 242.095 119.824C222.109 119.824 205.9 103.517 205.9 83.3997C205.9 63.2819 222.109 46.975 242.095 46.975C262.08 46.975 278.289 63.2819 278.289 83.3997ZM172.819 181.261H151.528L110.07 340.799H155.123L161.591 315.948H207.828L214.296 340.799H259.348L217.891 181.261H172.839H172.819ZM171.413 278.139L184.709 226.972L198.006 278.139H171.413ZM92.2141 160.441H142.107V0.361038H92.2141V63.4022H49.9133V0.862479H0V160.943H49.9133V101.191H92.2141V160.421V160.441ZM49.9133 180.92H0V341H49.9133V340.799H97.8783V294.005H49.9133V180.92ZM245.971 181.261L287.428 340.799H346.521L387.978 181.261H342.926L316.975 281.128L291.024 181.261H245.971Z" fill="white"/>
-      <path d="M584.96 217.044L577.046 194.399L558.005 200.997V181.241H533.982V200.657L515.362 194.479L507.649 217.184L526.791 223.542L514.157 239.809L532.958 254.732L546.214 237.823L557.985 254.23L577.669 240.471L565.657 223.703L585 217.003L584.96 217.044Z" fill="white"/>
+  <div class="wrapper"></div>
+
+  <div class="logo">
+    <svg
+      width={logoSvg.width}
+      height={logoSvg.height}
+      viewBox={logoSvg.viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label={logoSvg.ariaLabel}
+      role="img"
+    >
+      {logoSvg.paths.map((path) => (
+        <path d={path} fill="white" />
+      ))}
     </svg>
-      
   </div>
- 
+
   <div class="video">
-    <video autoplay muted loop playsinline>
-      <source src="/HLA.mp4" type="video/mp4" /> 
+    <video
+      autoplay={videoConfig.settings.autoplay}
+      muted={videoConfig.settings.muted}
+      loop={videoConfig.settings.loop}
+      playsinline={videoConfig.settings.playsinline}  
+      preload={videoConfig.settings.preload}
+      poster={videoConfig.poster}
+      aria-label={videoConfig.ariaLabel}
+    >
+      <source src={videoConfig.source.src} type={videoConfig.source.type} />
     </video>
   </div>
- 
 </section>
 
-
-<script> 
- 
- import gsap from 'gsap';
-  import { initParallax } from '../../scripts/utils/parallax.js';
-  import { initUkiyo } from '../../scripts/utils/ukiyo.js';
+<script>
+  import gsap from 'gsap';
 
   // Animación de rotación continua para el asterisco
   const asterisk = document.querySelector('#asterisk-hero') as SVGPathElement;
   if (asterisk) {
-    // Calcular el centro del path para que rote en su propio eje
     const svg = asterisk.closest('svg') as SVGSVGElement;
     if (svg) {
       const pathRect = asterisk.getBBox();
-      
-      // Centro del path relativo al SVG
       const centerX = pathRect.x + pathRect.width / 2;
       const centerY = pathRect.y + pathRect.height / 2;
-      
-      // Establecer el transform-origin al centro del path
+
       gsap.set(asterisk, {
-        transformOrigin: `${centerX}px ${centerY}px`
+        transformOrigin: `${centerX}px ${centerY}px`,
       });
-      
-      // Rotación continua
+
       gsap.to(asterisk, {
         rotation: 360,
-        duration: 3, // Ajusta la velocidad (menor = más rápido)
+        duration: 3,
         ease: 'none',
-        repeat: -1 // Infinito
+        repeat: -1,
       });
     }
   }
-
-  // initParallax('.hero .video', {
-  //   speed: 1.5  
-  // });
-
-  // initUkiyo('.hero .video img', {
-  //   scale: 1.25,
-  //   speed: 1.1
-  // });
 </script>
