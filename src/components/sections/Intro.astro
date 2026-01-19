@@ -1,68 +1,142 @@
 ---
 // Intro.astro
+
+const asterisk = "*";
+
+const introSections = [
+  {
+    id: "intro-first",
+    class: "intro__section--first",
+    title: {
+      line1: "Hot Lava is our phrase for epiphany. We had one and that's why we're here...",
+      line2: null,
+    },
+    paragraph: null,
+    paragraphClass: null,
+    image: {
+      src: "/images/phrase.jpg",
+      alt: "Hot Lava is our phrase for epiphany.",
+      class: "image-phrase",
+      critical: true,
+      loading: "eager" as const,
+      position: "top", // arriba del container
+    },
+    hasRow: false,
+  },
+  {
+    id: "intro-second",
+    class: "intro__section--second",
+    title: {
+      line1: "Ideas need to",
+      line2: "flow more freely.",
+    },
+    paragraph:
+      "It's never been more important. With the complexities of today's marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.",
+    paragraphClass: "paragraph-intro",
+    image: {
+      src: "/images/flow.jpg",
+      alt: "Ideas need to flow more freely.",
+      class: "image-ideas",
+      critical: true,
+      loading: "eager" as const,
+      position: "row", // dentro del row
+    },
+    hasRow: true,
+  },
+  {
+    id: "intro-third",
+    class: "intro__section--third",
+    title: {
+      line1: "Flow starts with",
+      line2: "the way we work.",
+    },
+    paragraph:
+      "We're a full-service advertising agency that gives clients direct access to award-winning creators and doers. Our team is simply an extension of yours – with personal service, an agile approach, and effective, defining work.",
+    paragraphClass: null,
+    image: null,
+    hasRow: false,
+  },
+  {
+    id: "intro-fourth",
+    class: "intro__section--fourth",
+    title: {
+      line1: "The best ideas",
+      line2: "know no bounds.",
+    },
+    paragraph:
+      "They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.",
+    paragraphClass: null,
+    image: null,
+    hasRow: false,
+  },
+];
+
+const asteriskLinesImage = {
+  src: "/images/asterisk-lines.svg",
+  alt: "Hot Lava",
+  class: "asterisk-lines",
+};
+
 ---
 
 <section class="intro asterisk-lines-container" id="intro">
-  <section class="intro__section intro__section--first" id="intro-first">
-    <div class="wrapper">
-      <div class="image-phrase">
-        <img src="/images/phrase.jpg" alt="Hot Lava is our phrase for epiphany." data-critical="true" loading="eager">
-      </div>
-      <div class="container">
-        <h3 class="title">
-          <span class="asterisk">*</span>Hot Lava is our phrase for epiphany. We had one and that’s why we’re here...
-        </h3> 
-      </div>
-    </div>
-  </section>
-  <section class="intro__section intro__section--second" id="intro-second">
-    <div class="wrapper"> 
-      <div class="container">
-        <h3 class="title">
-          <span class="asterisk">*</span>
-          Ideas need to
-          <br />flow more freely.
-        </h3>
-        <div class="intro__row">
-          <div class="image-ideas">
-            <img src="/images/flow.jpg" alt="Ideas need to flow more freely." data-critical="true" loading="eager">
-          </div> 
-          <p class="paragraph paragraph-intro"> It’s never been more important. With the complexities of today’s marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.
-          </p>
+  {introSections.map((section) => (
+    <section class={`intro__section ${section.class}`} id={section.id}>
+      <div class="wrapper">
+        {section.image && section.image.position === "top" && (
+          <div class={section.image.class}>
+            <img
+              src={section.image.src}
+              alt={section.image.alt}
+              data-critical={section.image.critical}
+              loading={section.image.loading}
+            />
+          </div>
+        )}
+        <div class="container">
+          <h3 class="title">
+            <span class="asterisk">{asterisk}</span>
+            {section.title.line1}
+            {section.title.line2 && (
+              <>
+                <br />
+                {section.title.line2}
+              </>
+            )}
+          </h3>
+          {section.hasRow && section.paragraph ? (
+            <div class="intro__row">
+              {section.image && section.image.position === "row" && (
+                <div class={section.image.class}>
+                  <img
+                    src={section.image.src}
+                    alt={section.image.alt}
+                    data-critical={section.image.critical}
+                    loading={section.image.loading}
+                  />
+                </div>
+              )}
+              <p class={`paragraph ${section.paragraphClass || ""}`.trim()}>
+                {section.paragraph}
+              </p>
+            </div>
+          ) : (
+            section.paragraph && (
+              <p class={`paragraph ${section.paragraphClass || ""}`.trim()}>
+                {section.paragraph}
+              </p>
+            )
+          )}
         </div>
       </div>
-    </div>
-  </section>
-  <section class="intro__section intro__section--third" id="intro-third">
-    <div class="wrapper"> 
-      <div class="container">
-        <h3 class="title">
-          <span class="asterisk">*</span>Flow starts with
-          <br />the way we work.
-        </h3>
-        <p class="paragraph">We're a full-service advertising agency that gives
-          clients direct access to award-winning creators and doers. Our team is
-          simply an extension of yours – with personal service, an agile approach,
-          and effective, defining work.
-        </p>
-      </div> 
-    </div>
-  </section>
-  <section class="intro__section intro__section--fourth" id="intro-fourth">
-    <div class="wrapper"> 
-      <div class="container">
-        <h3 class="title">
-          <span class="asterisk">*</span>The best ideas 
-          <br />know no bounds.      
-        </h3> 
-        <p class="paragraph">They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.</p>
-      </div> 
-    </div>  
-  </section>
-  <img src="/images/asterisk-lines.svg" alt="Hot Lava" class="asterisk-lines">
+    </section>
+  ))}
+  <img
+    src={asteriskLinesImage.src}
+    alt={asteriskLinesImage.alt}
+    class={asteriskLinesImage.class}
+  />
 </section>
-
-
 
 <script>
   import { initSplitText } from '../../scripts/utils/splittext.js';
@@ -70,48 +144,39 @@
   import { initParallax } from '../../scripts/utils/parallax.js';
   import { initUkiyo } from '../../scripts/utils/ukiyo.js';
 
-  // Wait for fonts and critical images to be ready before initializing SplitText
+  const parallaxConfigs = [
+    { selector: '.intro__section--first h3.title', speed: 1 },
+    { selector: '.intro__section--second h3.title', speed: 0.75 },
+    { selector: '.intro__section--second .paragraph-intro', speed: 0.75 },
+    { selector: '.intro__section--third h3.title', speed: 0.75 },
+    { selector: '.intro__section--third .paragraph', speed: 0.75 },
+  ];
+
+  const ukiyoConfigs = [
+    { selector: '.intro__section--first .image-phrase img', scale: 1.25, speed: 1 },
+    { selector: '.intro__section--second .image-ideas img', scale: 1.25, speed: 1 },
+  ];
+
   waitForAssets(() => {
-    // Initialize SplitText for all titles in Intro sections (words)
     const titles = document.querySelectorAll('.intro__section h3.title');
     titles.forEach((title) => {
       initSplitText(title as HTMLElement, { type: 'words' });
     });
 
-    // Initialize SplitText for all paragraphs in Intro sections (lines)
     const paragraphs = document.querySelectorAll('.intro__section .paragraph');
     paragraphs.forEach((paragraph) => {
       initSplitText(paragraph as HTMLElement, { type: 'lines' });
     });
   });
- 
-  initParallax('.intro__section--first h3.title', {
-    speed: 1  
+
+  parallaxConfigs.forEach((config) => {
+    initParallax(config.selector, { speed: config.speed });
   });
 
-  initParallax('.intro__section--second h3.title', {
-    speed: 0.75  
-  });
-
-  initParallax('.intro__section--second .paragraph-intro', {
-    speed: 0.75  
-  });
-  
-  initParallax('.intro__section--third h3.title', {
-    speed: 0.75  
-  });
-
-  initParallax('.intro__section--third .paragraph', {
-    speed: 0.75  
-  });
-
-  initUkiyo('.intro__section--first .image-phrase img', {
-    scale: 1.25,
-    speed: 1
-  });
-
-  initUkiyo('.intro__section--second .image-ideas img', {
-    scale: 1.25,
-    speed: 1
+  ukiyoConfigs.forEach((config) => {
+    initUkiyo(config.selector, {
+      scale: config.scale,
+      speed: config.speed,
+    });
   });
 </script>
