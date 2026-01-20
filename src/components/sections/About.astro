@@ -1,67 +1,107 @@
 ---
 // About.astro
+
+interface TeamMember {
+  name: string;
+  image: string;
+  bio: string;
+}
+
+interface AboutIntro {
+  title: string;
+  paragraph: string;
+}
+
+interface Props {
+  intro?: AboutIntro;
+  team?: TeamMember[];
+  logo?: {
+    src: string;
+    alt: string;
+    style?: string;
+  };
+}
+
+// Default data - will be replaced by CMS data
+const defaultIntro: AboutIntro = {
+  title: 'Who we are',
+  paragraph: 'Could we add some text here...?',
+};
+
+const defaultTeam: TeamMember[] = [
+  {
+    name: 'Ben Kline',
+    image: './team/ben.jpg',
+    bio: "Previously CMO for Ogilvy, and CSO at Leo Burnett, Ben is an industry veteran who has made invaluable strategic contributions to a diverse portfolio of global brands.",
+  },
+  {
+    name: 'Nik Traxler',
+    image: './team/nik.jpg',
+    bio: "Nik is an award-winning producer whose talent flexes to agency operations. With global brand and agency experience, he goes above and beyond in pursuit of excellence.",
+  },
+  {
+    name: 'Phil Jungmann',
+    image: './team/phil.jpg',
+    bio: "Phil's thoughtful and boundary-pushing art direction and creative leadership has resulted in impactful and award-winning work for the world's top brands, at the best agencies in Chicago and NYC.",
+  },
+  {
+    name: 'Kristi Neitzel',
+    image: './team/kristi.jpg',
+    bio: "Kristi is a creative leader and writer with a client roster of Fortune 500 greats. Her ability to manage, motivate and organize agency and client-side teams that work together seamlessly is unmatched.",
+  },
+];
+
+const defaultLogo = {
+  src: '/logo-hot-lava-outline.svg',
+  alt: 'Hot Lava',
+  style: 'opacity: .25; filter: invert(1) saturate(10);',
+};
+
+const {
+  intro = defaultIntro,
+  team = defaultTeam,
+  logo = defaultLogo,
+} = Astro.props;
 ---
 
 <section id="about-us" class="about">
   <div class="wrapper">
-    <!-- About the ideas -->
     <div class="container about__intro"> 
-
       <h3 class="title">
-        <span class="asterisk">*</span>Who we are
+        <span class="asterisk">*</span>{intro.title}
       </h3>
-      <p class="paragraph">Could we add some text here...?</p>
+      <p class="paragraph">{intro.paragraph}</p>
     </div> 
     
-    <!-- About the team -->
     <div class="container about__team">
       <div class="team"> 
-
-        <div class="team__card">  
-          <span class="team__name">Ben Kline</span>
-          <picture>
-            <img src="./team/ben.jpg" alt="Ben Kline" data-critical="true" loading="eager" />
-            <div class="team__overlay"></div>
-          </picture>
-          <p class="team__bio">Previously CMO for Ogilvy, and CSO at Leo Burnett, Ben is an industry veteran who has made invaluable strategic contributions to a diverse portfolio of global brands.</p>
-        </div>
-
-        <div class="team__card">  
-          <span class="team__name">Nik Traxler</span>
-          <picture>
-            <img src="./team/nik.jpg" alt="Nik Traxler" data-critical="true" loading="eager" />
-            <div class="team__overlay"></div>
-          </picture>
-          <p class="team__bio">Nik is an award-winning producer whose talent flexes to agency operations. With global brand and agency experience, he goes above and beyond in pursuit of excellence.</p>
-        </div>
-
-        <div class="team__card">  
-          <span class="team__name">Phil Jungmann</span>
-          <picture>
-            <img src="./team/phil.jpg" alt="Phil Jungmann" data-critical="true" loading="eager" />
-            <div class="team__overlay"></div>
-          </picture>
-          <p class="team__bio">Phil's thoughtful and boundary-pushing art direction and creative leadership has resulted in impactful and award-winning work for the world's top brands, at the best agencies in Chicago and NYC.</p>
-        </div>
-
-        <div class="team__card">  
-          <span class="team__name">Kristi Neitzel</span>
-          <picture>
-            <img src="./team/kristi.jpg" alt="Kristi Neitzel" data-critical="true" loading="eager" />
-            <div class="team__overlay"></div>
-          </picture>
-          <p class="team__bio">Kristi is a creative leader and writer with a client roster of Fortune 500 greats. Her ability to manage, motivate and organize agency and client-side teams that work together seamlessly is unmatched.</p>
-        </div>
-
+        {team.map((member) => (
+          <div class="team__card">  
+            <span class="team__name">{member.name}</span>
+            <picture>
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                data-critical="true" 
+                loading="eager" 
+              />
+              <div class="team__overlay"></div>
+            </picture>
+            <p class="team__bio">{member.bio}</p>
+          </div>
+        ))}
       </div>
     </div> 
   </div>
 
   <div class="logo logo--vertical"> 
-    <img src="/logo-hot-lava-outline.svg" alt="Hot Lava" style="opacity: .25; filter: invert(1) saturate(10);">
+    <img 
+      src={logo.src} 
+      alt={logo.alt} 
+      style={logo.style}
+    />
   </div>
- 
-  </section>
+</section>
 
 <script>
   import { initSplitText } from '../../scripts/utils/splittext.js';
@@ -83,7 +123,6 @@
       initSplitText(paragraph, { type: 'lines' });
     }
   });
-
 
   initParallax('.about h3.title', {
     speed: 0.75  
