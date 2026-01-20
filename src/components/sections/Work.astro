@@ -11,6 +11,7 @@ interface WorkItem {
 }
 
 interface Props {
+  asterisk?: string;
   title?: string;
   works?: WorkItem[];
   carouselTitle?: string;
@@ -28,6 +29,7 @@ const defaultWorks: WorkItem[] = [
 ];
 
 const {
+  asterisk = '*',
   title = 'See how we flow',
   works = defaultWorks,
   carouselTitle = 'Our expertise flows across CPG, B2B and retail.',
@@ -42,7 +44,7 @@ const {
   <div class="wrapper">
     <div class="container works__container">
       <h3 class="title" style="max-width: 400px;">
-        <span class="asterisk">*</span>{title}
+        <span class="asterisk">{asterisk}</span>{title}
       </h3>
       
       <div class="works__list">

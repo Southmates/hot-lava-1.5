@@ -13,6 +13,7 @@ interface AboutIntro {
 }
 
 interface Props {
+  asterisk?: string;
   intro?: AboutIntro;
   team?: TeamMember[];
   logo?: {
@@ -58,6 +59,7 @@ const defaultLogo = {
 };
 
 const {
+  asterisk = '*',
   intro = defaultIntro,
   team = defaultTeam,
   logo = defaultLogo,
@@ -68,7 +70,7 @@ const {
   <div class="wrapper">
     <div class="container about__intro"> 
       <h3 class="title">
-        <span class="asterisk">*</span>{intro.title}
+        <span class="asterisk">{asterisk}</span>{intro.title}
       </h3>
       <p class="paragraph">{intro.paragraph}</p>
     </div> 
