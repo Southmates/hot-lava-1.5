@@ -50,15 +50,31 @@ export function createVideoPlayer() {
   }
 
   // Initialize Vimeo player
+  let initAttempts = 0;
+  const MAX_INIT_ATTEMPTS = 10;
+  
   function init() {
+    initAttempts++;
+    
     if (typeof Vimeo === 'undefined' || !videoIframe) {
-      setTimeout(init, 100);
+      if (initAttempts < MAX_INIT_ATTEMPTS) {
+        setTimeout(init, 100);
+      }
+      return;
+    }
+    
+    // Check if iframe has valid Vimeo src
+    if (!videoIframe.src || !videoIframe.src.includes('player.vimeo.com')) {
+      if (initAttempts < MAX_INIT_ATTEMPTS) {
+        setTimeout(init, 100);
+      }
       return;
     }
     
     try {
       vimeoPlayer = new Vimeo.Player(videoIframe);
       videoDuration = 0;
+      initAttempts = 0; // Reset on success
       
       vimeoPlayer.on('play', () => {
         modalTarget?.classList.add('vimeo-player--playing');
@@ -81,14 +97,29 @@ export function createVideoPlayer() {
       });
       
       vimeoPlayer.ready().then(() => {
+        // Initial progress update
+        updateProgress();
+        
         vimeoPlayer.setVolume(1).then(() => {
           vimeoPlayer.play().catch(() => {});
+          // No need for setTimeout - the 'play' event will handle UI updates
         });
+      }).catch((error) => {
+        console.warn('Vimeo Player ready error:', error);
+        // Retry initialization if ready fails
+        if (initAttempts < MAX_INIT_ATTEMPTS) {
+          vimeoPlayer = null;
+          setTimeout(init, 500);
+        }
       });
-      
-      setTimeout(updateProgress, 500);
     } catch (error) {
       console.warn('Vimeo Player initialization error:', error);
+      vimeoPlayer = null;
+      // Retry after a delay with exponential backoff
+      if (initAttempts < MAX_INIT_ATTEMPTS) {
+        const delay = Math.min(500 * initAttempts, 2000);
+        setTimeout(init, delay);
+      }
     }
   }
 
@@ -100,7 +131,10 @@ export function createVideoPlayer() {
     }
     clearProgressInterval();
     videoDuration = 0;
-    if (videoIframe) videoIframe.src = '';
+    if (videoIframe) {
+      videoIframe.src = '';
+      videoIframe.onload = null;
+    }
     modalTarget?.classList.remove('vimeo-player--playing');
     if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
     if (progressBar) progressBar.style.width = '0%';
@@ -135,8 +169,42 @@ export function createVideoPlayer() {
     const embedUrl = getVimeoEmbedUrl(videoUrl);
     if (!embedUrl || !videoIframe) return false;
     
+    // Reset state (but don't clear iframe src yet to avoid unnecessary reload)
+    if (vimeoPlayer) {
+      vimeoPlayer.pause().catch(() => {});
+      vimeoPlayer = null;
+    }
+    clearProgressInterval();
+    videoDuration = 0;
+    initAttempts = 0; // Reset init attempts counter
+    
+    // Reset UI state
+    modalTarget?.classList.remove('vimeo-player--playing');
+    if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
+    if (progressBar) progressBar.style.width = '0%';
+    if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
+    
+    // Set iframe src
     videoIframe.src = embedUrl;
-    videoIframe.onload = () => setTimeout(init, 500);
+    
+    // Wait for iframe to load, then initialize player
+    const handleLoad = () => {
+      // Try to initialize immediately after iframe loads
+      // The init() function will handle retries if Vimeo isn't ready yet
+      init();
+    };
+    
+    // Set up load handler
+    videoIframe.onload = handleLoad;
+    
+    // Fallback: if onload doesn't fire (e.g., cached content), try to initialize
+    // Use a shorter delay since we're already checking readiness in init()
+    setTimeout(() => {
+      if (!vimeoPlayer && videoIframe.src === embedUrl) {
+        init();
+      }
+    }, 500);
+    
     return true;
   }
 
