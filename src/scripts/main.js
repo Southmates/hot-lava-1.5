@@ -5,6 +5,8 @@ import Lenis from "lenis";
 import customCursor from "./utils/cursor.js";
 import { handleDynamicContentResize } from "./utils/dynamic-resize.js";
 import { initSectionColors } from "./utils/section-colors.js";
+import { createVideoPlayer } from "./utils/video-player.js";
+import { createModal } from "./utils/modal.js";
 
 import { register } from "swiper/element/bundle";
 register();
@@ -167,214 +169,32 @@ function handleNav() {
   }
 }
 
-// Modal handler - stop/start Lenis when modal opens/closes
+// Main modal handler - coordinates modal and video player
 function handleModal() {
   const worksTrigger = document.querySelectorAll(".js-work");
-  const modalSliders = document.querySelectorAll(".work__slider");
-  const closeModalBtn = document.querySelector(".js-close");
-  const modalTarget = document.querySelector(".modal");
-  const videoIframe = document.getElementById("work-video");
-  const videoTitle = document.getElementById("work-video-title");
-  const playPauseBtn = document.getElementById("work-video-play-pause");
-  const progressBar = document.getElementById("work-video-progress");
-  const timeDisplay = document.getElementById("work-video-time");
   
-  let vimeoPlayer = null;
-  let progressInterval = null;
-  let currentWorkName = '';
+  // Create independent controllers
+  const videoPlayer = createVideoPlayer();
+  const modal = createModal(lenis);
+  
+  // Connect them
+  modal.setVideoPlayer(videoPlayer);
 
-  // Convert Vimeo URL to embed format
-  function getVimeoEmbedUrl(url) {
-    const videoId = url.match(/\/(\d+)/)?.[1];
-    if (!videoId) return '';
-    return `https://player.vimeo.com/video/${videoId}?autoplay=0&loop=0&muted=0&controls=0`;
-  }
-
-  // Format time in MM:SS
-  function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  // Update progress bar and time
-  function updateProgress() {
-    if (!vimeoPlayer) return;
-    
-    vimeoPlayer.getCurrentTime().then((current) => {
-      vimeoPlayer.getDuration().then((duration) => {
-        const percent = (current / duration) * 100;
-        progressBar.style.width = `${percent}%`;
-        timeDisplay.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
-      });
-    });
-  }
-
-  // Initialize Vimeo player
-  function initVimeoPlayer() {
-    if (typeof Vimeo === 'undefined' || !videoIframe) {
-      // Retry if Vimeo API not loaded yet
-      setTimeout(() => {
-        if (typeof Vimeo !== 'undefined') {
-          initVimeoPlayer();
-        }
-      }, 100);
-      return;
-    }
-    
-    try {
-      vimeoPlayer = new Vimeo.Player(videoIframe);
-      
-      // Update title visibility based on play state
-      vimeoPlayer.on('play', () => {
-        modalTarget.classList.add('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PAUSE';
-        if (progressInterval) clearInterval(progressInterval);
-        progressInterval = setInterval(updateProgress, 100);
-      });
-      
-      vimeoPlayer.on('pause', () => {
-        modalTarget.classList.remove('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
-        if (progressInterval) clearInterval(progressInterval);
-        updateProgress();
-      });
-      
-      vimeoPlayer.on('ended', () => {
-        modalTarget.classList.remove('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
-        if (progressInterval) clearInterval(progressInterval);
-      });
-      
-      // Initial progress update
-      setTimeout(() => {
-        updateProgress();
-      }, 500);
-    } catch (error) {
-      console.warn('Vimeo Player initialization error:', error);
-    }
-  }
-
-  // Stop video playback
-  function stopVideo() {
-    if (vimeoPlayer) {
-      vimeoPlayer.pause().catch(() => {});
-      vimeoPlayer = null;
-    }
-    if (progressInterval) {
-      clearInterval(progressInterval);
-      progressInterval = null;
-    }
-    if (videoIframe) {
-      videoIframe.src = '';
-    }
-    modalTarget.classList.remove('vimeo-player--playing');
-    if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
-    if (progressBar) progressBar.style.width = '0%';
-    if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
-  }
-
-  // Play/Pause toggle
-  function togglePlayPause() {
-    if (!vimeoPlayer) return;
-    
-    vimeoPlayer.getPaused().then((paused) => {
-      if (paused) {
-        vimeoPlayer.play();
-      } else {
-        vimeoPlayer.pause();
-      }
-    });
-  }
-
-  // Seek video on progress bar click
-  function seekVideo(event) {
-    if (!vimeoPlayer) return;
-    
-    const track = event.currentTarget;
-    const rect = track.getBoundingClientRect();
-    const percent = (event.clientX - rect.left) / rect.width;
-    
-    vimeoPlayer.getDuration().then((duration) => {
-      vimeoPlayer.setCurrentTime(duration * percent);
-    });
-  }
-
-  // Setup progress bar click
-  const progressTrack = document.querySelector('.vimeo-player__progress-track');
-  if (progressTrack) {
-    progressTrack.addEventListener('click', seekVideo);
-  }
-
-  // Setup play/pause button
-  if (playPauseBtn) {
-    playPauseBtn.addEventListener('click', togglePlayPause);
-  }
-
-  // Open modal and stop scroll
+  // Setup work triggers
   worksTrigger.forEach((item) => {
     item.addEventListener("click", (e) => {
       const workItem = e.currentTarget;
       const videoUrl = workItem.dataset.video;
       
-      // Only open modal if there's a video URL
-      if (!videoUrl || videoUrl.trim() === '') {
-        return;
-      }
+      if (!videoUrl?.trim()) return;
 
-      // Get work name for title
       const nameElement = workItem.querySelector('.name p');
-      currentWorkName = nameElement ? nameElement.textContent : '';
-      if (videoTitle) {
-        videoTitle.textContent = currentWorkName;
-      }
-
-      if (videoIframe) {
-        const embedUrl = getVimeoEmbedUrl(videoUrl);
-        if (embedUrl) {
-          videoIframe.src = embedUrl;
-          
-          // Initialize player after iframe loads
-          videoIframe.onload = () => {
-            setTimeout(() => {
-              initVimeoPlayer();
-            }, 500);
-          };
-        } else {
-          return; // Invalid video URL, don't open modal
-        }
-      }
-
-      modalTarget.classList.add("is-active");
-
+      const workName = nameElement?.textContent || '';
       const targetSlide = workItem.dataset.slide;
-      const targetClient = document.querySelector(`[data-client=${targetSlide}]`);
-      if (targetClient) {
-        targetClient.hidden = false;
-      }
 
-      lenis.stop();
+      modal.open(videoUrl, workName, targetSlide);
     });
   });
-
-  // Close modal and restart scroll
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", closeModal);
-  }
-
-  // Close modal on ESC key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalTarget.classList.contains("is-active")) {
-      closeModal();
-    }
-  });
-
-  function closeModal() {
-    stopVideo();
-    modalTarget.classList.remove("is-active");
-    modalSliders.forEach((slider) => (slider.hidden = true));
-    lenis.start();
-  }
 }
 
 // Header visibility based on hero viewport
