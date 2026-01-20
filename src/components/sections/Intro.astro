@@ -1,95 +1,143 @@
 ---
 // Intro.astro
 
-const asterisk = "*";
+interface IntroImage {
+  src: string;
+  alt: string;
+  class?: string;
+  critical?: boolean;
+  loading?: "eager" | "lazy";
+  position?: "top" | "row";
+}
 
-const introSections = [
-  {
-    id: "intro-first",
-    class: "intro__section--first",
-    title: {
-      line1: "Hot Lava is our phrase for epiphany. We had one and that's why we're here...",
-      line2: null,
-    },
-    paragraph: null,
-    paragraphClass: null,
-    image: {
-      src: "/images/phrase.jpg",
-      alt: "Hot Lava is our phrase for epiphany.",
-      class: "image-phrase",
-      critical: true,
-      loading: "eager" as const,
-      position: "top", // arriba del container
-    },
-    hasRow: false,
-  },
-  {
-    id: "intro-second",
-    class: "intro__section--second",
-    title: {
-      line1: "Ideas need to",
-      line2: "flow more freely.",
-    },
-    paragraph: 
-      "It's never been more important. With the complexities of todays marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.",
-    paragraphClass: "paragraph-intro",
-    image: {
-      src: "/images/flow.jpg",
-      alt: "Ideas need to flow more freely.",
-      class: "image-ideas",
-      critical: true,
-      loading: "eager" as const,
-      position: "row", // dentro del row
-    },
-    hasRow: true,
-  },
-  {
-    id: "intro-third",
-    class: "intro__section--third",
-    title: {
-      line1: "Flow starts with",
-      line2: "the way we work.",
-    },
-    paragraph:
-      "We're a full-service advertising agency that gives clients direct access to award-winning creators and doers. Our team is simply an extension of yours – with personal service, an agile approach, and effective, defining work.",
-    paragraphClass: null,
-    image: null,
-    hasRow: false,
-  },
-  {
-    id: "intro-fourth",
-    class: "intro__section--fourth",
-    title: {
-      line1: "The best ideas",
-      line2: "know no bounds.",
-    },
-    paragraph:
-      "They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.",
-    paragraphClass: null,
-    image: null,
-    hasRow: false,
-  },
-];
+interface IntroTitle {
+  line1: string;
+  line2?: string | null;
+}
 
-const asteriskLinesImage = {
-  src: "/images/asterisk-lines.svg",
-  alt: "Hot Lava",
-  class: "asterisk-lines",
+interface IntroSection {
+  id: string;
+  class?: string;
+  title: IntroTitle;
+  paragraph?: string | null;
+  paragraphClass?: string | null;
+  image?: IntroImage | null;
+  layout?: "row" | "default"; // Determina si usa intro__row o no
+}
+
+interface IntroConfig {
+  asterisk?: string;
+  sections: IntroSection[];
+  asteriskLinesImage?: {
+    src: string;
+    alt: string;
+    class?: string;
+  };
+}
+
+// Default data - will be replaced by CMS data
+const defaultConfig: IntroConfig = {
+  asterisk: "*",
+  sections: [
+    {
+      id: "intro-first",
+      class: "intro__section--first",
+      title: {
+        line1: "Hot Lava is our phrase for epiphany. We had one and that's why we're here...",
+        line2: null,
+      },
+      paragraph: null,
+      paragraphClass: null,
+      image: {
+        src: "/images/phrase.jpg",
+        alt: "Hot Lava is our phrase for epiphany.",
+        class: "image-phrase",
+        critical: true,
+        loading: "eager",
+        position: "top",
+      },
+      layout: "default",
+    },
+    {
+      id: "intro-second",
+      class: "intro__section--second",
+      title: {
+        line1: "Ideas need to",
+        line2: "flow more freely.",
+      },
+      paragraph:
+        "It's never been more important. With the complexities of todays marketing challenges, ideas need to flow freely to be effective across audiences, platforms and cultures.",
+      paragraphClass: "paragraph-intro",
+      image: {
+        src: "/images/flow.jpg",
+        alt: "Ideas need to flow more freely.",
+        class: "image-ideas",
+        critical: true,
+        loading: "eager",
+        position: "row",
+      },
+      layout: "row",
+    },
+    {
+      id: "intro-third",
+      class: "intro__section--third",
+      title: {
+        line1: "Flow starts with",
+        line2: "the way we work.",
+      },
+      paragraph:
+        "We're a full-service advertising agency that gives clients direct access to award-winning creators and doers. Our team is simply an extension of yours – with personal service, an agile approach, and effective, defining work.",
+      paragraphClass: null,
+      image: null,
+      layout: "default",
+    },
+    {
+      id: "intro-fourth",
+      class: "intro__section--fourth",
+      title: {
+        line1: "The best ideas",
+        line2: "know no bounds.",
+      },
+      paragraph:
+        "They flood our thoughts, ignite our emotions and build enough momentum to change the way we act. Ideas that flow are what the modern marketer needs to thrive.",
+      paragraphClass: null,
+      image: null,
+      layout: "default",
+    },
+  ],
+  asteriskLinesImage: {
+    src: "/images/asterisk-lines.svg",
+    alt: "Hot Lava",
+    class: "asterisk-lines",
+  },
 };
 
+// Accept props from CMS or use defaults
+interface Props {
+  config?: IntroConfig;
+}
+
+const { config = defaultConfig } = Astro.props;
+
+const asterisk = config.asterisk || "*";
+const sections = config.sections;
+const asteriskLinesImage = config.asteriskLinesImage;
 ---
 
 <section class="intro asterisk-lines-container" id="intro">
-  {introSections.map((section) => (
-    <section class={`intro__section ${section.class}`} id={section.id}>
+  {sections.map((section) => (
+    <section
+      class={`intro__section ${section.class || ""}`.trim()}
+      id={section.id}
+    >
       <div class="wrapper">
         {section.image && section.image.position === "top" && (
-          <div class={section.image.class}>
+          <div class={section.image.class || ""}>
             <img
               src={section.image.src}
               alt={section.image.alt}
-              data-critical={section.image.critical}
-              loading={section.image.loading}
+              data-critical={section.image.critical ? "true" : undefined}
+              loading={section.image.loading || "lazy"}
             />
           </div>
         )}
@@ -104,15 +152,15 @@ const asteriskLinesImage = {
               </>
             )}
           </h3>
-          {section.hasRow && section.paragraph ? (
+          {section.layout === "row" && section.paragraph ? (
             <div class="intro__row">
               {section.image && section.image.position === "row" && (
-                <div class={section.image.class}>
+                <div class={section.image.class || ""}>
                   <img
                     src={section.image.src}
                     alt={section.image.alt}
-                    data-critical={section.image.critical}
-                    loading={section.image.loading}
+                    data-critical={section.image.critical ? "true" : undefined}
+                    loading={section.image.loading || "lazy"}
                   />
                 </div>
               )}
@@ -131,11 +179,13 @@ const asteriskLinesImage = {
       </div>
     </section>
   ))}
-  <img
-    src={asteriskLinesImage.src}
-    alt={asteriskLinesImage.alt}
-    class={asteriskLinesImage.class}
-  />
+  {asteriskLinesImage && (
+    <img
+      src={asteriskLinesImage.src}
+      alt={asteriskLinesImage.alt}
+      class={asteriskLinesImage.class || ""}
+    />
+  )}
 </section>
 
 <script>
@@ -144,6 +194,7 @@ const asteriskLinesImage = {
   import { initParallax } from '../../scripts/utils/parallax.js';
   import { initUkiyo } from '../../scripts/utils/ukiyo.js';
 
+  // Animation configurations - can be moved to CMS if needed
   const parallaxConfigs = [
     { selector: '.intro__section--first h3.title', speed: 1 },
     { selector: '.intro__section--second h3.title', speed: 0.75 },
