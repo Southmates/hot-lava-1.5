@@ -1,6 +1,6 @@
 ---
 // BrandsCarousel.astro
-// Componente reutilizable para carrusel infinito de logos en dos filas
+// Reusable component for infinite logo carousel in a single row
 
 interface Props {
   brands?: Array<{ src: string; alt: string }>;
@@ -30,32 +30,14 @@ const {
   )}
 
   <div class="brands-carousel__container">
-    <!-- Fila superior: izquierda a derecha -->
-    <div class="brands-carousel__row brands-carousel__row--top">
-      <div class="brands-carousel__track brands-carousel__track--top">
+    <div class="brands-carousel__row">
+      <div class="brands-carousel__track">
         <div class="brands-carousel__brands"> 
           {brands.map((brand) => (
             <img src={brand.src} alt={brand.alt} />
           ))}
         </div>
-        <!-- Duplicado para loop infinito -->
-        <div class="brands-carousel__brands"> 
-          {brands.map((brand) => (
-            <img src={brand.src} alt={brand.alt} />
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <!-- Fila inferior: derecha a izquierda -->
-    <div class="brands-carousel__row brands-carousel__row--bottom">
-      <div class="brands-carousel__track brands-carousel__track--bottom">
-        <div class="brands-carousel__brands"> 
-          {brands.map((brand) => (
-            <img src={brand.src} alt={brand.alt} />
-          ))}
-        </div>
-        <!-- Duplicado para loop infinito -->
+        <!-- Duplicate for infinite loop -->
         <div class="brands-carousel__brands"> 
           {brands.map((brand) => (
             <img src={brand.src} alt={brand.alt} />
@@ -70,19 +52,18 @@ const {
   import gsap from 'gsap';
 
   /**
-   * Inicializa el carrusel infinito de logos
-   * @param duration - Duración de la animación en segundos (mayor = más lento)
+   * Initializes the infinite logo carousel
+   * @param duration - Animation duration in seconds (higher = slower)
    */
   function initBrandsCarousel(duration: number = 40) {
-    const topTrack = document.querySelector('.brands-carousel__track--top') as HTMLElement;
-    const bottomTrack = document.querySelector('.brands-carousel__track--bottom') as HTMLElement;
+    const track = document.querySelector('.brands-carousel__track') as HTMLElement;
 
-    if (!topTrack || !bottomTrack) {
-      console.warn('BrandsCarousel: Tracks no encontrados');
+    if (!track) {
+      console.warn('BrandsCarousel: Track not found');
       return;
     }
 
-    // Esperar a que las imágenes se carguen para calcular correctamente el ancho
+    // Wait for images to load to calculate width correctly
     const container = document.querySelector('.brands-carousel__container');
     if (!container) return;
 
@@ -112,34 +93,21 @@ const {
     });
 
     function startCarousel() {
-      // Calcular el ancho de un set de logos
-      const topBrands = topTrack.querySelector('.brands-carousel__brands') as HTMLElement;
-      const bottomBrands = bottomTrack.querySelector('.brands-carousel__brands') as HTMLElement;
+      // Calculate the width of a logo set
+      const brands = track.querySelector('.brands-carousel__brands') as HTMLElement;
       
-      if (!topBrands || !bottomBrands) {
-        console.warn('BrandsCarousel: Brands no encontrados');
+      if (!brands) {
+        console.warn('BrandsCarousel: Brands not found');
         return;
       }
 
-      const topWidth = topBrands.offsetWidth;
-      const bottomWidth = bottomBrands.offsetWidth;
+      const brandsWidth = brands.offsetWidth;
 
-      // Fila superior: izquierda a derecha (se mueve hacia la izquierda)
-      gsap.fromTo(topTrack, 
+      // Animate track: left to right (moves to the left)
+      gsap.fromTo(track, 
         { x: 0 },
         {
-          x: -topWidth,
-          duration,
-          ease: "none",
-          repeat: -1,
-        }
-      );
-
-      // Fila inferior: derecha a izquierda (se mueve hacia la derecha para efecto opuesto)
-      gsap.fromTo(bottomTrack,
-        { x: -bottomWidth },
-        {
-          x: 0,
+          x: -brandsWidth,
           duration,
           ease: "none",
           repeat: -1,
@@ -148,7 +116,7 @@ const {
     }
   }
 
-  // Inicializar cuando el DOM esté listo
+  // Initialize when DOM is ready
   if (typeof window !== 'undefined') {
     const carouselElement = document.querySelector('.brands-carousel') as HTMLElement;
     const carouselDuration = carouselElement?.dataset.duration 
