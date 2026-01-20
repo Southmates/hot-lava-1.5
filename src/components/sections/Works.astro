@@ -1,6 +1,37 @@
 ---
 // Works.astro
 import BrandsCarousel from '../BrandsCarousel.astro';
+
+interface WorkItem {
+  brand: string;
+  name: string;
+  slide: string;
+}
+
+interface Props {
+  title?: string;
+  works?: WorkItem[];
+  carouselTitle?: string;
+  carouselDuration?: number;
+}
+
+// Default works data - will be replaced by CMS data
+const defaultWorks: WorkItem[] = [
+  { brand: 'P&G', name: 'Collision', slide: 'Collision' },
+  { brand: 'P&G', name: 'First-Time Fresh', slide: 'First-Time Fresh' },
+  { brand: 'Dehnco', name: 'The Most Classic Design', slide: 'The Most Classic Design' },
+  { brand: 'Arrow Electronics', name: 'The Speed of Arrow', slide: 'The Speed of Arrow' },
+  { brand: 'Dole Packaged Foods', name: 'Dolemates', slide: 'Dolemates' },
+  { brand: 'Max Pawn Luxury', name: 'We Know Real', slide: 'We Know Real' },
+  { brand: 'EZ Pawn', name: "You Won't Believe It", slide: "You Won't Believe It" },
+];
+
+const {
+  title = 'See how we flow',
+  works = defaultWorks,
+  carouselTitle = 'Our expertise flows across CPG, B2B and retail.',
+  carouselDuration = 40,
+} = Astro.props;
 ---
 
 <section id="work" class="works">  
@@ -10,99 +41,32 @@ import BrandsCarousel from '../BrandsCarousel.astro';
   <div class="wrapper">
     <div class="container works__container">
       <h3 class="title">
-        <span class="asterisk">*</span>See how we flow
+        <span class="asterisk">*</span>{title}
       </h3>
       
       <div class="works__list">
-        <!-- P&G: Collision -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="Collision">
-            <span class="brand">P&G</span>
-            <div class="name">
-              <p>Collision</p> 
+        {works.map((work) => (
+          <div class="work">
+            <div class="work__item js-work" data-slide={work.slide}>
+              {work.brand && <span class="brand">{work.brand}</span>}
+              <div class="name">
+                <p>{work.name}</p>
+              </div>
             </div>
           </div>
-        </div> 
-
-        <!-- P&G: First-Time Fresh -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="First-Time Fresh">
-            <span class="brand">P&G</span>
-            <div class="name">
-              <p>First-Time Fresh</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dehnco: The Most Classic Design -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="The Most Classic Design">
-            <span class="brand">Dehnco</span>
-            <div class="name">
-              <p>The Most Classic Design</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Arrow Electronics: The Speed of Arrow -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="The Speed of Arrow">
-            <span class="brand">Arrow Electronics</span>
-            <div class="name">
-              <p>The Speed of Arrow</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dole Packaged Foods: Dolemates -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="Dolemates">
-            <span class="brand">Dole Packaged Foods</span>
-            <div class="name">
-              <p>Dolemates</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Max Pawn Luxury: We Know Real -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="We Know Real">
-            <span class="brand">Max Pawn Luxury</span>
-            <div class="name">
-              <p>We Know Real</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- EZ Pawn: You Won’t Believe It -->
-        <div class="work">
-          <div class="work__item js-work" data-slide="You Won’t Believe It">
-            <span class="brand">EZ Pawn</span>
-            <div class="name">
-              <p>You Won’t Believe It</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <!-- Work Images -->
       <div class="works__images">
-          <!-- <img src="./works/collision.jpg" alt="Collision"> -->
-          <!-- <img src="./works/first-time-fresh.jpg" alt="First-Time Fresh"> -->
-          <!-- <img src="./works/the-most-classic-design.jpg" alt="The Most Classic Design"> -->
-          <!-- <img src="./works/the-speed-of-arrow.jpg" alt="The Speed of Arrow"> -->
-          <!-- <img src="./works/dolemates.jpg" alt="Dolemates"> -->
-          <!-- <img src="./works/we-know-real.jpg" alt="We Know Real"> -->
-          <!-- <img src="./works/you-won’t-believe-it.jpg" alt="You Won’t Believe It"> -->
+        <!-- Work images will be loaded dynamically -->
       </div>
     </div>
   </div>
 
-  <!-- Logos carousel. -->
   <div class="container logos">
     <BrandsCarousel 
-      title="Our expertise flows across CPG, B2B and retail."
-      duration={40}
+      title={carouselTitle}
+      duration={carouselDuration}
     />
   </div>
 </section>
@@ -114,4 +78,3 @@ import BrandsCarousel from '../BrandsCarousel.astro';
     speed: 1  
   });
 </script>
- 
