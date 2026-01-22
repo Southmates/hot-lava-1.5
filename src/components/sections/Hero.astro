@@ -66,6 +66,7 @@ const logoSvg = {
 
 <script>
   import gsap from 'gsap';
+  import { initParallax } from '../../scripts/utils/parallax.js';
 
   // Animación de rotación continua para el asterisco
   const asterisk = document.querySelector('#asterisk-hero') as SVGPathElement;
@@ -88,4 +89,14 @@ const logoSvg = {
       });
     }
   }
+
+  // Parallax para el logo
+  initParallax('.hero .logo', {
+    speed: -1  // Se mueve más lento que el scroll
+  });
+
+  // Parallax para el video
+  initParallax('.hero .video', {
+    speed: 1.75  // Se mueve un poco más rápido que el logo
+  });
 </script>
