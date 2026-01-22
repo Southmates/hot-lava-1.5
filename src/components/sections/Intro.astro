@@ -74,9 +74,9 @@ const defaultConfig: IntroConfig = {
         class: "image-ideas",
         critical: true,
         loading: "eager",
-        position: "row",
+        position: "top",
       },
-      layout: "row",
+      layout: "default",
     },
     {
       id: "intro-third",
@@ -196,11 +196,16 @@ const asteriskLinesImage = config.asteriskLinesImage;
 
   // Animation configurations - can be moved to CMS if needed
   const parallaxConfigs = [
-    { selector: '.intro__section--first h3.title', speed: 1 },
-    { selector: '.intro__section--second h3.title', speed: 0.75 },
-    { selector: '.intro__section--second .paragraph-intro', speed: 0.75 },
-    { selector: '.intro__section--third h3.title', speed: 0.75 },
-    { selector: '.intro__section--third .paragraph', speed: 0.75 },
+    { selector: '.intro__section--first h3.title', speed: -.5 },
+    { selector: '.image-phrase', speed: 1.75 },
+    { selector: '.intro__section--second h3.title', speed: -.5 }, 
+    { selector: '.intro__section--second .paragraph-intro', speed: -.75 },
+    { selector: '.image-ideas', speed: 1.75 },
+    { selector: '.asterisk-lines', speed: 2.5 },
+    { selector: '.intro__section--third h3.title', speed: -.5 },
+    { selector: '.intro__section--third .paragraph', speed: -.75 },
+    { selector: '.intro__section--fourth h3.title', speed: -.5 },
+    { selector: '.intro__section--fourth .paragraph', speed: -.75 },
   ];
 
   const ukiyoConfigs = [

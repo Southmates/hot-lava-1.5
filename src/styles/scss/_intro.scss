@@ -1,7 +1,8 @@
 .intro { 
   position: relative;
   z-index: 10;
-  padding: 10vh 0;
+  padding: 20vh 0;
+  margin-top: 15vh;
 
   overflow-x: hidden;
   overflow-y: visible;
@@ -24,6 +25,13 @@
   justify-content: space-between;
   gap: 4rem;
   margin-top: 4rem;
+}
+
+.intro__section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
 }
 
 .intro__section--first {
@@ -49,9 +57,18 @@
 }
 
 .intro__section--third {
+  .wrapper { 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
   .container { 
     align-items: flex-end;
+    align-items: flex-start;
     min-height: 90vh;
+    width: fit-content;
+    margin: 0;
   }
 }
 .intro__section--fourth {
@@ -64,11 +81,11 @@
 
 .image-phrase {
   position: absolute; 
-  top: 20%;
+  top: 5%;
   left: 0%;
-  width: 47vw;
+  width: 50vw;
   height: auto;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   
   @media (max-width: 1023px) {
     width: 100%;
@@ -82,7 +99,10 @@
 }
 
 .image-ideas {
-  width: 47vw;
+  position: absolute;
+  top: 15%;
+  right: 0;
+  width: 52.5vw;
   height: auto;
   aspect-ratio: 5/3;
 
@@ -107,8 +127,8 @@
 
 .asterisk-lines {
   position: absolute;
-  bottom: 15%;
-  left: -25%;
+  bottom: 17.5%;
+  left: -15%;
   width:min(75vw, 1080px);
   height: auto;
   aspect-ratio: 1/1;
