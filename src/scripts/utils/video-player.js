@@ -78,14 +78,14 @@ export function createVideoPlayer() {
       
       vimeoPlayer.on('play', () => {
         modalTarget?.classList.add('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PAUSE';
+        if (playPauseBtn) playPauseBtn.textContent = 'Pause';
         clearProgressInterval();
         progressInterval = setInterval(updateProgress, 100);
       });
       
       vimeoPlayer.on('pause', () => {
         modalTarget?.classList.remove('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
+        if (playPauseBtn) playPauseBtn.textContent = 'Play';
         clearProgressInterval();
         updateProgress();
       });
@@ -96,7 +96,7 @@ export function createVideoPlayer() {
           vimeoPlayer.pause().catch(() => {});
         });
         modalTarget?.classList.remove('vimeo-player--playing');
-        if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
+        if (playPauseBtn) playPauseBtn.textContent = 'Play';
         clearProgressInterval();
         updateProgress();
       });
@@ -141,7 +141,7 @@ export function createVideoPlayer() {
       videoIframe.onload = null;
     }
     modalTarget?.classList.remove('vimeo-player--playing');
-    if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
+    if (playPauseBtn) playPauseBtn.textContent = 'Play';
     if (progressBar) progressBar.style.width = '0%';
     if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
   }
@@ -185,7 +185,7 @@ export function createVideoPlayer() {
     
     // Reset UI state
     modalTarget?.classList.remove('vimeo-player--playing');
-    if (playPauseBtn) playPauseBtn.textContent = 'PLAY';
+    if (playPauseBtn) playPauseBtn.textContent = 'Play';
     if (progressBar) progressBar.style.width = '0%';
     if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
     
