@@ -14,16 +14,21 @@
     align-items: center;
     justify-content: center;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: top center;
+    background-image: url('/shop/bg.png');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
 
-      @media (min-width: $change-layout) {
-        object-fit: cover;
-      }
-    }
+    // img {
+    //   width: 100%;
+    //   height: 100%;
+    //   object-fit: contain;
+    //   object-position: bottom center;
+
+    //   @media (min-width: $change-layout) {
+    //     object-fit: cover;
+    //   }
+    // }
   }
 
   .wrapper {
@@ -39,6 +44,25 @@
   }
 }
 
+.shop__logo {
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: screen;
+
+  img {
+    width: clamp(200px, 30vw, 300px);
+    height: auto; 
+    opacity: 0.95;
+  }
+}
  
 .shopify-buy-frame iframe {
   max-height: 1420px;

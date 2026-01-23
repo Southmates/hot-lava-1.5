@@ -71,10 +71,13 @@ const { products = defaultProducts } = Astro.props;
 
 <section id="shop" class="products shop">
   <div class="shop__hero">
-    <img src="/shop/bg.png" alt="Shop Header" />
+    <!-- <img src="/shop/bg.png" alt="The Lava Shop - Est. 2024" /> -->
   </div> 
-    
   <div class="wrapper">
+    <div class="shop__logo">
+      <img src="/shop/the-lava-shop.gif" alt="The Lava Shop - Est. 2024" />
+    </div>
+      
     <div class="container products__grid"> 
       {products.map((product) => (
         <a 
