@@ -225,9 +225,13 @@
     pointer-events: none; 
     z-index: -1;
 
-    opacity: .75;
-    /* filter: blur(5px) invert(1) brightness(0.75); */
+    /* opacity: .75; 
     filter: blur(1px) invert(1);
+    mix-blend-mode: overlay; */
+ 
+    opacity: .875;
+    filter: blur(10px) invert(0) saturate(0);
     mix-blend-mode: overlay;
+
   }
 </style>

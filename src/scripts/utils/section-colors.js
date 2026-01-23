@@ -12,20 +12,21 @@ export function initSectionColors(options = {}) {
   // Configuración por defecto
   const config = {
     sectionColors: {
-      '#hero': '#ef3910', //#dc2800 orange 
-      '#intro-first': '#ef3910', // #ef3910 yellow (primera sección intro)
-      '#intro-second': '#ef3910', //  #ef3910 aquaGreen (segunda sección intro)
-      '#intro-third': '#ef3910', // #ef3910 orange (tercera sección intro)
-      '#intro-fourth': '#ffa600', // #ffa600 orange (cuarta sección intro)
-      // '#about-us': {
-      //   type: 'gradient',
-      //   colors: ['#0F8896', '#C7E6D5'], // turquoise a aquaGreen
-      //   direction: 'to bottom'
-      // },
-      '#about-us': '#0F8896', // #067a89 turquoise
-      '#work': '#103B60', // #3092d8 darkBlue
-      '#shop': '#103B60', // #2A5C5C darkGreen
-      '.contact, footer': '#103B60', // #082946 dark blue del footer
+      '#hero': '#ef3910',
+      '#intro-first': '#ef3910',
+      '#intro-second': '#FCA720',
+      '#intro-third': '#FCA720',
+      '#intro-fourth': '#FCA720',
+      '#about-us': '#072444', 
+      '#work': '#072444', 
+      '#shop': '#072444', 
+      '.contact, footer': '#072444', 
+      // #EF3910
+      // #FCA720
+      // #C5ECD8
+      // #108896 
+      // #0E283E 
+      // #1C374D 
     },
     transitionDuration: 0,
     defaultColor: 'transparent',
