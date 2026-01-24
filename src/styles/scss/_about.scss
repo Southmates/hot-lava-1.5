@@ -14,14 +14,10 @@
     top: 10%; 
   }
 }
- 
 
 .about__intro { 
   min-height: 5vh;
-  padding: 0 0 0 0;
-
-  // position: sticky;
-  // top: 80px;
+  padding: 0 0 0 0; 
 }
 
 .about__team { 
@@ -127,7 +123,7 @@
   transition: all 0.3s ease; 
 
   @media (max-width: ($change-layout - 1px)) {
-    top: 75%;
+    top: 65%;
     // bottom: 2rem;
     left: -1rem;
     transform: translateX(0) translateY(0);
