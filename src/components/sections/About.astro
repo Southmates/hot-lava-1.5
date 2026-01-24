@@ -3,6 +3,7 @@
 
 interface TeamMember {
   name: string;
+  surname: string;
   image: string;
   bio: string;
 }
@@ -31,22 +32,26 @@ const defaultIntro: AboutIntro = {
 
 const defaultTeam: TeamMember[] = [
   {
-    name: 'Ben Kline',
+    name: 'Ben',
+    surname: 'Kline',
     image: '/team/ben.jpg',
     bio: "Previously CMO for Ogilvy, and CSO at Leo Burnett, Ben is an industry veteran who has made invaluable strategic contributions to a diverse portfolio of global brands.",
   },
   {
-    name: 'Nik Traxler',
+    name: 'Nik',
+    surname: 'Traxler',
     image: '/team/nik.jpg',
     bio: "Nik is an award-winning producer whose talent flexes to agency operations. With global brand and agency experience, he goes above and beyond in pursuit of excellence.",
   },
   {
-    name: 'Phil Jungmann',
+    name: 'Phil',
+    surname: 'Jungmann',
     image: '/team/phil.jpg',
     bio: "Phil's thoughtful and boundary-pushing art direction and creative leadership has resulted in impactful and award-winning work for the world's top brands, at the best agencies in Chicago and NYC.",
   },
   {
-    name: 'Kristi Neitzel',
+    name: 'Kristi',
+    surname: 'Neitzel',
     image: '/team/kristi.jpg',
     bio: "Kristi is a creative leader and writer with a client roster of Fortune 500 greats. Her ability to manage, motivate and organize agency and client-side teams that work together seamlessly is unmatched.",
   },
@@ -79,7 +84,7 @@ const {
       <div class="team"> 
         {team.map((member) => (
           <div class="team__card">  
-            <span class="team__name">{member.name}</span>
+            <h3 class="team__name">{member.name} <span class="team__surname">{member.surname}</span></h3>
             <picture>
               <img 
                 src={member.image} 
