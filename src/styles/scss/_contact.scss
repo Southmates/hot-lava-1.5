@@ -7,7 +7,11 @@
   // background-color: var(--color-shop);
 
   .container {
-    justify-content: center;
+    justify-content: center; 
+    
+    @media (max-width: ($change-layout - 1px)) {
+      gap: 10vh;
+    }
   } 
 
   .row {
@@ -81,15 +85,12 @@
 
   background: url('/images/logo-hot-lava-footer.svg') no-repeat center bottom;
   background-size: contain;
-    transform: translateY(5%);
 
-    // img { 
-    //   width: 102%;
-    //   height: 102%;
-    //   object-fit: contain;
-    //   transform: translateY(12%) translateX(-2%);
-    // }
+  @media (max-width: ($change-layout - 1px)) {
+    width: 200%;
+    transform: translateX(-5%) translateY(0%);
   }
+}
 
 
 .contact__paragraph strong {
