@@ -110,43 +110,60 @@ function handleNav() {
   };
 
   // Anchor navigation with smooth scroll
-  if (homeLink && homeEl) {
-    homeLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      lenis.scrollTo(homeEl, { offset: 0, duration: 1.2 });
-      setHomeMenu();
+  // Use querySelectorAll to get all links (desktop and mobile)
+  const homeLinks = document.querySelectorAll(".home-link");
+  const aboutLinks = document.querySelectorAll(".about-link");
+  const ourWayLinks = document.querySelectorAll(".how-we-work-link");
+  const shopLinks = document.querySelectorAll(".shop-link");
+  const contactLinks = document.querySelectorAll(".contact-link");
+
+  if (homeLinks.length > 0 && homeEl) {
+    homeLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lenis.scrollTo(homeEl, { offset: 0, duration: 1.2 });
+        setHomeMenu();
+      });
     });
   }
 
-  if (aboutLink && aboutEl) {
-    aboutLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      lenis.scrollTo(aboutEl, { offset: 0, duration: 1.2 });
-      setAboutMenu();
+  if (aboutLinks.length > 0 && aboutEl) {
+    aboutLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lenis.scrollTo(aboutEl, { offset: 0, duration: 1.2 });
+        setAboutMenu();
+      });
     });
   }
 
-  if (ourWayLink && ourWayEl) {
-    ourWayLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      lenis.scrollTo(ourWayEl, { offset: 0, duration: 1.2 });
-      setOurWayMenu();
+  if (ourWayLinks.length > 0 && ourWayEl) {
+    ourWayLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lenis.scrollTo(ourWayEl, { offset: 0, duration: 1.2 });
+        setOurWayMenu();
+      });
     });
   }
 
-  if (shopLink && shopEl) {
-    shopLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      lenis.scrollTo(shopEl, { offset: 0, duration: 1.2 });
-      setShopMenu();
+  if (shopLinks.length > 0 && shopEl) {
+    shopLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lenis.scrollTo(shopEl, { offset: 0, duration: 1.2 });
+        setShopMenu();
+      });
     });
   }
 
-  if (contactLink && contactEl) {
-    contactLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      lenis.scrollTo(contactEl, { offset: 0, duration: 1.2 });
-      setContactMenu();
+  if (contactLinks.length > 0 && contactEl) {
+    contactLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lenis.scrollTo(contactEl, { offset: 0, duration: 1.2 });
+        setContactMenu();
+      });
     });
   }
 

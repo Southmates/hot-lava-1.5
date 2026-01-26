@@ -241,7 +241,7 @@ export function initSectionColors(options = {}) {
         const displayColor = isGradient 
           ? `gradient(${newColor.colors.join(' → ')})` 
           : newColor;
-        console.log('📍 Sección en viewport:', sectionName, '| Color:', displayColor);
+        // console.log('📍 Sección en viewport:', sectionName, '| Color:', displayColor);
       }
 
       currentColor = newColor;
