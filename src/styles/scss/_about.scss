@@ -47,11 +47,24 @@
 
   &:nth-child(odd) {
     @media (min-width: $change-layout) {
+      transform: translateX(50%);
+    }
+  }
+  
+  &:nth-child(even) {
+    @media (min-width: $change-layout) {
+      transform: translateX(-25%);
+    }
+  }
+  
+  &:nth-child(odd) {
+    @media (min-width: $desktop) {
       transform: translateX(75%);
     }
   }
+
   &:nth-child(even) {
-    @media (min-width: $change-layout) {
+    @media (min-width: $desktop) {
       transform: translateX(-50%);
     }
   }
