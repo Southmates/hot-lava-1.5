@@ -116,9 +116,9 @@
   aspect-ratio: 3/2;
   
   @media (max-width: 1023px) {
-    top: 15%;
+    top: -1%;
     width: 100%;
-    aspect-ratio: 1/1;
+    // aspect-ratio: 1/1;
   }
 
   img {
@@ -138,8 +138,8 @@
 
   @media (max-width: 1023px) {
     width: 100%;
-    top: -10%;
-    aspect-ratio: 1/1;
+    top: -25%;
+    // aspect-ratio: 1/1;
   }
 
   img {
@@ -167,7 +167,7 @@
   z-index: 10;
 
   @media (max-width: ($change-layout - 1px)) {
-    bottom: 7.5%;
+    bottom: 15%;
     left: -55%;
     width: min(150vw, 1080px);
   }

@@ -15,7 +15,7 @@
 }
 
 .container { 
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   padding: 0 0;
  
@@ -24,6 +24,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  @media (min-width: $change-layout) {
+    width: 100%;
+  }
 
   p {
     max-width: 480px; 
