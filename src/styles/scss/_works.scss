@@ -1,3 +1,5 @@
+@use './vars' as *;
+
 .works {
   position: relative;
   // background: var(--color-blue);
@@ -18,10 +20,13 @@
   gap: 0rem; 
      
   min-height: 100vh;
-  max-width: 70vw;
   width: 100%;
   margin: 0 auto;
-  padding: 15vh 0; 
+  padding: 15vh 0;
+  
+  @media (min-width: $change-layout) {
+    max-width: 70vw;
+  }
 
   // Cuando hay un item con hover, los demás tienen opacidad reducida
   &:has(.work__item:hover) .work__item:not(:hover) .name {
@@ -40,9 +45,11 @@
 
 .work__item {
   display: flex;
+  flex-direction: column;
   align-content: baseline;
-  align-items: baseline;
-  gap: 1rem; 
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0rem; 
   padding: 1rem 0;
   
   position: relative;
@@ -55,11 +62,17 @@
   overflow: hidden;
   cursor: pointer; 
 
+  @media (min-width: $change-layout) {
+    flex-direction: row;
+    gap: 1rem; 
+    align-items: baseline;
+  }
+
   span {
     display: inline-block;
     width: 250px;
     font-size: 14px;
-    text-align: right;
+    // text-align: right;
     opacity: 0.5;
   }
 
@@ -78,9 +91,9 @@
       width: 100%;
       max-width: unset;
 
-      font-size: clamp(48px, 5vw, 64px);
+      font-size: clamp(32px, 5vw, 64px);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1;
       bottom: 0rem;
       left: 2rem;   
     }

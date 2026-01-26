@@ -49,9 +49,8 @@
   min-height: 75vh;
 
   @media (max-width: ($change-layout - 1px)) {
-    min-height: 65vh;
-    justify-content: flex-start;
-    
+    min-height: 95vh;
+    justify-content: flex-start;    
   }
 
   .paragraph {
@@ -63,7 +62,12 @@
 }
 
 .intro__section--first {
-   .container { 
+
+  @media (max-width: ($change-layout - 1px)) {
+    min-height: 120vh; 
+  }
+  
+  .container { 
     justify-content: flex-end; 
     margin-bottom: 33vh; 
   } 
