@@ -84,7 +84,7 @@ const {
       <div class="team"> 
         {team.map((member) => (
           <div class="team__card">  
-            <h3 class="team__name">{member.name} <span class="team__surname">{member.surname}</span></h3>
+            <h3 class={`team__name team__name--${member.name.toLowerCase()}`}>{member.name} <span class="team__surname">{member.surname}</span></h3>
             <picture>
               <img 
                 src={member.image} 
@@ -177,13 +177,22 @@ const {
     speed: -1  
   });
 
-  // initParallax('.about .paragraph', {
-  //   speed: 0.75  
-  // }); 
-  
-  initParallax('.about .logo', {
-    speed: 1  
-  });
+  initParallax('.about .logo--vertical', {
+    speed: 7  
+  });  
+
+  // initParallax('.about .team__card .team__name--ben', {
+  //   speed: -1.75  
+  // });  
+  // initParallax('.about .team__card .team__name--nik', {
+  //   speed: -1.75  
+  // });  
+  // initParallax('.about .team__card .team__name--phil', {
+  //   speed: -1.75  
+  // });  
+  // initParallax('.about .team__card .team__name--kristi', {
+  //   speed: -1.75  
+  // });  
 
   initUkiyo('.about .team__card img', {
     scale: 1.15,
