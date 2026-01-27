@@ -34,9 +34,9 @@
     overflow: hidden;
 
     @media (min-width: $change-layout) {
-      top: 50%;
+      top: 17.5%;
       bottom: unset;
-      max-width: 70vw;
+      max-width: 55vw;
       aspect-ratio: 16 / 9;
     }
 
@@ -132,7 +132,7 @@
       left: 5vw;
       width: 40vw;
       top: unset;
-      bottom: 7.5%;
+      bottom: 15.5%;
     }
 
     img, svg {

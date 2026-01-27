@@ -26,7 +26,8 @@
   align-items: flex-start;
 
   @media (min-width: $change-layout) {
-    width: 100%;
+    width: 85%;
+    max-width: 1400px;
   }
 
   p {
