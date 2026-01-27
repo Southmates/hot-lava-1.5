@@ -92,14 +92,6 @@ export function initSplitText(element, options = {}) {
             duration: 0.8,
             stagger: options.stagger !== undefined ? options.stagger : 0.05,
             ease: "power2.out",
-            // onComplete: () => {
-            //   setTimeout(() => {
-            //     // Reemplazar el elemento completo con el clon original
-            //     element.parentNode.replaceChild(originalElement, element);
-            //     // Disconnect observer after animation
-            //     observer.disconnect();
-            //   }, options.delay || 1000);
-            // },
           });
         }
       });
