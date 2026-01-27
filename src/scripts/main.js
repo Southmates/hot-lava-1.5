@@ -222,7 +222,7 @@ function handleHeaderVisibility() {
   ScrollTrigger.create({
     trigger: hero,
     start: "top top",
-    end: "bottom top",
+    end: "bottom 33%",
     onLeave: () => {
       header.classList.add("is-active");
     },
