@@ -14,6 +14,56 @@
   import { waitForCriticalImages } from '../scripts/utils/images-ready.js';
   import gsap from 'gsap';
 
+  // Check if critical images are already cached/loaded
+  function areImagesCached(): boolean {
+    const criticalImages = document.querySelectorAll('img[data-critical="true"]');
+    
+    if (criticalImages.length === 0) {
+      return true; // No critical images, consider as cached
+    }
+    
+    // Check if all images are already loaded
+    for (const img of Array.from(criticalImages)) {
+      const htmlImg = img as HTMLImageElement;
+      if (!htmlImg.complete || htmlImg.naturalHeight === 0) {
+        return false; // At least one image is not cached
+      }
+    }
+    
+    return true; // All images are cached
+  }
+
+  // Skip loader if images are cached
+  function skipLoaderIfCached(): boolean {
+    const loader = document.getElementById('loader');
+    if (!loader) return false;
+
+    // Check if images are cached
+    if (!areImagesCached()) {
+      return false; // Images not cached, show loader
+    }
+
+    // Images are cached, skip loader immediately
+    loader.style.display = 'none';
+    loader.remove();
+    
+    // Dispatch necessary events with a delay to ensure Hero component is ready
+    (window as any).fontsReadyDispatched = true;
+    
+    // Wait a bit to ensure Hero component has registered its listener
+    // Use a longer delay to ensure all components are initialized
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('fontsReady'));
+      window.dispatchEvent(new CustomEvent('assetsReady'));
+      // Dispatch loaderComplete after a small additional delay to ensure Hero is ready
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('loaderComplete'));
+      }, 50);
+    }, 150);
+    
+    return true; // Loader was skipped
+  }
+
   // Wait for fonts and critical images to load before removing loader
   async function initLoader() {
     const loader = document.getElementById('loader');
@@ -142,12 +192,18 @@
   // Initialize loader when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      initLoaderImageRotation();
-      initLoader();
+      // Check if we can skip the loader (images cached)
+      if (!skipLoaderIfCached()) {
+        initLoaderImageRotation();
+        initLoader();
+      }
     });
   } else {
-    initLoaderImageRotation();
-    initLoader();
+    // Check if we can skip the loader (images cached)
+    if (!skipLoaderIfCached()) {
+      initLoaderImageRotation();
+      initLoader();
+    }
   }
 </script>
  

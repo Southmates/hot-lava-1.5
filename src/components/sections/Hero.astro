@@ -149,14 +149,28 @@ const logoSvg = {
     initHeroTimeline();
   });
 
-  // Fallback: if loader already completed
-  if (document.readyState === 'complete') {
+  // Fallback: if loader already completed or was skipped
+  function checkLoaderStatus() {
+    const loader = document.getElementById('loader');
+    if (!loader || loader.classList.contains('loader--hidden') || loader.style.display === 'none') {
+      initHeroTimeline();
+      return true;
+    }
+    return false;
+  }
+
+  // Check immediately if DOM is ready
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
     setTimeout(() => {
-      const loader = document.getElementById('loader');
-      if (!loader || loader.classList.contains('loader--hidden')) {
-        initHeroTimeline();
-      }
-    }, 100);
+      checkLoaderStatus();
+    }, 150);
+  } else {
+    // Also check when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        checkLoaderStatus();
+      }, 150);
+    });
   }
 
   // Animación de rotación continua para el asterisco
