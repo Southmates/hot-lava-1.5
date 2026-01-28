@@ -8,53 +8,6 @@
     <path d="M31.2817 13.5478L42.1955 8.50565L48 22.3584L36.8776 27.2609L44.8023 37.2579L33.1586 46.6093L24 35.0247L14.8414 46.6093L3.30195 37.3625L11.4352 27.3656L0 22.3584L6.11729 8.50565L16.701 13.3384L16.5967 0.829102H31.386L31.2817 13.5478Z" stroke="#fff" stroke-width="1" fill="none" vector-effect="non-scaling-stroke"/>
   </svg>
   
-  <div class="count-wrapper">
-    <div class="count">
-      <div class="digit">
-        <h1>9</h1>
-      </div>
-      <div class="digit">
-        <h1>8</h1>
-      </div>
-      <div class="digit">
-        <h1>7</h1>
-      </div>
-      <div class="digit">
-        <h1>4</h1>
-      </div>
-      <div class="digit">
-        <h1>2</h1>
-      </div>
-      <div class="digit">
-        <h1>0</h1>
-      </div>
-    </div>
-  </div>
-
-  <div class="count-wrapper">
-    <div class="count">
-      <div class="digit">
-        <h1>9</h1>
-      </div>
-      <div class="digit">
-        <h1>5</h1>
-      </div>
-      <div class="digit">
-        <h1>9</h1>
-      </div>
-      <div class="digit">
-        <h1>7</h1>
-      </div>
-      <div class="digit">
-        <h1>4</h1>
-      </div>
-      <div class="digit">
-        <h1>0</h1>
-      </div>
-    </div>
-  </div>
-
-  
 </div>
 
 <script>
@@ -67,7 +20,7 @@
     if (!loader) return;
 
     const startTime = Date.now();
-    const minDisplayTime = 1500; // 1.5 segundos mínimo total
+    const minDisplayTime = 900; // 1.5 segundos mínimo total
 
     try {
       // Wait for fonts
@@ -110,97 +63,32 @@
       // Get loader image
       const loaderImage = document.querySelector('.loader__image') as HTMLElement;
       
-      // Start the countdown animation
-      const countElements = document.querySelectorAll(".count");
-      const wrapperElements = document.querySelectorAll(".count-wrapper");
+      // Mark that assets are ready and dispatch custom events
+      (window as any).fontsReadyDispatched = true;
+      window.dispatchEvent(new CustomEvent('fontsReady'));
+      window.dispatchEvent(new CustomEvent('assetsReady'));
       
-      if (countElements.length === 0 || wrapperElements.length === 0) {
-        console.warn('Loader: Count elements not found');
-        // Fallback: animate loader exit
-        if (loaderImage) {
-          gsap.to(loaderImage, {
-            y: '-100vh',
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.inOut',
-          });
-        }
-        gsap.to(loader, {
-          clipPath: 'inset(0 0 100% 0)',
-          duration: 1,
+      // Animate image exit (up and out, no scale)
+      if (loaderImage) {
+        gsap.to(loaderImage, {
+          y: '-100vh',
+          opacity: 0,
+          duration: .3,
           ease: 'power3.inOut',
-          onComplete: () => {
-            window.dispatchEvent(new CustomEvent('loaderComplete'));
-            loader.remove();
-          }
         });
-        return;
       }
-
-      const windowWidth = window.innerWidth;
-      const wrapperWidth = 180;
-      const finalPosition = windowWidth - wrapperWidth;
-      const stepDistance = finalPosition / 6;
       
-      let animationCompleted = false;
-      
-      const tl = gsap.timeline({
-        delay: 0.5,
-        repeat: 0, // No repeat
+      // Animate loader exit as curtain going up
+      gsap.to(loader, {
+        clipPath: 'inset(0 0 100% 0)', // Reveal from bottom (curtain going up)
+        duration: .75,
+        ease: 'power3.inOut',
         onComplete: () => {
-          if (animationCompleted) return; // Prevent multiple calls
-          animationCompleted = true;
-          
-          // Mark that assets are ready and dispatch custom events
-          (window as any).fontsReadyDispatched = true;
-          window.dispatchEvent(new CustomEvent('fontsReady'));
-          window.dispatchEvent(new CustomEvent('assetsReady'));
-          
-          // Animate image exit (up and out, no scale)
-          if (loaderImage) {
-            gsap.to(loaderImage, {
-              y: '-100vh',
-              opacity: 0,
-              duration: 1,
-              ease: 'power3.inOut',
-            });
-          }
-          
-          // Animate loader exit as curtain going up
-          gsap.to(loader, {
-            clipPath: 'inset(0 0 100% 0)', // Reveal from bottom (curtain going up)
-            duration: 1,
-            ease: 'power3.inOut',
-            onComplete: () => {
-              // Dispatch event when loader animation completes
-              window.dispatchEvent(new CustomEvent('loaderComplete'));
-              loader.remove();
-            }
-          });
+          // Dispatch event when loader animation completes
+          window.dispatchEvent(new CustomEvent('loaderComplete'));
+          loader.remove();
         }
       });
-
-      tl.to(".count", {
-        x: -900,
-        duration: 0.85,
-        ease: "power4.inOut",
-      });
-
-      for (let i = 1; i <= 6; i++) {
-        const xPosition = -900 + i * 180;
-        tl.to(".count", {
-          x: xPosition,
-          duration: 0.85,
-          ease: "power4.inOut",
-        });
-        
-        // Animate wrapper at the same time
-        tl.to(".count-wrapper", {
-          x: stepDistance * i,
-          duration: 0.85,
-          ease: "power4.inOut",
-        }, "<"); // Start at the same time as previous animation
-      }
       
     } catch (error) {
       console.warn('Asset loading error:', error);
@@ -219,7 +107,7 @@
           gsap.to(loaderImage, {
             y: '-100vh',
             opacity: 0,
-            duration: 1,
+            duration: .4,
             ease: 'power3.inOut',
           });
         }
@@ -279,41 +167,6 @@
   clip-path: inset(0 0 0 0); /* Initial state - fully visible */
   will-change: clip-path;
   z-index: 9999;
-}
-
-.count-wrapper {
-  position: relative;
-  width: 180px;
-  height: 360px;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  will-change: transform;
-}
-
-.count {
-  position: relative;
-  width: 1080px;
-  height: 360px;
-  display: flex;
-  justify-content: space-between;
-  transform: translateX(-1080px);
-  will-change: transform;
-}
-
-.digit {
-  position: relative;
-  width: 180px;
-  height: 360px;
-}
-
-.digit h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: max-content;
-  font-size: 300px;
-  font-weight: 700;
-  line-height: 1;
 }
 
 .loader__image {
