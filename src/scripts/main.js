@@ -202,9 +202,11 @@ function handleModal() {
 
       const nameElement = workItem.querySelector('.name p');
       const workName = nameElement?.textContent || '';
+      const brandElement = workItem.querySelector('.brand');
+      const workBrand = brandElement?.textContent || '';
       const targetSlide = workItem.dataset.slide;
 
-      modal.open(videoUrl, workName, targetSlide);
+      modal.open(videoUrl, workName, workBrand, targetSlide);
     });
   });
 }

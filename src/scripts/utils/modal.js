@@ -6,11 +6,23 @@ export function createModal(lenis) {
   const modalSliders = document.querySelectorAll(".work__slider");
   const closeModalBtn = document.querySelector(".js-close");
   const videoTitle = document.getElementById("work-video-title");
+  const videoBrand = document.getElementById("work-video-brand");
   
   let videoPlayer = null;
 
-  function open(videoUrl, workName, targetSlide) {
+  function open(videoUrl, workName, workBrand, targetSlide) {
     if (!modalTarget) return;
+
+    // Set brand
+    if (videoBrand) {
+      if (workBrand) {
+        videoBrand.textContent = workBrand;
+        videoBrand.style.display = 'block';
+      } else {
+        videoBrand.textContent = '';
+        videoBrand.style.display = 'none';
+      }
+    }
 
     // Set title
     if (videoTitle && workName) {

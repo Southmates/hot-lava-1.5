@@ -127,6 +127,27 @@
   padding: 2rem;
 }
 
+.vimeo-player__header {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.875rem;
+}
+
+.vimeo-player__brand {
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.0125em;
+  color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  
+  &:empty {
+    display: none;
+  }
+}
+
 .vimeo-player__title {
   font-family: $main-font-title;
   font-size: clamp(32px, 5vw, 48px);
@@ -137,6 +158,10 @@
   transition: opacity 0.3s ease; 
   pointer-events: none; 
   letter-spacing: -.02em;
+}
+
+.modal.vimeo-player--playing .vimeo-player__header {
+  opacity: 0;
 }
 
 .modal.vimeo-player--playing .vimeo-player__title {
