@@ -121,65 +121,95 @@ const {
 
   // Wait for fonts and critical images to be ready before initializing SplitText
   waitForAssets(() => {
-    // Initialize SplitText for title (words)
-    const title = document.querySelector('.about h3.title') as HTMLElement;
-    if (title) {
-      initSplitText(title, { type: 'character', stagger: 0.02 });
-    }
+    // Additional check to ensure fonts are fully loaded before creating SplitText
+    const initWhenFontsReady = () => {
+      // Small delay to ensure fonts are fully rendered
+      setTimeout(() => {
+        // Initialize SplitText for title (words)
+        const title = document.querySelector('.about h3.title') as HTMLElement;
+        if (title) {
+          initSplitText(title, { type: 'character', stagger: 0.02 });
+        }
 
-    // Initialize SplitText for bios with hover animation
-    const bios = document.querySelectorAll('.about .team__bio') as NodeListOf<HTMLElement>;
-    bios.forEach((bio) => {
-      const split = new SplitText(bio, {
-        type: 'lines',
-        linesClass: 'line',
-      });
+        // Initialize SplitText for bios with hover animation
+        const bios = document.querySelectorAll('.about .team__bio') as NodeListOf<HTMLElement>;
+        bios.forEach((bio) => {
+          const split = new SplitText(bio, {
+            type: 'lines',
+            linesClass: 'line',
+          });
 
-      const lines = split.lines;
+          const lines = split.lines;
 
-      // Set initial state
-      gsap.set(lines, {
-        opacity: 0,
-        y: 50,
-      });
+          // Set initial state
+          gsap.set(lines, {
+            opacity: 0,
+            y: 50,
+          });
 
-      // Get the parent card
-      const card = bio.closest('.team__card') as HTMLElement;
-      if (!card) return;
+          // Get the parent card
+          const card = bio.closest('.team__card') as HTMLElement;
+          if (!card) return;
 
-      // Store split data on the card for cleanup
-      (card as any).__splitData = { split, lines };
+          // Store split data on the card for cleanup
+          (card as any).__splitData = { split, lines };
 
-      // Animate on hover
-      card.addEventListener('mouseenter', () => {
-        gsap.to(lines, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.05,
-          ease: 'power2.out',
+          // Animate on hover
+          card.addEventListener('mouseenter', () => {
+            gsap.to(lines, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.05,
+              ease: 'power2.out',
+            });
+          });
+
+          // Reverse on mouse leave
+          card.addEventListener('mouseleave', () => {
+            gsap.to(lines, {
+              opacity: 0,
+              y: 50,
+              duration: 0.5,
+              stagger: 0.03,
+              ease: 'power2.in',
+            });
+          });
         });
-      });
 
-      // Reverse on mouse leave
-      card.addEventListener('mouseleave', () => {
-        gsap.to(lines, {
-          opacity: 0,
+        // Initialize fade-in for team cards
+        initFadeIn('.team__card', {
+          start: '50%',
+          duration: 2.4,
           y: 50,
-          duration: 0.5,
-          stagger: 0.03,
-          ease: 'power2.in',
+          ease: 'power4.out',
         });
-      });
-    });
+      }, 100);
+    };
 
-    // Initialize fade-in for team cards
-    initFadeIn('.team__card', {
-      start: '50%',
-      duration: 2.4,
-      y: 50,
-      ease: 'power4.out',
-    });
+    // Check if fonts are already ready
+    if ((window as any).fontsReadyDispatched) {
+      initWhenFontsReady();
+    } else {
+      // Wait for fontsReady event
+      const handleFontsReady = () => {
+        initWhenFontsReady();
+      };
+      
+      window.addEventListener('fontsReady', handleFontsReady, { once: true });
+      
+      // Fallback: check if fonts are already loaded
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          setTimeout(() => {
+            if (!(window as any).fontsReadyDispatched) {
+              window.removeEventListener('fontsReady', handleFontsReady);
+              initWhenFontsReady();
+            }
+          }, 100);
+        });
+      }
+    }
   });
 
   initParallax('.about h3.title', {
