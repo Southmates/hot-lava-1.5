@@ -24,8 +24,9 @@
   height: 100%;
   border-radius: 50%;
   // border: 1px solid #fff;
-  background: rgba(255, 255, 255, .95);
-  background: rgba(236, 83, 44, .9);
+  // background: rgba(236, 83, 44, .9);
+  background-color: rgba(255, 255, 255, .2);
+  // background-color: rgba(0, 0, 0, .5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,8 +37,8 @@
   font-family: var(--font-title);
   font-size: 12px;
   font-weight: 800;
-  color: $color-darkBlue;
-  color: $color-orange;
+  // color: $color-darkBlue;
+  // color: $color-orange;
   color: #fff;
 // filter: invert(1);
   text-transform: uppercase;
