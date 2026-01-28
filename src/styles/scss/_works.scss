@@ -123,9 +123,12 @@
         left: 0;
         height: 2px;
         width: 0;
-        background-color: #fff;
         transform-origin: left;
         // opacity: 1;
+
+        @media (min-width: 1440px) {
+          background-color: #fff;
+        }
       }
     }
   }
