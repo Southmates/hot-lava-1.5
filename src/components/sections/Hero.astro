@@ -3,7 +3,7 @@
 
 const videoConfig = {
   source: {
-    src: "/hero/010727471-volcanic-eruption.mp4",
+    src: "/hero/hero-loop.mp4",
     type: "video/mp4",
   },
   settings: {
@@ -30,8 +30,7 @@ const logoSvg = {
 ---
 
 <a id="home"></a>
-<section id="hero" class="hero">
-  <div class="wrapper"></div>
+<section id="hero" class="hero"> 
 
   <div class="hero-content">
     <div class="logo">
@@ -196,9 +195,9 @@ const logoSvg = {
   }
 
   // Parallax para el logo
-  initParallax('.hero .logo', {
-    speed: -1  // Se mueve más lento que el scroll
-  });
+  // initParallax('.hero .logo', {
+  //   speed: -1  // Se mueve más lento que el scroll
+  // });
 
   // Parallax para el video
   initParallax('.hero .video', {
