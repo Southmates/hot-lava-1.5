@@ -140,8 +140,14 @@ export function createVideoPlayer() {
     videoDuration = 0;
     
     if (videoIframe) {
-      videoIframe.src = '';
+      // Remove onload handler first to prevent postMessage errors
       videoIframe.onload = null;
+      // Clear src after a small delay to allow any pending messages to complete
+      setTimeout(() => {
+        if (videoIframe) {
+          videoIframe.src = '';
+        }
+      }, 50);
     }
     
     // Reset UI state
@@ -187,8 +193,21 @@ export function createVideoPlayer() {
     const embedUrl = getVimeoEmbedUrl(videoUrl);
     if (!embedUrl || !videoIframe) return false;
     
-    // Stop and reset current player
-    stop();
+    // Clean up existing player
+    if (vimeoPlayer) {
+      try {
+        vimeoPlayer.off('play');
+        vimeoPlayer.off('pause');
+        vimeoPlayer.off('ended');
+        vimeoPlayer.pause().catch(() => {});
+      } catch (e) {
+        // Ignore errors
+      }
+      vimeoPlayer = null;
+    }
+    
+    clearProgressInterval();
+    videoDuration = 0;
     
     // Reset UI state
     modalTarget?.classList.remove('vimeo-player--playing');
@@ -196,25 +215,34 @@ export function createVideoPlayer() {
     if (progressBar) progressBar.style.width = '0%';
     if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
     
-    // Set up load handler
-    const handleLoad = () => {
-      // Wait a bit for Vimeo API to be ready
-      setTimeout(() => {
-        init();
-      }, 100);
-    };
+    // Remove old onload handler
+    videoIframe.onload = null;
     
-    videoIframe.onload = handleLoad;
+    // Clear iframe src first
+    videoIframe.src = '';
     
-    // Set iframe src - this will trigger load
-    videoIframe.src = embedUrl;
-    
-    // Fallback initialization if onload doesn't fire
+    // Wait a moment before setting new src to ensure iframe is cleared
     setTimeout(() => {
-      if (!vimeoPlayer && videoIframe.src === embedUrl) {
-        init();
-      }
-    }, 500);
+      // Set up load handler
+      const handleLoad = () => {
+        // Wait a bit for Vimeo API to be ready
+        setTimeout(() => {
+          init();
+        }, 100);
+      };
+      
+      videoIframe.onload = handleLoad;
+      
+      // Set iframe src - this will trigger load
+      videoIframe.src = embedUrl;
+      
+      // Fallback initialization if onload doesn't fire
+      setTimeout(() => {
+        if (!vimeoPlayer && videoIframe.src === embedUrl) {
+          init();
+        }
+      }, 500);
+    }, 100);
     
     return true;
   }
