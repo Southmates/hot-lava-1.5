@@ -31,12 +31,14 @@
     top: 10%;
     right: 0; 
     
-    width: 55vw; 
+    width: 85vw; 
     height: auto;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 
     @media (min-width: $change-layout) { 
+      top: 0;
+      width: 55vw; 
       aspect-ratio: 16 / 9;
     } 
 
@@ -119,17 +121,20 @@
 
   .logo { 
     position: absolute;
-    bottom: 10%;
-    width: calc(40vw + 50px);
+    bottom: 16%;
+    width: 80%;
     left: 5vw;
     z-index: 10;  
 
-    // @media (min-width: $change-layout) {
-    //   left: 7vw;
-    //   width: 40vw;
-    //   top: unset;
-    //   bottom: 15.5%;
-    // }
+    @media (min-width: 390px) {
+      bottom: 30%;
+    }
+
+    @media (min-width: $change-layout) {
+      bottom: 10%;
+      width: calc(40vw + 50px);
+      left: 5vw;
+    }
 
     img, svg {
       width: 100%;

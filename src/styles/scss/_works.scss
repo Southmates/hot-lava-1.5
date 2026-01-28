@@ -97,8 +97,11 @@
     width: 100%;
     height: 100%;
     z-index: 2; 
-    opacity: 0.5;
-    transition: opacity .35s ease;
+
+    @media (min-width: $change-layout) {
+      opacity: 0.5;
+      transition: opacity .35s ease;
+    }
 
     p { 
       position: relative;
@@ -109,7 +112,10 @@
       font-weight: 900;
       line-height: 1;
       bottom: 0rem;
-      left: 2rem;
+
+      @media (min-width: $change-layout) {
+        left: 2rem;
+      }
 
       .underline {
         position: absolute;
