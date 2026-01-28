@@ -158,24 +158,142 @@ function handleNav() {
     });
   }
 
-  // Mobile navigation toggle
+  // Mobile navigation toggle with animations
   let mobileNavOpen = false;
+  
+  // Custom ease for smooth Awwwards-style animation
+  const customEase = "power4.inOut";
+  
+  // Initialize menu items state when menu is hidden
+  function initializeMenuState() {
+    const navLinks = mobileNav.querySelectorAll(".nav ul li a");
+    const contactText = mobileNav.querySelector(".contact p");
+    const contactEmail = mobileNav.querySelector(".contact a");
+    
+    gsap.set([navLinks], {
+      opacity: 0,
+      y: 100,
+    });
+    gsap.set([contactText, contactEmail], {
+      opacity: 0,
+      y: 60,
+    });
+  }
+  
+  // Animate mobile menu items in
+  function animateMenuIn() {
+    const navLinks = mobileNav.querySelectorAll(".nav ul li a");
+    const contactText = mobileNav.querySelector(".contact p");
+    const contactEmail = mobileNav.querySelector(".contact a");
+    
+    // Animate nav links with stagger - smoother timing
+    if (navLinks.length > 0) {
+      gsap.to(navLinks, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: {
+          amount: 0.2,
+          from: "start"
+        },
+        ease: customEase,
+      });
+    }
+    
+    // Animate contact text - smoother delay
+    if (contactText) {
+      gsap.to(contactText, {
+        opacity: 0.5,
+        y: 0,
+        duration: 1,
+        delay: 1,
+        ease: customEase,
+      });
+    }
+    
+    // Animate email - smoother delay
+    if (contactEmail) {
+      gsap.to(contactEmail, {
+        opacity: 1,
+        y: 0,
+        duration: 1.4,
+        delay: 1,
+        ease: customEase,
+      });
+    }
+  }
+  
+  // Animate mobile menu items out
+  function animateMenuOut() {
+    const navLinks = mobileNav.querySelectorAll(".nav ul li a");
+    const contactText = mobileNav.querySelector(".contact p");
+    const contactEmail = mobileNav.querySelector(".contact a");
+    
+    // Animate out (reverse order) - smoother
+    const tl = gsap.timeline({
+      onComplete: () => {
+        mobileNav.classList.add("hidden");
+        initializeMenuState();
+      }
+    });
+    
+    if (contactEmail) {
+      tl.to(contactEmail, {
+        opacity: 0,
+        y: -60,
+        duration: 0.4,
+        ease: "power4.inOut",
+      });
+    }
+    
+    if (contactText) {
+      tl.to(contactText, {
+        opacity: 0,
+        y: -60,
+        duration: 0.6,
+        ease: "power4.inOut",
+      }, "-=0.4");
+    }
+    
+    if (navLinks.length > 0) {
+      tl.to(navLinks, {
+        opacity: 0,
+        y: -100,
+        duration: 0.4,
+        stagger: {
+          amount: 0.2,
+          from: "end"
+        },
+        ease: "power4.inOut",
+      }, "-=1.5");
+    }
+  }
+  
+  // Initialize menu state on load
+  if (mobileNav) {
+    initializeMenuState();
+  }
 
   if (mobileNavBtn) {
     mobileNavBtn.addEventListener("click", () => {
       if (mobileNavOpen) {
-        mobileNav.classList.add("hidden");
+        animateMenuOut();
         mobileNavOpen = false;
       } else {
         mobileNav.classList.remove("hidden");
         mobileNavOpen = true;
+        animateMenuIn();
+        // Small delay to ensure menu is visible before animating
+        // setTimeout(() => {
+        //   animateMenuIn();
+        // }, 10);
       }
     });
   }
 
   if (mobileNavBtnClose) {
     mobileNavBtnClose.addEventListener("click", () => {
-      mobileNav.classList.add("hidden");
+      animateMenuOut();
       mobileNavOpen = false;
     });
   }
