@@ -108,6 +108,11 @@
 
   &:hover {
 
+    .team__name {
+      color: $color-orange;
+      opacity: 1 !important;
+    }
+
     picture {
       transform: scale(1.1);
     }
