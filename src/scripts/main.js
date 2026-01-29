@@ -61,13 +61,23 @@ function handleNav() {
   const mobileNavBtnClose = document.querySelector(".close");
   const mobileNav = document.querySelector(".mobile");
 
+  function closeMobileMenu() {
+    if (!mobileNav) return;
+    // If the menu is open, close it with the GSAP out animation
+    if (!mobileNav.classList.contains("hidden")) {
+      animateMenuOut();
+    } else {
+      mobileNav.classList.add("hidden");
+    }
+    mobileNavOpen = false;
+  }
+
   const setHomeMenu = () => {
     shopLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
     contactLinks.forEach(link => link.classList.remove("active"));
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
+    closeMobileMenu();
   };
 
   const setAboutMenu = () => {
@@ -75,8 +85,7 @@ function handleNav() {
     aboutLinks.forEach(link => link.classList.add("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
     contactLinks.forEach(link => link.classList.remove("active"));
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
+    closeMobileMenu();
   };
 
   const setOurWayMenu = () => {
@@ -84,8 +93,7 @@ function handleNav() {
     aboutLinks.forEach(link => link.classList.remove("active"));
     ourWayLinks.forEach(link => link.classList.add("active"));
     contactLinks.forEach(link => link.classList.remove("active"));
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
+    closeMobileMenu();
   };
 
   const setShopMenu = () => {
@@ -93,8 +101,7 @@ function handleNav() {
     ourWayLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
     contactLinks.forEach(link => link.classList.remove("active"));
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
+    closeMobileMenu();
   };
 
   const setContactMenu = () => {
@@ -102,8 +109,7 @@ function handleNav() {
     contactLinks.forEach(link => link.classList.add("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
-    mobileNav.classList.add("hidden");
-    mobileNavOpen = false;
+    closeMobileMenu();
   };
 
   // Anchor navigation with smooth scroll
