@@ -124,4 +124,85 @@ const contactInfo = {
       }
     );
   }
+
+  // Desktop menu hover: split text per letter inside a mask
+  function initDesktopMenuHover() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(".menu .desktop a");
+    if (!links.length) return;
+
+    const createChars = (text: string, className: string) => {
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        const span = document.createElement("span");
+        span.className = className;
+        if (ch === " ") {
+          span.innerHTML = "&nbsp;";
+          span.classList.add("is-space");
+        } else {
+          span.textContent = ch;
+        }
+        frag.appendChild(span);
+      }
+      return frag;
+    };
+
+    links.forEach((link) => {
+      const el = link as HTMLAnchorElement;
+      if (el.dataset.splitHover === "true") return;
+
+      const rawText = (el.textContent || "").trim();
+      if (!rawText) return;
+
+      el.dataset.splitHover = "true";
+      el.setAttribute("aria-label", rawText);
+
+      // Build structure
+      const wrap = document.createElement("span");
+      wrap.className = "nav-hover";
+
+      const mask = document.createElement("span");
+      mask.className = "nav-hover__mask";
+
+      const top = document.createElement("span");
+      top.className = "nav-hover__row nav-hover__row--top";
+      top.appendChild(createChars(rawText, "nav-hover__char nav-hover__char--top"));
+
+      const bottom = document.createElement("span");
+      bottom.className = "nav-hover__row nav-hover__row--bottom";
+      bottom.appendChild(createChars(rawText, "nav-hover__char nav-hover__char--bottom"));
+
+      mask.appendChild(top);
+      mask.appendChild(bottom);
+      wrap.appendChild(mask);
+
+      // Replace link contents
+      el.textContent = "";
+      el.appendChild(wrap);
+
+      const topChars = el.querySelectorAll(".nav-hover__char--top");
+      const bottomChars = el.querySelectorAll(".nav-hover__char--bottom");
+
+      // Initial positions: bottom is below the mask
+      gsap.set(bottomChars, { yPercent: 150 });
+      gsap.set(topChars, { yPercent: 0 });
+
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.8, ease: "power4.out" },
+      });
+
+      tl.to(topChars, { yPercent: -150, stagger: 0.04 }, 0);
+      tl.to(bottomChars, { yPercent: 0, stagger: 0.04 }, 0);
+
+      el.addEventListener("pointerenter", () => tl.play());
+      el.addEventListener("pointerleave", () => tl.reverse());
+    });
+  }
+
+  // Init once DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDesktopMenuHover);
+  } else {
+    initDesktopMenuHover();
+  }
 </script>

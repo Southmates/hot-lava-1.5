@@ -61,6 +61,13 @@ function handleNav() {
   const mobileNavBtnClose = document.querySelector(".close");
   const mobileNav = document.querySelector(".mobile");
 
+  // While Lenis is doing a programmatic scroll, keep the clicked item active
+  // to avoid flicker when ScrollTrigger enters/leaves boundaries mid-scroll.
+  function lockActiveMenu(id, durationMs = 1500) {
+    window.__menuActiveLockId = id;
+    window.__menuActiveLockUntil = Date.now() + durationMs;
+  }
+
   function closeMobileMenu() {
     if (!mobileNav) return;
     // If the menu is open, close it with the GSAP out animation
@@ -73,6 +80,7 @@ function handleNav() {
   }
 
   const setHomeMenu = () => {
+    homeLinks.forEach(link => link.classList.add("active"));
     shopLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
@@ -81,6 +89,7 @@ function handleNav() {
   };
 
   const setAboutMenu = () => {
+    homeLinks.forEach(link => link.classList.remove("active"));
     shopLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.add("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
@@ -89,6 +98,7 @@ function handleNav() {
   };
 
   const setOurWayMenu = () => {
+    homeLinks.forEach(link => link.classList.remove("active"));
     shopLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
     ourWayLinks.forEach(link => link.classList.add("active"));
@@ -97,6 +107,7 @@ function handleNav() {
   };
 
   const setShopMenu = () => {
+    homeLinks.forEach(link => link.classList.remove("active"));
     shopLinks.forEach(link => link.classList.add("active"));
     ourWayLinks.forEach(link => link.classList.remove("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
@@ -105,6 +116,7 @@ function handleNav() {
   };
 
   const setContactMenu = () => {
+    homeLinks.forEach(link => link.classList.remove("active"));
     shopLinks.forEach(link => link.classList.remove("active"));
     contactLinks.forEach(link => link.classList.add("active"));
     aboutLinks.forEach(link => link.classList.remove("active"));
@@ -118,6 +130,7 @@ function handleNav() {
     homeLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        lockActiveMenu("home", 1600);
         lenis.scrollTo(homeEl, { offset: 0, duration: 1.2 });
         setHomeMenu();
       });
@@ -128,6 +141,7 @@ function handleNav() {
     aboutLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        lockActiveMenu("about", 1600);
         lenis.scrollTo(aboutEl, { offset: 0, duration: 1.2 });
         setAboutMenu();
       });
@@ -138,6 +152,7 @@ function handleNav() {
     ourWayLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        lockActiveMenu("work", 1600);
         lenis.scrollTo(ourWayEl, { offset: 0, duration: 1.2 });
         setOurWayMenu();
       });
@@ -148,6 +163,7 @@ function handleNav() {
     shopLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        lockActiveMenu("shop", 1600);
         lenis.scrollTo(shopEl, { offset: 0, duration: 1.2 });
         setShopMenu();
       });
@@ -158,6 +174,7 @@ function handleNav() {
     contactLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        lockActiveMenu("contact", 1600);
         lenis.scrollTo(contactEl, { offset: 0, duration: 1.2 });
         setContactMenu();
       });
@@ -357,11 +374,11 @@ function handleHeaderVisibility() {
 
 // Update active menu state based on scroll position
 function handleActiveMenuState() {
-  const homeLink = document.querySelector(".home-link");
-  const aboutLink = document.querySelector(".about-link");
-  const ourWayLink = document.querySelector(".how-we-work-link");
-  const shopLink = document.querySelector(".shop-link");
-  const contactLink = document.querySelector(".contact-link");
+  const homeLinkGroup = document.querySelectorAll(".home-link");
+  const aboutLinkGroup = document.querySelectorAll(".about-link");
+  const ourWayLinkGroup = document.querySelectorAll(".how-we-work-link");
+  const shopLinkGroup = document.querySelectorAll(".shop-link");
+  const contactLinkGroup = document.querySelectorAll(".contact-link");
 
   const homeEl = document.querySelector("#home");
   const aboutEl = document.querySelector("#about-us");
@@ -369,118 +386,72 @@ function handleActiveMenuState() {
   const shopEl = document.querySelector("#shop");
   const contactEl = document.querySelector("#contact");
 
-  if (!homeLink || !aboutLink || !ourWayLink || !shopLink || !contactLink) return;
-
-  const links = [
-    { link: homeLink, element: homeEl, id: 'home' },
-    { link: aboutLink, element: aboutEl, id: 'about' },
-    { link: ourWayLink, element: ourWayEl, id: 'work' },
-    { link: shopLink, element: shopEl, id: 'shop' },
-    { link: contactLink, element: contactEl, id: 'contact' },
+  const sections = [
+    { links: homeLinkGroup, element: homeEl, id: 'home' },
+    { links: aboutLinkGroup, element: aboutEl, id: 'about' },
+    { links: ourWayLinkGroup, element: ourWayEl, id: 'work' },
+    { links: shopLinkGroup, element: shopEl, id: 'shop' },
+    { links: contactLinkGroup, element: contactEl, id: 'contact' },
   ].filter(item => item.element); // Filtrar elementos que no existen
 
+  if (!sections.length) return;
+
   // Función para actualizar el estado activo
-  const updateActiveState = (activeId) => {
-    links.forEach(({ link, id }) => {
-      if (id === activeId) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
-      }
+  const setActive = (activeId) => {
+    // Respect temporary lock during programmatic scrollTo
+    const lockUntil = window.__menuActiveLockUntil || 0;
+    const lockId = window.__menuActiveLockId || null;
+    if (Date.now() < lockUntil && lockId && activeId !== lockId) {
+      return;
+    }
+
+    sections.forEach(({ links: linkNodes, id }) => {
+      linkNodes.forEach((lnk) => {
+        if (id === activeId) {
+          lnk.classList.add("active");
+        } else {
+          lnk.classList.remove("active");
+        }
+      });
     });
   };
 
-  // Crear ScrollTriggers para cada sección
-  links.forEach(({ element, id }) => {
-    if (!element) return;
+  // Compute closest section to viewport center (robust for all sections, including Shop)
+  const getClosestSectionId = () => {
+    const viewportCenter = window.innerHeight / 2;
+    let closestId = null;
+    let closestDistance = Infinity;
 
-    ScrollTrigger.create({
-      trigger: element,
-      start: "top 60%",
-      end: "bottom 40%",
-      onEnter: () => updateActiveState(id),
-      onEnterBack: () => updateActiveState(id),
-      onLeave: () => {
-        // Determinar qué sección es la siguiente
-        const currentScroll = window.scrollY || window.pageYOffset;
-        const viewportHeight = window.innerHeight;
-        const centerPoint = currentScroll + viewportHeight / 2;
+    sections.forEach(({ element, id }) => {
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const distance = Math.abs(viewportCenter - center);
 
-        // Encontrar la sección más cercana al centro del viewport
-        let closestSection = null;
-        let closestDistance = Infinity;
-
-        links.forEach(({ element: el, id: sectionId }) => {
-          if (!el) return;
-          const rect = el.getBoundingClientRect();
-          const elementTop = rect.top + currentScroll;
-          const elementCenter = elementTop + rect.height / 2;
-          const distance = Math.abs(centerPoint - elementCenter);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestSection = sectionId;
-          }
-        });
-
-        if (closestSection) {
-          updateActiveState(closestSection);
-        }
-      },
-      onLeaveBack: () => {
-        // Similar a onLeave pero para scroll hacia arriba
-        const currentScroll = window.scrollY || window.pageYOffset;
-        const viewportHeight = window.innerHeight;
-        const centerPoint = currentScroll + viewportHeight / 2;
-
-        let closestSection = null;
-        let closestDistance = Infinity;
-
-        links.forEach(({ element: el, id: sectionId }) => {
-          if (!el) return;
-          const rect = el.getBoundingClientRect();
-          const elementTop = rect.top + currentScroll;
-          const elementCenter = elementTop + rect.height / 2;
-          const distance = Math.abs(centerPoint - elementCenter);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestSection = sectionId;
-          }
-        });
-
-        if (closestSection) {
-          updateActiveState(closestSection);
-        }
-      },
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestId = id;
+      }
     });
+
+    return closestId;
+  };
+
+  // Single ScrollTrigger that updates active state on scroll
+  ScrollTrigger.create({
+    trigger: document.documentElement,
+    start: 0,
+    end: "max",
+    onUpdate: () => {
+      const id = getClosestSectionId();
+      if (id) setActive(id);
+    },
   });
 
   // Estado inicial basado en la posición del scroll
   const updateInitialState = () => {
-    const currentScroll = window.scrollY || window.pageYOffset;
-    const viewportHeight = window.innerHeight;
-    const centerPoint = currentScroll + viewportHeight / 2;
-
-    let closestSection = null;
-    let closestDistance = Infinity;
-
-    links.forEach(({ element: el, id: sectionId }) => {
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const elementTop = rect.top + currentScroll;
-      const elementCenter = elementTop + rect.height / 2;
-      const distance = Math.abs(centerPoint - elementCenter);
-
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestSection = sectionId;
-      }
-    });
-
-    if (closestSection) {
-      updateActiveState(closestSection);
-    }
+    const id = getClosestSectionId();
+    if (id) setActive(id);
   };
 
   // Actualizar estado inicial después de que todo esté cargado

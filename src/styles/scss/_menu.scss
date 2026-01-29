@@ -36,13 +36,16 @@
       flex-direction: row; 
       justify-content: flex-start;
       align-items: center;
+      
       margin: 0;
-      transform: rotate(90deg);
+      padding-top: 5vh;
+      
       position: absolute;
       width: 100vh;
       top: 0vh;
-      left: 1.5rem;
+      left: 0rem;
       transform-origin: 0 100%;
+      transform: rotate(90deg);
 
       li {
         list-style-type: none;
@@ -56,22 +59,61 @@
           color: #FFFFFF;
           text-decoration: none;
           text-transform: uppercase;
-
-          transition-duration: opacity .35s;
+          display: inline-block;
+          // Split-hover effect handles the interaction now
+          transition: opacity .35s ease;
 
           &:hover {
-            transition-duration: opacity .35s;
             cursor: pointer;
-            opacity: .5;
+            opacity: 1;
           }
         }
 
       }
 
-      span {
-        font-weight: 600;
+      span { 
         display: block;
-        margin-top: 4px;
+        // margin-top: 4px;
+      }
+    }
+  }
+
+  // Desktop nav hover split effect (masked line, per-letter swap)
+  .desktop {
+    a {
+      line-height: 1; 
+      .nav-hover {
+        display: inline-block;
+      }
+
+      .nav-hover__mask {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        // Give extra room so letters don't get clipped (especially rotated menu)
+        
+        line-height: .8em;
+        height: .8em;
+        transform: translateZ(0);
+      }
+
+      .nav-hover__row {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        line-height: .8em;
+      }
+
+      .nav-hover__row--bottom {
+        position: absolute;
+        top: 0;
+        left: 0; 
+      }
+
+      .nav-hover__char {
+        display: inline-block;
+        will-change: transform;
+        transform: translateZ(0);
       }
     }
   }
