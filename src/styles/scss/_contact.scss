@@ -90,10 +90,10 @@
   background: url('/images/logo-hot-lava-footer.svg') no-repeat center bottom;
   background-size: contain;
 
-  @media (max-width: ($change-layout - 1px)) {
-    width: 200%;
-    transform: translateX(-5%) translateY(0%);
-  }
+  // @media (max-width: ($change-layout - 1px)) {
+  //   width: 200%;
+  //   transform: translateX(-5%) translateY(0%);
+  // }
 }
 
 

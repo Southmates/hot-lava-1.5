@@ -2,7 +2,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
-import customCursor from "./utils/cursor.js";
 import { handleDynamicContentResize } from "./utils/dynamic-resize.js";
 import { initSectionColors } from "./utils/section-colors.js";
 import { createVideoPlayer } from "./utils/video-player.js";
@@ -470,7 +469,6 @@ handleModal();
 handleHeaderVisibility();
 handleActiveMenuState();
 handleDynamicContentResize(lenis);
-// customCursor();
 
 // Initialize section-based body color changes
 initSectionColors();
