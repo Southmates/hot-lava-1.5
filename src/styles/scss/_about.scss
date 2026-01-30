@@ -35,7 +35,7 @@
   width: 90%;
   padding-top: 10vh; 
 
-    @media (min-width: $change-layout) {
+    @media (min-width: $desktop) {
       align-items: center;
       gap: 4rem;
     }
@@ -46,25 +46,25 @@
   width: fit-content; 
 
   &:nth-child(odd) {
-    @media (min-width: $change-layout) {
+    @media (min-width: $desktop) {
       transform: translateX(50%);
     }
   }
   
   &:nth-child(even) {
-    @media (min-width: $change-layout) {
+    @media (min-width: $desktop) {
       transform: translateX(-25%);
     }
   }
   
   &:nth-child(odd) {
-    @media (min-width: $desktop) {
+    @media (min-width: 1500px) {
       transform: translateX(75%);
     }
   }
 
   &:nth-child(even) {
-    @media (min-width: $desktop) {
+    @media (min-width: 1500px) {
       transform: translateX(-50%);
     }
   }
@@ -147,7 +147,7 @@
   pointer-events: none;
   transition: all 0.3s ease; 
 
-  @media (max-width: ($change-layout - 1px)) {
+  @media (max-width: ($desktop - 1px)) {
     top: 65%;
     // bottom: 2rem;
     left: -1rem;
@@ -159,7 +159,7 @@
 .team__surname {
   display: inline;
 
-  @media (max-width: ($change-layout - 1px)) { 
+  @media (max-width: ($desktop - 1px)) { 
     display: block;
   }
 }
