@@ -1,92 +1,12 @@
 ---
-// index.astro
-import { sanity } from '../lib/sanity'
-import { getTeamMembers } from '@/data/team' 
 
-// Query: Site settings singleton with all global content
-const settingsQuery = `
-  *[_id == "siteSettings"]{
-    siteTitle,
-    siteTagline,
-    seo {
-      metaTitle,
-      metaDescription
-    },
-    footerTitle {
-      line1,
-      line2
-    },
-    contactInfo {
-      text,
-      textAfterBreak,
-      email
-    },
-    socialLinks[]{
-      url,
-      ariaLabel,
-      svgPath
-    }
-  }[0]
-`;
+// Data fetching
+import { getSiteSettings } from '@/data/siteSettings'
+import { getHero } from '@/data/hero'
+import { getIntro } from '@/data/intro'
+import { getTeamMembers } from '@/data/team'
 
-// Query: Hero section with video and poster
-const heroQuery = `
-  *[_type == "hero"][0]{
-    video {
-      asset->{
-        url
-      }
-    },
-    poster {
-      asset->{
-        url
-      }
-    },
-    ariaLabel
-  }
-`;
-
-// Query: Intro section with asterisk and sections
-const introQuery = `
-  *[_type == "introSection"][0]{
-    asterisk,
-    section1{
-      title{ line1, line2 },
-      paragraph
-    },
-    section2{
-      title{ line1, line2 },
-      paragraph
-    },
-    section3{
-      title{ line1, line2 },
-      paragraph
-    },
-    section4{
-      title{ line1, line2 },
-      paragraph
-    }
-  }
-`;
-
-// Fetch data from Sanity
-const settings = await sanity.fetch(settingsQuery);
-const hero = await sanity.fetch(heroQuery);
-const intro = await sanity.fetch(introQuery);
-const team = await getTeamMembers(); 
-
-// Build page title and description
-const baseTitle = settings.siteTagline
-  ? `${settings.siteTitle} | ${settings.siteTagline}`
-  : settings.siteTitle;
-
-const pageTitle =
-  settings?.seo?.metaTitle ?? baseTitle;
-
-const pageDescription =
-  settings?.seo?.metaDescription ??
-  'Hot Lava Agency delivers innovative, non-toxic advertising solutions. We specialize in creative strategy, digital marketing, and brand development for forward-thinking companies.';
-
+// Components
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Loader from '../components/Loader.astro';
 import Header from '../components/Header.astro';
@@ -101,6 +21,23 @@ import Work from '../components/sections/Work.astro';
 import Products from '../components/sections/Products.astro';
 import Canvas from '../components/Canvas.astro';
 import '../styles/global.scss';
+
+const settings = await getSiteSettings()
+const hero = await getHero()
+const intro = await getIntro()
+const team = await getTeamMembers()
+
+// Build page title and description
+const baseTitle = settings.siteTagline
+  ? `${settings.siteTitle} | ${settings.siteTagline}`
+  : settings.siteTitle;
+
+const pageTitle =
+  settings?.seo?.metaTitle ?? baseTitle;
+
+const pageDescription =
+  settings?.seo?.metaDescription ??
+  'Hot Lava Agency delivers innovative, non-toxic advertising solutions. We specialize in creative strategy, digital marketing, and brand development for forward-thinking companies.';
 ---
 
 <BaseLayout
@@ -116,8 +53,7 @@ import '../styles/global.scss';
     '/team/nik.jpg',
     '/team/ben.jpg',
   ]}
->
-  <a class="skip-link" href="#main-content">Skip to content</a>
+>   
   <Loader />
   <canvas id="fluid"></canvas>
   <Modal />
@@ -130,11 +66,11 @@ import '../styles/global.scss';
     <h1 class="sr-only">{settings.siteTitle}</h1>
     <Hero hero={hero} />
     <Intro config={intro} />
-
     <About team={team} /> 
     <Work />
     <Products />
   </main>
+
   <Footer siteSettings={settings}/> 
   <Canvas />
 
