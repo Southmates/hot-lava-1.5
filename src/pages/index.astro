@@ -1,7 +1,8 @@
 ---
 // index.astro
 import { sanity } from '../lib/sanity'
-const query = `
+
+const settingsQuery = `
   *[_id == "siteSettings"]{
     siteTitle,
     siteTagline,
@@ -26,7 +27,24 @@ const query = `
   }[0]
 `;
 
-const settings = await sanity.fetch(query);
+const heroQuery = `
+  *[_type == "hero"][0]{
+    video {
+      asset->{
+        url
+      }
+    },
+    poster {
+      asset->{
+        url
+      }
+    },
+    ariaLabel
+  }
+`;
+
+const settings = await sanity.fetch(settingsQuery);
+const hero = await sanity.fetch(heroQuery);
 
 const baseTitle = settings.siteTagline
   ? `${settings.siteTitle} | ${settings.siteTagline}`
@@ -80,7 +98,7 @@ import '../styles/global.scss';
 
   <main id="main-content">
     <h1 class="sr-only">{settings.siteTitle}</h1>
-    <Hero />
+    <Hero hero={hero} />
     <Intro />
     <About /> 
     <Work />

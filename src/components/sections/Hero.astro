@@ -1,9 +1,23 @@
 ---
 // Hero.astro
+const { hero } = Astro.props ?? {};
+const DEFAULT_VIDEO = "/hero/hero-loop.mp4";
+const DEFAULT_POSTER = "/hero/hero-loop.png";
+const DEFAULT_ARIA = "Hot Lava Agency - Vulcan erupting";
+
+const resolvedVideoSrc: string =
+  hero?.video?.asset?.url ?? DEFAULT_VIDEO;
+
+const resolvedPoster: string =
+  hero?.poster?.asset?.url ?? DEFAULT_POSTER;
+
+const resolvedAriaLabel: string =
+  hero?.ariaLabel ?? DEFAULT_ARIA;
+
 
 const videoConfig = {
   source: {
-    src: "/hero/hero-loop.mp4",
+    src: resolvedVideoSrc,
     type: "video/mp4",
   },
   settings: {
@@ -13,8 +27,8 @@ const videoConfig = {
     playsinline: true,
     preload: "auto",
   },
-  poster: "/hero/hero-loop.png",
-  ariaLabel: "Hot Lava Agency - Vulcan erupts",
+  poster: resolvedPoster,
+  ariaLabel: resolvedAriaLabel,
 };
 
 const logoSvg = {
@@ -172,7 +186,7 @@ const logoSvg = {
     });
   }
 
-  // Animación de rotación continua para el asterisco
+  // Animation of continuous rotation for the asterisk
   const asterisk = document.querySelector('#asterisk-hero') as SVGPathElement;
   if (asterisk) {
     const svg = asterisk.closest('svg') as SVGSVGElement;
@@ -192,15 +206,10 @@ const logoSvg = {
         repeat: -1,
       });
     }
-  }
+  } 
 
-  // Parallax para el logo
-  // initParallax('.hero .logo', {
-  //   speed: -1  // Se mueve más lento que el scroll
-  // });
-
-  // Parallax para el video
+  // Parallax for video
   initParallax('.hero .video', {
-    speed: 2  // Se mueve un poco más rápido que el logo
+    speed: 2  // Moves a bit faster than the logo
   });
 </script>
