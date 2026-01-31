@@ -1,6 +1,8 @@
 ---
 // Works.astro
 import BrandsCarousel from '../BrandsCarousel.astro';
+import { getBrands } from '@/data/brands';
+const brands = await getBrands();
 
 interface WorkItem {
   brand: string;
@@ -77,6 +79,7 @@ const {
     <BrandsCarousel 
       title={carouselTitle}
       duration={carouselDuration}
+      brands={brands}
     />
   </div>
 </section>
