@@ -8,6 +8,8 @@ interface Product {
   hoverImage: string;
   url: string;
   darkBackground?: boolean;
+  bgColor?: string;
+  bgSize?: string;
 }
 
 interface Props {
@@ -22,23 +24,19 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-01.png',
     hoverImage: '/shop/HLA-FlowGeneratorLamp.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-boxed-lava-lamp',
-    darkBackground: true
-  },
-  // { 
-  //   id: 2, 
-  //   name: 'Hot Sauce Original Trio', 
-  //   image: '/shop/prod-02.png',
-  //   hoverImage: '/shop/HLA-HotSauces.jpg',
-  //   url: 'https://shop.hotlavaagency.com/products/hot-lava-boxed-hot-sauces',
-  //   darkBackground: true
-  // },
+    darkBackground: true,
+    bgColor: '#A8D5E2',
+    bgSize: 'contain',
+  }, 
   { 
     id: 6, 
     name: 'Ember Thinking Cap', 
     image: '/shop/prod-06.png',
     hoverImage: '/shop/HLA-EmberThinkingCap.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-hat',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#FFB347',
+    bgSize: 'contain',
   },
   { 
     id: 3, 
@@ -46,7 +44,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-03.png',
     hoverImage: '/shop/HLA-LavaScentedCandle.webp',
     url: 'https://shop.hotlavaagency.com/products/concrete-candle-lava-scent',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#FF6B35',
+    bgSize: 'contain',
   },
   { 
     id: 4, 
@@ -54,15 +54,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-04.png',
     hoverImage: '/shop/HLA-VolcanicHoodie.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-hoodie',
-    darkBackground: true
-  },
-  { 
-    id: 8, 
-    name: 'Hot Sauce Triple Burn', 
-    image: '/shop/prod-08.png',
-    hoverImage: '/shop/HLA-HotSauces.jpg',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-trio-hot-sauce-box-2025',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: 'transparent',
+    bgSize: 'contain',
   },
   { 
     id: 5, 
@@ -70,7 +64,19 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-05.png',
     hoverImage: '/shop/HLA-EmberKeyCharm.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-keychain',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#A8D5E2',
+    bgSize: 'contain',
+  },
+  { 
+    id: 8, 
+    name: 'Hot Sauce Triple Burn', 
+    image: '/shop/prod-08.png',
+    hoverImage: '/shop/HLA-HotSauces.jpg',
+    url: 'https://shop.hotlavaagency.com/products/hot-lava-trio-hot-sauce-box-2025',
+    darkBackground: true,
+    bgColor: '#ffba30',
+    bgSize: 'contain',
   },
   { 
     id: 10, 
@@ -78,7 +84,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-10.png',
     hoverImage: '/shop/HLA-MakeItHot.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-make-it-hot-hoodie',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#ffba30',
+    bgSize: 'cover',
   },
   { 
     id: 9, 
@@ -86,7 +94,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-07.png',
     hoverImage: '/shop/HLA-Sunscreen-Lady.jpg',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-non-toxic-t-shirt',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#f74a20',
+    bgSize: 'contain',
   },
   { 
     id: 7, 
@@ -94,7 +104,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-11.png',
     hoverImage: '/shop/HLA-LavaLampHat.png',
     url: 'https://shop.hotlavaagency.com/products/lava-lamp-hat',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#ddf3e7',
+    bgSize: 'contain',
   },
   { 
     id: 11, 
@@ -102,7 +114,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-09.png',
     hoverImage: '/shop/HLA-Diffuser.jpg',
     url: 'https://shop.hotlavaagency.com/',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#f74a20',
+    bgSize: 'contain',
   },
   { 
     id: 12, 
@@ -110,7 +124,9 @@ const defaultProducts: Product[] = [
     image: '/shop/prod-12.png',
     hoverImage: '/shop/HLA-OvenMittens.webp',
     url: 'https://shop.hotlavaagency.com/products/hot-lava-mitts',
-    darkBackground: true
+    darkBackground: true,
+    bgColor: '#ddf3e7',
+    bgSize: 'cover',
   },
 ];
 
@@ -133,6 +149,13 @@ const { products = defaultProducts } = Astro.props;
           target="_blank" 
           rel="noopener noreferrer"
           class={`product__card product__card--${product.id} ${product.darkBackground ? 'product__card--dark' : ''}`}
+          style={{
+            backgroundImage: `url(${product.image})`,
+            backgroundColor: product.bgColor,
+            backgroundSize: product.bgSize ?? 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
           <img 
             src={product.hoverImage} 
