@@ -1,6 +1,7 @@
 ---
 // index.astro
 import { sanity } from '../lib/sanity'
+import { getTeamMembers } from '../data/team'
 
 // Query: Site settings singleton with all global content
 const settingsQuery = `
@@ -72,6 +73,7 @@ const introQuery = `
 const settings = await sanity.fetch(settingsQuery);
 const hero = await sanity.fetch(heroQuery);
 const intro = await sanity.fetch(introQuery);
+const team = await getTeamMembers();
 
 // Build page title and description
 const baseTitle = settings.siteTagline
@@ -129,7 +131,7 @@ import '../styles/global.scss';
     <Hero hero={hero} />
     <Intro config={intro} />
 
-    <About /> 
+    <About team={team} /> 
     <Work />
     <Products />
   </main>
