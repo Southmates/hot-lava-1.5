@@ -22,7 +22,11 @@
     height: 30px;
     position: fixed;
     right: 23px;
-    top: -50px;
+    top: -80px;
+
+    @media (min-width: $change-layout) { 
+      top: -50px;
+    }
     
   }
 
