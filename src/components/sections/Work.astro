@@ -1,16 +1,26 @@
 ---
 // Works.astro
+import { urlFor } from '@/lib/sanity'
+
+// Data fetching for brands carousel
 import BrandsCarousel from '../BrandsCarousel.astro';
 import { getBrands } from '@/data/brands';
 const brands = await getBrands();
 
-interface WorkItem {
-  brand: string;
-  name: string;
-  slide: string;
-  image: string;
-  videoUrl?: string;
+interface SanityImage {
+  asset: {
+    _ref: string
+  }
 }
+
+interface WorkItem {
+  brand: string
+  name: string
+  slide: string
+  image: SanityImage
+  videoUrl?: string
+}
+
 
 interface Props {
   asterisk?: string;
@@ -20,23 +30,26 @@ interface Props {
   carouselDuration?: number;
 }
 
-// Default works data - will be replaced by CMS data
-const defaultWorks: WorkItem[] = [
-  // { brand: 'P&G', name: 'Collision', slide: 'Collision', image: '/work/p&g--collision.jpg', videoUrl: '' },
-  // { brand: 'P&G', name: 'First-Time Fresh', slide: 'First-Time Fresh', image: '/work/p&g--first-time-fresh.jpg', videoUrl: '' },
-  { brand: 'Dehnco', name: 'The Most Classic Design', slide: 'The Most Classic Design', image: '/work/dehnco--the-most-classic-design.jpg', videoUrl: 'https://vimeo.com/1088839478' },
-  { brand: 'Arrow Electronics', name: 'The Speed of Arrow', slide: 'The Speed of Arrow', image: '/work/arrow--the-speed-of-arrow.jpg', videoUrl: 'https://vimeo.com/1111855559' },
-  { brand: 'Dole Packaged Foods', name: 'Dolemates', slide: 'Dolemates', image: '/work/dole--dolemates.jpg', videoUrl: 'https://vimeo.com/1154846381' },
-  { brand: 'Max Pawn Luxury', name: 'We Know Real', slide: 'We Know Real', image: '/work/max-pawn--luxury-we-know-real.jpg', videoUrl: 'https://vimeo.com/1154847059' }, 
-];
+// const defaultWorks: WorkItem[] = [ 
+//   { brand: 'Dehnco', name: 'The Most Classic Design', slide: 'The Most Classic Design', image: '/work/dehnco--the-most-classic-design.jpg', videoUrl: 'https://vimeo.com/1088839478' },
+//   { brand: 'Arrow Electronics', name: 'The Speed of Arrow', slide: 'The Speed of Arrow', image: '/work/arrow--the-speed-of-arrow.jpg', videoUrl: 'https://vimeo.com/1111855559' },
+//   { brand: 'Dole Packaged Foods', name: 'Dolemates', slide: 'Dolemates', image: '/work/dole--dolemates.jpg', videoUrl: 'https://vimeo.com/1154846381' },
+//   { brand: 'Max Pawn Luxury', name: 'We Know Real', slide: 'We Know Real', image: '/work/max-pawn--luxury-we-know-real.jpg', videoUrl: 'https://vimeo.com/1154847059' }, 
+// ];
 
 const {
   asterisk = '*',
   title = 'See how we flow',
-  works = defaultWorks,
+  works,
   carouselTitle = 'Our expertise flows across CPG, B2B and retail.',
   carouselDuration = 40,
 } = Astro.props;
+
+// if (!works?.length) return null
+
+if (!works) {
+  throw new Error('Works data is required')
+}
 ---
 
 <section id="work" class="works">   
@@ -58,8 +71,12 @@ const {
               <div class="name">
                 <p>{work.name}<span class="underline"></span></p>
               </div>
-              <img 
-                src={work.image} 
+              <img
+                src={
+                  work.image
+                    ? urlFor(work.image).width(900).auto('format').url()
+                    : '/work/placeholder.jpg'
+                }
                 alt={work.name}
                 class="work__image"
                 loading="lazy"
