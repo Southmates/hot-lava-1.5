@@ -6,6 +6,7 @@ import { getHero } from '@/data/hero'
 import { getIntro } from '@/data/intro'
 import { getTeamMembers } from '@/data/team'
 import { getWorkItems } from '@/data/work'
+import { getProducts } from '@/data/products'
 
 // Components
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -28,6 +29,7 @@ const hero = await getHero()
 const intro = await getIntro()
 const team = await getTeamMembers()
 const works = await getWorkItems()
+const products = await getProducts()
 
 // Build page title and description
 const baseTitle = settings.siteTagline

@@ -1,136 +1,29 @@
 ---
 // Products.astro
 
+import { urlFor } from '@/lib/sanity' 
+import { getProducts } from '@/data/products' 
+const products = await getProducts()
+
+interface SanityImage {
+  asset: {
+    _ref: string
+  }
+}
+
 interface Product {
-  id: number;
-  name: string;
-  image: string;
-  hoverImage: string;
-  url: string;
-  darkBackground?: boolean;
-  bgColor?: string;
-  bgSize?: string;
+  name: string
+  url: string
+  image: SanityImage
+  hoverImage?: SanityImage
+  bgColor?: string
+  bgSize?: 'cover' | 'contain'
+  darkBackground?: boolean
 }
+  
 
-interface Props {
-  products?: Product[];
-}
+if (!products?.length) return null
 
-// Default products data - will be replaced by CMS data
-const defaultProducts: Product[] = [
-  { 
-    id: 1, 
-    name: 'Flow Generator Lamp', 
-    image: '/shop/prod-01.png',
-    hoverImage: '/shop/HLA-FlowGeneratorLamp.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-boxed-lava-lamp',
-    darkBackground: true,
-    bgColor: '#A8D5E2',
-    bgSize: 'contain',
-  }, 
-  { 
-    id: 6, 
-    name: 'Ember Thinking Cap', 
-    image: '/shop/prod-06.png',
-    hoverImage: '/shop/HLA-EmberThinkingCap.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-hat',
-    darkBackground: true,
-    bgColor: '#FFB347',
-    bgSize: 'contain',
-  },
-  { 
-    id: 3, 
-    name: 'Lava Scented Candle', 
-    image: '/shop/prod-03.png',
-    hoverImage: '/shop/HLA-LavaScentedCandle.webp',
-    url: 'https://shop.hotlavaagency.com/products/concrete-candle-lava-scent',
-    darkBackground: true,
-    bgColor: '#f74a20',
-    bgSize: 'contain',
-  },
-  { 
-    id: 4, 
-    name: 'Volcanic Hoodie', 
-    image: '/shop/prod-04.png',
-    hoverImage: '/shop/HLA-VolcanicHoodie.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-hoodie',
-    darkBackground: true,
-    bgColor: '#f74a20',
-    bgSize: 'cover',
-  },
-  { 
-    id: 5, 
-    name: 'Ember Key Charm', 
-    image: '/shop/prod-05.png',
-    hoverImage: '/shop/HLA-EmberKeyCharm.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-keychain',
-    darkBackground: true,
-    bgColor: '#A8D5E2',
-    bgSize: 'contain',
-  },
-  { 
-    id: 8, 
-    name: 'Hot Sauce Triple Burn', 
-    image: '/shop/prod-08.png',
-    hoverImage: '/shop/HLA-HotSauces.jpg',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-trio-hot-sauce-box-2025',
-    darkBackground: true,
-    bgColor: '#ffba30',
-    bgSize: 'contain',
-  },
-  { 
-    id: 10, 
-    name: 'Make it Hot Hoodie', 
-    image: '/shop/prod-10.png',
-    hoverImage: '/shop/HLA-MakeItHot.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-make-it-hot-hoodie',
-    darkBackground: true,
-    bgColor: '#ffba30',
-    bgSize: 'cover',
-  },
-  { 
-    id: 9, 
-    name: 'Non-Toxic Tee', 
-    image: '/shop/prod-07.png',
-    hoverImage: '/shop/HLA-Sunscreen-Lady.jpg',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-non-toxic-t-shirt',
-    darkBackground: true,
-    bgColor: '#f74a20',
-    bgSize: 'contain',
-  },
-  { 
-    id: 7, 
-    name: 'Lava Lamp Thinking Cap', 
-    image: '/shop/prod-11.png',
-    hoverImage: '/shop/HLA-LavaLampHat.png',
-    url: 'https://shop.hotlavaagency.com/products/lava-lamp-hat',
-    darkBackground: true,
-    bgColor: '#A8D5E2',
-    bgSize: 'contain',
-  },
-  { 
-    id: 11, 
-    name: 'Sweet Magma Diffuser', 
-    image: '/shop/prod-09.png',
-    hoverImage: '/shop/HLA-Diffuser.jpg',
-    url: 'https://shop.hotlavaagency.com/',
-    darkBackground: true,
-    bgColor: '#f74a20',
-    bgSize: 'contain',
-  },
-  { 
-    id: 12, 
-    name: 'Molten Oven Mitten', 
-    image: '/shop/prod-12.png',
-    hoverImage: '/shop/HLA-OvenMittens.webp',
-    url: 'https://shop.hotlavaagency.com/products/hot-lava-mitts',
-    darkBackground: true,
-    bgColor: '#A8D5E2',
-    bgSize: 'cover',
-  },
-];
-
-const { products = defaultProducts } = Astro.props;
 ---
 
 <section id="shop" class="products shop">
@@ -144,25 +37,25 @@ const { products = defaultProducts } = Astro.props;
       
     <div class="container products__grid"> 
       {products.map((product) => (
-        <a 
-          href={product.url} 
-          target="_blank" 
+        <a
+          href={product.url}
+          target="_blank"
           rel="noopener noreferrer"
-          class={`product__card product__card--${product.id} ${product.darkBackground ? 'product__card--dark' : ''}`}
-          style={{
-            backgroundImage: `url(${product.image})`,
-            backgroundColor: product.bgColor,
-            backgroundSize: product.bgSize ?? 'contain',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          class={`product__card product__card--${product._id} ${product.darkBackground ? 'product__card--dark' : ''}`}
+          style={`
+            background-image: url(${urlFor(product.image).width(800).auto('format').url()});
+            background-color: ${product.bgColor ?? 'transparent'};
+            background-size: ${product.bgSize ?? 'contain'};
+            background-position: center;
+            background-repeat: no-repeat;
+          `}
         >
-          <img 
-            src={product.hoverImage} 
+          <img
+            src={urlFor(product.hoverImage).width(800).auto('format').url()}
             alt={product.name}
-            class="product__hover-image"
             loading="lazy"
-          />
+            class="product__image product__hover-image"
+          /> 
           <div class="product__content">
             <span class="product__name">{product.name}</span>
             <span class="product__view-text">View Details <span>→</span></span>
