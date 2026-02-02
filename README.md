@@ -2,7 +2,7 @@
 
 This repository contains the official Hot Lava Agency website.
 
-The project is built with **Astro** and uses **Sanity** as a headless CMS, following a strict build-time content strategy and a fully automated deployment pipeline.
+The project is built with **Astro** and uses **Sanity** as a headless CMS, following a build-time content strategy and a fully automated deployment pipeline.
 
 ---
 
@@ -14,7 +14,7 @@ The project is built with **Astro** and uses **Sanity** as a headless CMS, follo
 * **Each section owns its own content domain**
 * **Publish in Sanity = Production update**
 
-The CMS is intentionally limited to prevent SEO, performance, or infrastructure regressions.
+The CMS scope is intentionally limited to prevent SEO, performance, or infrastructure regressions.
 
 ---
 
@@ -79,7 +79,7 @@ Publishing content in Sanity automatically triggers a production deployment.
 High-level flow:
 
 ```
-Sanity Publish → Webhook → Build → Deploy
+Sanity Publish → Webhook → CI Build → Deploy
 ```
 
 No manual steps are required.
@@ -91,9 +91,7 @@ No manual steps are required.
 Detailed architecture and decision documentation lives in `/docs`:
 
 * `architecture-overview.md`
-* `cms-architecture.md`
-* `site-settings.md`
-* `seo-strategy.md`
+* `cms-architecture.md`  
 * `deployment-flow.md`
 * `decisions.md`
 
@@ -104,6 +102,8 @@ Changes to CMS scope or SEO behavior should be reflected there.
 ---
 
 ## Notes
+
+Due to hosting-level dynamic caching, HTML updates may require manual cache invalidation in SiteGround to become immediately visible.
 
 Infrastructure-level files (e.g. `llm.txt`, `robots.txt`) are intentionally **not managed via CMS** and are versioned in code.
 

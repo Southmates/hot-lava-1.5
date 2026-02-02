@@ -12,6 +12,19 @@ Sanity (production dataset)
 → rsync  
 → SiteGround (production)
 
+## Hosting Cache Behavior
+
+The hosting environment uses full-page dynamic caching that cannot be disabled.
+
+As a result:
+- New HTML builds are deployed correctly.
+- Updated content may not become immediately visible until the dynamic cache is cleared.
+
+After publishing content in Sanity, the dynamic cache must be manually cleared in SiteGround for changes to appear instantly.
+
+This limitation is specific to the hosting layer and does not affect the deployment pipeline itself.
+
+
 ## Component Responsibilities
 
 ### Sanity

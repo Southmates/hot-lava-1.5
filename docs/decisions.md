@@ -100,6 +100,24 @@ Editors interact only with Sanity.
 - Content publishing triggers automated deployment.
 - No infrastructure access is required for CMS users.
 
+## 7. Accept Hosting-Level Dynamic Cache Constraints
+
+**Decision**  
+The hosting-level dynamic cache is kept enabled, and manual cache invalidation is required after content updates.
+
+**Reason**
+- The hosting plan does not allow disabling full-page dynamic caching.
+- Automated cache purge is not available without additional infrastructure or cost.
+- Manual cache clearing is the most economical and reliable option.
+
+**Outcome**
+- Content deployments are successful immediately.
+- Visibility of HTML updates depends on manual cache invalidation.
+- This behavior is documented and communicated to the client.
+
+**Trade-off**
+- Immediate content visibility is not guaranteed without manual action.
+
 ---
 
 ## Summary
