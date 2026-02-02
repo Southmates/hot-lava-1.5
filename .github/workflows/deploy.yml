@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  repository_dispatch:
-    types: [sanity-deploy]
+  workflow_dispatch: 
 
 jobs:
   build-and-deploy:

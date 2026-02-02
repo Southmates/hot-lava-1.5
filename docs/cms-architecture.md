@@ -1,18 +1,64 @@
 # CMS Architecture
 
-Sanity is used exclusively for editorial and brand-related content.
+This project uses Sanity as a headless CMS for content and media management.
 
-## What goes to the CMS
+Sanity is responsible only for content creation, editing, and asset storage.  
+It does not manage deployment, hosting, or build processes.
 
-- siteSettings (singleton)
-- Section-specific content (Intro, About, Work, Products, Team)
-- Media assets (images, videos)
+---
 
-## What does NOT go to the CMS
+## Dataset Usage
 
-- Deployment configuration
-- SEO infrastructure (robots, canonical logic)
-- Structured data schemas
-- Infrastructure metadata (llm.txt, security.txt)
+- Only the `production` dataset is used.
+- All published content lives in `production`.
+- Sanity webhooks listen exclusively to this dataset.
+- Draft content does not trigger deployments.
 
-The CMS reflects content domains, not UI components.
+--- 
+
+## Asset Handling
+
+- All images and videos are uploaded to Sanity.
+- Assets are served directly from Sanity’s CDN.
+- The frontend does not serve or proxy media assets.
+
+### Asset Updates
+
+- Assets must not be replaced in place.
+- When an image or video needs to be updated, a new asset must be uploaded.
+- Uploading a new asset generates a new CDN URL.
+
+This behavior is relied upon to ensure predictable cache behavior.
+
+---
+
+## Webhooks
+
+- Sanity emits webhook events on:
+  - document creation
+  - document updates
+  - document deletion
+- Webhooks are triggered only for the `production` dataset.
+- Webhooks do not contain secrets or deployment logic.
+
+Their sole purpose is to signal that content has changed.
+
+---
+
+## CMS Boundaries
+
+Sanity is intentionally unaware of:
+- source control
+- CI/CD pipelines
+- hosting environments
+- cache management
+
+All infrastructure orchestration happens outside the CMS.
+
+---
+
+## Editorial Impact
+
+- Editors publish content without interacting with Git or hosting.
+- Publishing content triggers an automated deployment.
+- No manual cache clearing is required at the CMS level.
