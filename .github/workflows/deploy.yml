@@ -6,6 +6,7 @@ on:
       - main
   workflow_dispatch:
   repository_dispatch:
+    types: [sanity-deploy]
 
 jobs:
   build-and-deploy:
